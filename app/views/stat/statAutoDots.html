@@ -1,0 +1,86 @@
+<div class="auto_dots_container ng-hide"
+	ng-show="!myspinner['is']"
+	ng-controller="StatAutoDots"
+	>
+	
+	<div class="section_name">
+        <h2>Dots</h2>
+
+		<div class="datepicker_container" tabindex=100>
+    		<label for="datepicker_abc">
+        		<i class="fa fa-calendar" aria-hidden="true"></i>
+    		</label>
+			<input id="datepicker_abc" type="date" class="datepicker"
+				datepicker
+				selector-for-unfocus=".datepicker_container"
+				>
+		</div>
+
+        <div class="descr small">
+            <p>This section contains dots, which are advertisements, placed on surface through the two dimensions: years and races</p>
+        </div>
+    </div>
+
+
+
+    <div class="dots_container custom_chart"
+    	c3-chart-dots="DATA_adverts"
+    	label="All Cars"
+    	property = 'raceDot'
+    	last-watched="LAST_WATCHED"
+    	advert="ADVERT"
+		>
+
+    </div>
+
+
+    <div class="bottom_block">
+
+		<div class="card horizontal">
+	      
+	    	<div class="card-stacked">
+	        	<div class="card-content">
+	        		<div class="title_price">
+	        			<span>{{ADVERT['year']}}, </span>
+	        			<span>{{ADVERT['title']}}</span>
+	        			<span>{{ADVERT['price']|currency:'$':0}}</span>
+	    			</div>
+	        		
+
+	        		<div class="year_race">
+	        		<!--
+	        			<span class="label">Year:</span><span class="val">2009</span>
+	        			-->
+	        			<!--<span class="label">Race:</span>--><span class="val">{{ADVERT['raceOrg']}}, {{ADVERT['fuelName']}}</span>
+	    			</div>
+
+	          		<p>{{ADVERT['shortTitle']}}</p>
+	        	</div>
+	        	<div class="card-action">
+	          		<a href="{{ADVERT['link']}}" target="_blank">This is a link</a>
+	        	</div>
+	      	</div>
+	    </div>
+
+
+	    <div class="last_watched">
+	    	<div class="title"
+	    		ng-show="LAST_WATCHED.length>0"
+	    		>Last Watched <span ng-click="reset()">(reset)</span></div>
+	    	<div class="adverts_watched animated slideInDown"
+	    		ng-repeat="it in LAST_WATCHED"
+	    		ng-click="select_advert(it)"
+	    		>
+	    		<span>{{it['price']|currency:'$':0}}, </span>
+	    		<span>{{it['raceOrg']}}.</span>
+				<span>{{it['year']}},</span>
+	    		<div>{{it['title']}}</div>
+
+	    	</div>
+	    </div>
+
+
+    </div>
+
+</div>
+

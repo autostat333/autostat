@@ -1,0 +1,464 @@
+
+
+.stat_container
+	{
+	margin-top:64px;
+	width:100%;
+	position:relative;
+	transform:translateZ(0);
+
+
+	background: #c21500; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #c21500 , #ffc500); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #c21500 , #ffc500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+
+	.about_stat
+		{
+		position:relative;
+		//background:rgb(0,64,128);
+		text-align:center;
+		height:180px;
+		width:100%;
+
+		.wrap
+			{
+			//background:rgba(255,215,0,0.7);
+			width:100%;
+			height:100%;
+			position:relative;
+			z-index:5;
+			padding:30px 100px 30px 100px;	
+			}
+		.name
+			{
+			font-size:40px;
+			font-weight:bold;
+			color:white;
+			}
+		.descr_
+			{
+			font-size:35px;
+			color:white;
+			}
+		.ria
+			{
+			font-size:40px;
+			font-weight:bold;
+			color:white;
+			}
+		}
+
+
+
+
+	.banner
+		{
+		width:100%;
+		min-height:300px;
+		text-align:center;
+		//background:url('../images/b25.png');
+		//background-size:cover;
+		display:flex;
+		align-items:center;
+		justify-content:space-around;
+		//border-top:2px solid white;
+		padding-bottom:100px;
+		padding-top:50px;
+		position:relative;
+
+		.morda
+			{
+			width:70%;
+			max-width:1000px;
+			min-width:300px;
+			position:relative;
+			height:190px;
+			background:white;
+			z-index:200;
+			margin-bottom:100px;
+
+			@media(max-width:1000px){width:80%}
+
+			.section
+				{
+				background:white;
+				height:200px;
+				width:100%;
+				height:calc(100% - 60px);
+				padding-top:20px;
+				margin-top:10px;
+
+				
+
+				.input_container
+					{
+					display:flex;
+					justify-content:space-around;
+					height:80px;
+					align-items:center;
+					margin-left:auto;
+					margin-right:auto;
+
+					label
+						{
+						top:-22px;
+						left:0px;
+						text-shadow:0px 1px 1px #FFFFFF;
+						color:#C4C4C4;
+						}
+
+
+					.chosen-container, .chosen-single
+						{
+						width:100% !important;
+						font-style:normal !important;
+						}	
+					.chosen-single
+						{
+						text-overflow:ellipsis;
+						overflow:hidden;
+						white-space:nowrap;
+						@media(min-width:450px) and (max-width:900px){font-size:16px !important;}
+						}
+
+					}
+
+
+				.input-field
+					{
+					width:175px;
+					margin-top:0px;
+					height:58px;
+
+					@media(min-width:450px) and (max-width:900px){width:140px;}
+
+					}
+
+
+
+
+				}
+
+
+			.section.i_wish
+				{
+
+				@media(max-width:420px)
+					{
+					.input-field i
+						{
+						left:-23px;
+						}
+					.input_container
+						{
+						.input-field:nth-of-type(2)
+							{
+							margin-top:12px;
+							}
+						.btn_container
+							{
+							bottom:-27px !important;
+							}
+						}
+					}
+
+				@media(max-width:650px)
+					{
+					.input_container
+						{
+						flex-direction:column;
+						.input-field
+							{
+							width:215px !important;
+							}
+						}
+					.chosen-single
+						{
+						color:red !important;
+						width:215px !important;	
+						margin-left:5px !important;
+						}
+					.top_block
+						{
+						margin-top:55px;
+						}						
+					.input-field:nth-of-type(2)
+						{
+						margin-top:60px;
+						}
+					}
+
+
+				}
+	
+
+			.top_block
+				{
+				width:90%;
+				margin-top:18px;
+				.descr_ span
+					{
+					color: transparent;
+					background-clip:text !important;
+					-moz-background-clip:text !important;
+					-khtml-background-clip:text !important;
+					-webkit-background-clip:text !important;
+					-ms-background-clip:text !important;
+					-o-background-clip:text !important;
+
+
+					text-transform: uppercase;
+					word-spacing: 5px;
+					text-align: left;
+					vertical-align: top;
+					display: inline-block;
+					width: calc(100% - 110px);
+					font-size:20px;
+
+
+
+					background: #c21500; /* fallback for old browsers */
+					background: -webkit-linear-gradient(to left, #c21500 , #ffc500); /* Chrome 10-25, Safari 5.1-6 */
+					background: linear-gradient(to left, #c21500 , #ffc500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+				       
+
+					p
+						{
+						margin-top:0px !important;
+						}
+
+					}
+				i
+					{
+					font-size:70px;
+					color:rgba(173, 185, 197, 0.37);
+					line-height:60px;
+					}
+
+				.btn_container
+					{
+					text-align:right;
+					}
+			
+				}
+
+
+			}
+
+
+
+		} //close banner
+
+
+
+	.tab_bar
+		{
+		height:50px;
+		position:absolute;
+		bottom:0px;
+		left:0px;
+		width:100%;
+		z-index:100;
+
+		.tab
+			{
+			display: inline-block;
+			width:150px;
+			height:35px;
+			background-color: #FFF;
+			margin-right: 46px;
+			z-index: 2;
+			position: relative;
+			cursor: pointer;
+			color: #777;
+			background:rgb(0,64,128);
+			color:white;
+			text-align:left;
+			i
+				{
+				position:absolute;
+				font-size:17px;
+				top:8px;
+				right:-15px;
+				transition:all ease 0.5s;
+				}
+
+			i:hover
+				{
+				color:#C4C4C4 !important;
+				}
+
+			i.close
+				{
+				color:white;				
+				}
+
+			span
+				{
+				position:absolute;
+				box-shadow:0 -2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+				clip:rect(-10px auto 35px auto);
+				width:100%;
+				height:100%;
+				padding: 7px 24px 4px 0px;
+				left:0px;
+				top:0px;
+				z-index:5;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+				overflow:hidden;
+				}
+			}
+
+		.active i
+			{
+			color:rgb(221, 221, 221) !important;
+			}
+
+
+		.tab:last-of-type
+			{
+			margin-right:0px;
+			}
+
+		.tab:before
+			{
+			content:'';
+			right: -24px;
+			transform: skew(30deg, 0deg);
+			box-shadow: rgba(0,0,0,0.2) 4px -1px 5px;
+			}
+
+		.tab:after
+			{
+			left: -24px;
+			transform: skew(-30deg, 0deg);
+			box-shadow: rgba(0, 0, 0, 0.1) -4px -3px 5px;
+			}
+
+		.tab:after, .tab:before
+			{
+			display: block;
+			content:'';
+			position: absolute;
+			top: 0;
+			height: 100%;
+			width: 44px;
+			background-color: #FFF;
+			clip:rect(-10px 55px 35px -10px);
+			background:rgb(0,64,128);
+			color:white;
+			}
+
+		.tab.active
+			{
+			z-index:3;
+			background:white;
+			color:black;
+			}
+		.tab.active:before, .tab.active:after,
+			{
+			background:white;
+			}
+
+		} //close TAB BAR
+
+	//below special styles for font-size of tabs depends on its number and screen
+	.tab_bar.elems_1, .tab_bar.elems_2
+		{
+		span{font-size:16px;}
+		}
+
+	.tab_bar.elems_3, .tab_bar.elems_4
+		{
+
+		span
+			{
+			font-size:12px;
+			@media(min-width:400px){font-size:14px;}
+			@media(min-width:600px){font-size:16px;}
+			}
+
+		}
+
+	.tab_bar.elems_4
+		{
+		@media(max-width:450px)
+			{
+			overflow-x:scroll;
+			ul{width:500px;}
+			}
+		}
+
+	.tab_bar.elems_5, .tab_bar.elems_6
+		{
+
+		@media(max-width:550px)
+			{
+			overflow-x:scroll;
+			ul{width:600px;}
+			}
+
+		span
+			{
+			font-size:12px;
+			@media(min-width:600px){font-size:14px;}
+			@media(min-width:900px){font-size:16px;}
+			}
+
+		}
+	.tab_bar.elems_7, .tab_bar.elems_8
+		{
+		@media(max-width:750px)
+			{
+			overflow-x:scroll;
+			ul{width:700px;}
+			}
+
+		span
+			{
+			font-size:10px;
+			@media(min-width:600px){font-size:12px;}
+			@media(min-width:900px){font-size:12px;}
+			@media(min-width:1200px){font-size:14px;}
+			@media(min-width:1500px){font-size:16px;}
+			}
+
+		}
+	.tab_bar.elems_9, .tab_bar.elems_10
+		{
+		@media(max-width:900px)
+			{
+			overflow-x:scroll;
+			ul{width:1000px;}
+			}
+		span
+			{
+			font-size:10px;
+			@media(min-width:600px){font-size:10px;}
+			@media(min-width:900px){font-size:12px;}
+			@media(min-width:1200px){font-size:14px;}
+			@media(min-width:1500px){font-size:16px;}
+			}
+
+		}
+
+
+
+
+
+
+
+	.windows_container
+		{
+		background:white;
+		position:relative;
+		z-index:2;
+		width:100%;
+		min-height:800px;
+		box-shadow:0px 0px 5px 3px rgba(50,50,50,0.4);
+
+		}
+
+	}

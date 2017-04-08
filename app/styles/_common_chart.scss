@@ -1,0 +1,228 @@
+/********CHART********/
+
+.custom_chart
+    {
+    margin-top:8px;
+    overflow:hidden;
+    }
+
+
+.custom_chart .c3-tooltip-container
+    {
+    transition:all ease 0.5s;
+    }
+
+.custom_chart .c3-chart-bars .c3-bar
+    {
+    fill:rgba(98, 172, 243, 0.75) !important;
+    stroke:rgba(98, 172, 243, 0.75) !important;
+    transition:all ease 0.5s;
+    }
+
+/*for HOVER*/
+.custom_chart .c3-chart-bars .c3-bar._expanded_
+    {
+    fill:rgb(0,64,128) !important;
+    stroke:rgb(0,64,128) !important;
+    fill-opacity:1;
+    }
+
+/*TEXT*/
+.custom_chart .c3-axis .tick text tspan
+    {
+    stroke: #cfcfcf;
+    stroke-width:0.2;
+    }
+
+/*LINE*/
+.custom_chart .c3-axis .tick line
+    {
+    stroke:#cfcfcf;
+    }
+
+/*LINE XY*/
+.custom_chart .c3-axis .domain
+    {
+    stroke:#cfcfcf;
+    }
+
+/*STYLE FOR GRID*/
+.custom_chart .c3-axis-y .domain
+    {
+    stroke:#e0e0e0 !important;
+    }
+
+/*Y line make white*/
+.custom_chart .c3-axis-y .domain
+    {
+    stroke:white !important;
+    }
+
+
+/*lighter y grid lines*/
+.custom_chart .c3-ygrids .c3-ygrid
+    {
+    stroke:#dadada;
+    }
+
+
+/*FOR HOVER - MAKE CIRCLES BEAUTY*/
+.c3-circle
+    {
+    transition:all ease 1.0s;
+    stroke-width:1px;
+    stroke:white;
+    }
+.c3-circle._expanded_
+    {
+    fill:rgb(206, 96, 0) !important;
+    stroke-width:15px !important;
+    stroke:rgba(255, 127, 14,0.4) !important;
+    }
+
+
+
+.chart_container .descr
+    {
+    width:100%;
+    margin-top:10px;
+    }
+
+
+
+
+
+.chart_container 
+    {
+
+    .period_btns
+        {
+        text-align:right;
+        }
+    .navig_btns
+        {
+        text-align:right;
+        }
+    .descr.very_small
+        {
+        text-align:right;
+        padding-left:66px;
+        }        
+
+
+
+    @media(min-width:300px)
+        {
+        .period_btns
+            {
+            a {font-size:11px;}
+            text-align:right;
+            }
+        .navig_btns{text-align:right;}
+        .descr.very_small
+            {
+            text-align:right;
+            padding-left:54px;
+            p{font-size:12px;}
+            }
+        }
+
+
+
+    @media(min-width:600px)
+        {
+        .period_btns
+            {
+            a{font-size:12px;}
+            }
+        .descr.very_small
+            {
+            p{font-size:12px;}
+            }
+        }
+
+    @media(min-width:780px)
+        {
+        .period_btns
+            {
+            text-align:left;
+            float:right;
+            margin-top:-70px;
+            a
+            {font-size:13px;}
+            
+            }
+        .navig_btns{text-align:left;}
+        .descr.very_small
+            {
+            text-align:left;
+            padding-left:0px;
+            p{font-size:13px;}
+            }  
+
+        }
+
+    @media(min-width:1000px)
+        {
+        .period_btns
+            {
+            a {font-size:11px;}
+            text-align:right;
+            }
+        .navig_btns
+            {
+            text-align:right;
+            }
+        .descr.very_small
+            {
+            text-align:right;
+            padding-left:54px;
+            p{font-size:12px;}
+            }
+        }
+
+
+    @media(min-width:1100px)
+        {
+        .period_btns
+            {
+            text-align:right;
+            float:none;
+            margin-top:10px;
+            a
+            {font-size:13px;}
+
+            }
+
+
+        .navig_btns{text-align:right;}
+        .descr.very_small
+            {
+            text-align:right;
+            padding-left:50px;
+            p{font-size:13px;}
+            }  
+
+        }
+
+    @media(min-width:1600px)
+        {
+        .period_btns
+            {
+            text-align:left;
+            float:right;
+            margin-top:-70px;
+            }
+        .navig_btns
+            {
+            text-align:left;
+            }
+        .descr.very_small
+            {
+            text-align:left;
+            padding-left:0px;
+            }  
+
+        }
+
+    }

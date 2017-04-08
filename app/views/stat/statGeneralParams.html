@@ -1,0 +1,116 @@
+<div class="stat_params_container"
+	ng-controller="StatGeneralCntrParams"
+	>
+
+
+	<div class="section_name">
+		
+		<h2>Agregations by Params</h2>
+	
+		<div class="descr small">
+			<p>This section provides you ahregated figures over all advertisements by different parametres (year, race)
+		</div>
+
+	</div>
+
+
+    <div class="filters">
+		<div class="input-field not_selected"
+			ng-class="{'not_selected':params['value']=='all','selected':params['value']!='all'}"
+			>
+			<select class="browser-default chosen-select for_params" 
+				choosen-directive
+				choosen-trigger="marks"
+				choosen-model="params['value']"
+				scroll-top=".filters"
+				>
+				<option value="all">All marks</option>
+				<optgroup label="Top 10 cars">
+					<option 
+						ng-repeat="mark in marks_top"
+						value="{{mark['value']}}"
+						>{{mark['name']}}
+					</option>
+				</optgroup>
+
+				<optgroup label="Rest cars">
+					<option 
+						ng-repeat="mark in marks"
+						value="{{mark['value']}}"
+						>{{mark['name']}} ({{mark['totalOrders']}})
+					</option>
+				</optgroup>						
+			</select>
+		</div>
+
+        <!-- Dropdown Trigger -->
+        <div class="dropdown_container">
+	        <a class='dropdown-button btn custom_dropdown year' 
+	            dropdown
+	            data-activates='right_dropdown_year'
+	            >By {{params['aggregationsBy']}}</a>
+
+	        <!-- Dropdown Structure -->
+	        <ul id='right_dropdown_year' class='dropdown-content'>
+	            <li
+	                ng-repeat="kind in aggregation_options"
+	                ><a ng-click="params['aggregationsBy']=kind['name']">By {{kind['name']}}</a>
+	            </li>
+	        </ul>
+        </div>
+
+        <div class="datepicker_container" tabindex=100>
+        	<label for="datepicker_abc">
+	        	<i class="fa fa-calendar" aria-hidden="true"></i>
+        	</label>
+			<input id="datepicker_abc" type="date" class="datepicker"
+				datepicker
+				selector-for-unfocus=".datepicker_container"
+				>
+		</div>
+
+
+	</div>
+
+	<div class="sorting_labels">
+		<span
+			ng-click="sort_by('order')"
+			ng-class="{'active':sorting_kind=='order'}"
+			>Sorting by Categories</span>
+		<span
+			ng-click="sort_by('totalOrders')"
+			ng-class="{'active':sorting_kind=='totalOrders'}"
+			>Sorting by Values</span>
+	</div>
+
+
+  <div class="switch">
+    <label>
+      <span ng-class="{'active':values_type=='totalOrders'}">#</span>
+      <input type="checkbox"
+      	ng-model="values_type"
+      	ng-true-value="'percentage'"
+      	ng-false-value="'totalOrders'"
+      	>
+      <span class="lever"></span>
+      <span ng-class="{'active':values_type=='percentage'}">%</span>
+    </label>
+  </div>
+
+	<div class="chart_container">
+       <div class="no_data animated flipInX" ng-show="is_empty_data()">No Data! You can change Date, Mark, or Aggregation! 
+       </div>
+
+		<div 
+			ng-show="!is_empty_data()"
+			class="custom_chart"
+			c3-chart-params
+			pass-value="DATA_AGR"
+			values-type="values_type"
+			>
+		</div>
+
+	</div>
+
+
+</div>

@@ -1,0 +1,105 @@
+<div class="map_container"
+	ng-controller="StatGeneralCntrMap"
+	>
+
+	 <div class="section_name">
+        <h2>Map of Advertisements</h2>
+
+		<div class="datepicker_container" tabindex=100>
+    		<label for="datepicker_abc">
+        		<i class="fa fa-calendar" aria-hidden="true"></i>
+    		</label>
+			<input id="datepicker_abc" type="date" class="datepicker"
+				datepicker
+				selector-for-unfocus=".datepicker_container"
+				>
+		</div>
+
+        <div class="descr small">
+            <p>This section performs all advertisements spreaded by regions of Ukraine.</p>
+        </div>
+    </div>
+
+
+    <!--MAP-->
+   <div class="wrap_map_table">
+	   <div class="map"
+	        map
+	        markers-original="LOCATIONS"
+	        map-state="LOCATIONS_MAP_STATE"
+	        table-state="LOCATIONS_TABLE_STATE"
+	        >
+	    </div>
+
+
+	    <!--TABLE-->
+	    <div class="data_table_container ng-hide"
+
+	        table-data
+	        tdata="LOCATIONS"
+	        tcolumns="tcolumns"
+	        tconfig="tconfig"
+	        tcallbacks="tcallbacks"
+
+	        map-state="LOCATIONS_MAP_STATE"
+	        table-state="LOCATIONS_TABLE_STATE"
+
+	        ng-show="first_loading"
+
+	        >
+
+	        <div paging></div>
+
+
+	        <div class="controls_container">
+	            <div stat
+	                ng-class="{'filtered':is_filtered_table()}"
+	                ></div>
+	            <div toggle-filter ></div>
+	            <div num-items></div>
+	        </div>
+
+
+	        <table>
+	            <thead>
+	            <tr>
+	                <th
+	                    ng-repeat="col in columns"
+	                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
+	                    >
+	                    <div sorting="{{col['Name']}}"></div>
+	                    <span>{{col['Label']}}</span>
+	                </th>
+	            </tr>
+	            </thead>
+
+	            <tbody>
+
+	            <tr filters-row></tr>
+
+	            <tr ng-repeat="row in data"
+	                ng-class="{'filtered':is_filtered_table()}"
+	                >
+	                <td colspan="3">
+		                <div
+		                	class="td"
+		                    ng-repeat="col in columns"
+		                    ng-class="{'sorted':sort_dict[col['Name']]['is']!=false}"
+		                    >
+		                    <span ng-if="col['Name']=='avgPrice'">{{row[col['Name']]|currency}}</span>
+		                    <span ng-if="col['Name']!='avgPrice'">{{row[col['Name']]}}</span>
+		                </div>
+	                </td>
+	            </tr>
+	            </tbody>
+
+	        </table>
+
+	        <div paging></div>
+
+	    </div>
+    </div>  <!--close wrap map table-->
+
+
+</div>
+

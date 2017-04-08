@@ -1,0 +1,81 @@
+
+
+/*table  */
+
+
+
+.table_head_date
+    {
+    text-align:center;
+    }
+
+/*WEEK*/
+.table_head_date div:nth-of-type(1)
+    {
+
+    }
+
+/*DATE*/
+.table_head_date div:nth-of-type(2), .table_head_date div:nth-of-type(3)
+    {
+    font-weight:300;
+    font-size:13px;
+    color:gray;
+    }
+
+
+
+/*for tables*/
+.column_gray
+    {
+    background:gray;
+    font-weight:bold;
+    //background:#f1f1f1;
+    background:rgba(244, 244, 244, 0.5);
+    }
+
+.column
+    {
+    font-weight:bold;
+    color:rgb(0,64,128);
+    padding:5px 5px !important;
+    }
+
+.table tr:hover
+    {
+    background:#ffedcc;
+    }
+
+.table thead tr:hover
+    {
+    background:white;
+    }
+
+.table tr
+    {
+    transition:all ease 0.3s;
+    }
+
+.table td,th
+    {
+    border-radius:0px !important;
+    }
+
+.table .last span:nth-of-type(1)
+    {
+    padding:3px;
+    borde-rradius:1px;
+    background:orange;
+    color:white;
+    }
+
+//classes for cell styles
+.table tr 
+    {
+    .no_data
+        {
+        color:rgb(209, 209, 209);
+        span{color:rgb(209, 209, 209) !important}
+        span:before{color:rgb(209, 209, 209) !important}
+        }
+    }

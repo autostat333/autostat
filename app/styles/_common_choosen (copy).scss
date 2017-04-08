@@ -1,0 +1,361 @@
+.chosen-container
+  {
+  .chosen-drop
+    {
+    left:-4000px !important;
+    }
+  }
+.chosen-with-drop
+  {
+  .chosen-drop
+    {
+    left:0px !important;
+    }
+  }
+
+//FOR CUSTOMIZING DROPDOWN (select)
+.chosen-container
+  {
+  height:45px !important;
+
+  //for triangle
+  .chosen-single div
+     {
+      transition:all ease 0.5s;
+      top:0px !important;
+      right:10px !important;
+      transform:rotate(0deg);
+      opacity:1;
+
+     b
+      {
+      background:url(../images/chosen.png) !important;
+      background-position:50% !important;
+      background-repeat:no-repeat !important;;
+      background-size:60% auto !important;
+
+      }
+
+     } 
+
+  a //main button
+    {
+    transition:all ease 0.5s;
+    
+    background:white !important;
+    //background:#f3f3f3 !important;
+    border-bottom:1px solid rgba(0,64,128,0.5) !important;
+    color:rgb(0,64,128) !important;
+    border-width:0px 0px 1px 0px !important;
+    box-shadow:0px 0px 0px !important;
+
+    border-radius:1px !important;
+    padding:10px !important;
+    height:auto !important;
+    font-size:20px !important;
+    font-weight:300 !important;
+    line-height:1.5 !important; 
+    }
+
+  a:focus
+    {
+    outline-width:0px;
+    }
+
+    //add carrete
+  .chosen-single:before
+    {
+    content: "\f0d8";
+    font: normal normal normal 18px/1 FontAwesome;
+    position: absolute;
+    top: 15px !important;
+    right: 8px !important;
+    transform: rotate(180deg);
+    transition:all ease 0.5s;
+    height:18px;
+    }
+
+  .chosen-drop
+    {
+    box-shadow:0 10px 15px rgba(0,0,0,.15) !important;
+    border-width:0px !important;
+
+    input
+      {
+      font-size:19px !important;
+      text-transform:uppercase;
+      box-sizing:border-box;
+      border-width:0px !important;
+      background:rgb(245, 242, 242) !important;
+      border-bottom:2px solid #117B96 !important;
+      color:#117B96 !important;
+      box-shadow:0px 0px 0px !important;
+
+      }
+
+    input:focus
+      {
+      outline-width:0px !important;
+
+      }
+
+    ul
+      {
+      padding:0px !important;
+      }
+
+    li  //every line within select results
+      {
+      font-size:13px !important;
+      padding:5px !important;
+      text-align:left !important;
+      padding-left:15px !important;
+      line-height:14px;
+      }
+
+    //below classes for the group name (TOP Cars and the rest of them)
+    .group-result
+      {
+      padding-left:9px !important;
+      font-size:18px !important;  
+      }
+
+    }
+
+    .chosen-search
+      {
+      position:relative
+      }
+
+    .chosen-search:before
+      {
+      position:absolute;
+      display:block;
+      width:20px;
+      top:0px;
+      height:100%;
+      right:10px;
+      background:url(../images/search.png);
+      background-repeat:no-repeat;
+      background-position:0px 50%;
+      background-size:100% auto;
+      content:'';
+      }
+
+
+    .chosen-results
+      {
+      max-height:350px !important;
+      li em
+        {
+        color:#BE750E;
+        font-weight:bold;
+        text-decoration:none !important;
+        }
+
+      //for select placeholder custom style
+        li:nth-of-type(1)
+          {
+          color:silver;
+          font-size:13px !important;
+          font-style:italic;
+          }
+      }
+
+  }
+
+
+//not selected  (USED FOR MORDA)
+.not_selected .chosen-container 
+  {
+
+
+  a.chosen-single
+    {
+    color:rgb(202,202,202) !important;
+    border-bottom:1px solid rgb(202,202,202) !important;
+    font-style:italic !important;
+    }
+  }
+
+
+  //WHEN CHOSEN DROPDOWN
+.chosen-container.chosen-with-drop
+  {
+  .chosen-single a div
+    {
+    display:none;
+    }
+
+  .chosen-single div
+    {
+    transform:rotate(180deg);
+    opacity:0.5;
+    }
+
+  a.chosen-single
+    {
+    background:white !important;    
+    //color:#0061C2 !important;
+    }
+  a:before
+    {
+    transform:rotate(0deg);
+    }
+
+  }
+
+
+//FILTERS
+.filters //main container
+    {
+    -box-shadow:0px 1px 2px #e4e4e4;
+    margin-top:-33px;
+    padding-bottom:40px;
+    margin-top:10px;
+    }
+
+
+.custom_select .input-field
+    {
+    display:inline-block;
+    width:auto;
+    vartical-align:middle;
+    }
+
+.filters h5
+    {
+    width:700px;
+    }
+
+.custom_select .select-wrapper input.select-dropdown
+    {
+    background: rgb(0,64,128);
+    color: white;
+    padding-left: 10px;
+    margin-top: 5px;
+    -box-shadow: 0px 0px 5px gray;
+    border-radius: 1px;
+    }
+
+
+.custom_select .input-field:nth-of-type(2)
+    {
+    margin-left:50px;
+    }
+
+
+
+
+
+
+.filters
+  {
+  .dropdown_container, .input-field, .datepicker_container
+    {
+    display:inline-block;
+    vertical-align:top;
+    margin-top:10px !important;
+    margin-left:10px;
+    }
+  div:nth-of-type(1)
+    {
+    margin-left:0px !important;
+    }
+  }
+
+
+
+//FILTERS (for choosen select field)
+.filters
+  {
+  padding:20px 10px 10px 0px !important;
+  position:relative;
+
+
+  .chosen-single:before
+    {
+    content: "\f106";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 9px !important;
+    right: 8px !important;
+    transform: rotate(180deg);
+    transition:all ease 0.5s;
+    height:16px;
+    }
+
+
+  .chosen-single
+    {
+    font-weight:normal !important;
+    font-size:15px;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    }
+
+  .chosen-container
+    {
+    width:190px !important;
+    }
+
+  .chosen-container a.chosen-single
+    {
+    box-shadow:0px 1px 1px 0px rgba(0,64,128,0.3) !important;
+    background:rgb(248, 248, 248) !important;
+    @media(min-width:300px){font-size:13px !important;}
+    @media(min-width:800px){font-size:17px !important;}
+    }
+
+  .chosen-container a.chosen-single
+    {
+    color:rgba(0,64,128,0.8) !important;
+    font-style:normal !important;
+    border-widht:0px;
+    //box-shadow:0px 1px 1px 0px rgba(0,64,128,0.3) !important;
+    border-bottom:0px solid gray !important;
+    text-align:center;
+    background:rgb(256, 256, 256) !important;
+    padding:5px 10px 5px 10px !important;
+    }
+
+
+
+  .selected .chosen-container a.chosen-single
+    {
+    background:#fafafa !important;
+    box-shadow:0px 1px 2px 0px rgba(0, 64, 128, 0.54) !important;
+    }
+
+  .chosen-container a.chosen-single:hover
+    {
+    background:#F3F3F3 !important;
+    }
+
+
+
+  .title
+    {
+    position:absolute;
+    //top:-20px;
+    top:5px;
+    font-size:12px;
+    font-weight:bold;
+    color:gray;
+    }
+
+  .input-field
+    {
+    margin-left:10px;
+    }
+
+  label
+    {
+    top:-30px;
+    color:#D5D5D5 !important;
+    text-shadow:0px 1px 1px white;
+    }
+
+  }
+
+

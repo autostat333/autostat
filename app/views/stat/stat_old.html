@@ -1,0 +1,280 @@
+<div class='stat_container animated fadeIn ng-hide'
+	ng-show="show"
+	>
+	
+
+	<div class="about_stat flow-text">
+		<div class="wrap">
+			<span class="name">AUTOSTAT</span><span class="descr_"> - is a powerfull tool for analysis prices on used car getted from famous portal <span class="ria">AUTO RIA</span></span></span>
+		</div>	
+	</div>
+
+	<div class="banner">
+
+			<!--MORDA -->
+		<div class="morda z-depth-1"
+			ng-init="section='i_wish'"
+			>
+			<div class="tab_line z-depth-1">
+			  <div class="row">
+			    <div class="col s12">
+			      <ul class="tabs">
+			        <li class="tab col s3">
+			        	<a 
+			        		class="active waves-effect"
+			        		ng-click="section='i_wish'"
+			        		>
+			        		I wish:
+		        		</a>
+	        		</li>
+			        <li class="tab col s3">
+			        	<a 
+			        		class="waves-effect"
+			        		ng-click="section='i_have'"
+		        			>
+		        			I have:
+	        			</a>
+        			</li>
+			      </ul>
+			    </div>
+			  </div>
+			</div>
+
+
+			<div class="section animated fadeIn i_wish"
+				ng-show="section=='i_wish'"
+				>
+
+
+				<div class="input_container">
+					<!--AUTO MARK-->
+					<div class="input-field auto_select"
+						ng-class={'not_selected':selected_wish['mark']['value']=='0'}
+						>
+						<i class="fa fa-car" aria-hidden="true"></i>
+						<label>Make</label>
+						<select class="browser-default chosen-select mark i_wish_tab" 
+							choosen-directive
+							choosen-model="selected_wish['mark']['value']"
+							choosen-trigger="marks"
+							scroll-top='.morda'
+							>	
+							<option value="0">Select one mark...</option>
+							<optgroup label="Top 10 cars">
+								<option
+									ng-repeat="top_mark in marks_top" 
+									value="{{top_mark['value']}}"
+									>
+									{{top_mark['name']}}
+								</option>
+							</optgroup>
+							<optgroup label="Rest cars">
+								<option 
+									ng-repeat='mark in marks'
+									value="{{mark['value']}}"
+									>{{mark['name']}} ({{mark['totalOrders']}})
+								</option>
+							</optgroup>						
+						</select>
+					</div>
+
+					<!--AUTO MODEL-->
+					<div class="input-field auto_select"
+						ng-class={'not_selected':selected_wish['model']['value']=='0'}
+						>
+						<label>Model</label>
+						<select class="browser-default chosen-select model i_wish_tab" 
+							choosen-directive
+							choosen-trigger="models_wish"
+							choosen-model="selected_wish['model']['value']"
+							scroll-top='.morda'
+							>
+							<option value="0">Select one model...</option>
+							<option
+								ng-repeat="model in models_wish"
+								value="{{model['value']}}"
+								>{{model['name']}} ({{model['totalOrders']}})
+							</option>
+						</select>
+					</div>  
+					<div class="btn_container">
+						<a class="waves-effect waves-light btn-large"
+							ng-class={"disabled":disable_btn('wish')}
+							ng-click="add_to_bar_wish()"
+							>Add to bar</a>
+					</div>
+				</div>
+
+				<div class="top_block">
+					<div class="descr_"><i class="material-icons">info</i> <span>You can choose car you WISH for adding to tab bar. After you can track for statistic for this car.</span></div>
+				</div>
+
+
+			</div>
+
+
+			<div class="section animated fadeIn i_have"
+				ng-show="section=='i_have'"
+				>
+
+				<div class="input_container">
+				<div class="make_model">
+				<!--AUTO MARK-->
+					<div class="input-field auto_select"
+						ng-class={'not_selected':selected_have['mark']['value']=='0'}
+						>
+						<i class="fa fa-car" aria-hidden="true"></i>
+						<label>Make</label>
+						<select class="browser-default chosen-select mark i_have_tab" 
+							choosen-directive
+							choosen-trigger="marks"
+							choosen-model="selected_have['mark']['value']"
+							scroll-top=".morda"
+							>	
+							<option value="0">Select one mark...</option>
+							<optgroup label="Top 10 cars">
+								<option 
+									ng-repeat="mark in marks_top"
+									value="{{mark['value']}}"
+									>{{mark['name']}}
+								</option>
+							</optgroup>
+
+							<optgroup label="Rest cars">
+								<option 
+									ng-repeat="mark in marks"
+									value="{{mark['value']}}"
+									>{{mark['name']}} ({{mark['totalOrders']}})
+								</option>
+							</optgroup>						
+
+						</select>
+
+					</div>
+
+					<!--AUTO MODEL-->
+					<div class="input-field auto_select"
+						ng-class={'not_selected':selected_have['model']['value']=='0'}
+						>
+						<label>Model</label>
+						<select class="browser-default chosen-select model i_have_tab" 
+							choosen-directive
+							choosen-trigger="models_have"
+							choosen-model="selected_have['model']['value']"
+							scroll-top=".morda"
+							>
+							<option value="0">Select one mark...</option>	
+							<option
+									ng-repeat="model in models_have"
+									value="model['value']"
+									>{{model['name']}} ({{model['totalOrders']}})
+								</option>
+						</select>
+					</div> 
+				</div>	
+
+
+				<div class="year_race">
+					<div class="input-field select_container"
+						ng-class={'not_selected':selected_have['year']=='Choose...'}
+						>
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<label>Year</label>
+						<select
+							select-directive
+							select-model="selected_have['year']"
+							>
+							<option 
+								ng-repeat="year in years"
+								value="{{year}}"
+								>{{year}}
+							</option>
+						</select>
+					</div>
+
+					<div class="input-field select_container"
+						ng-class={'not_selected':selected_have['race_bucket']=='Choose...'}
+						>
+						<i class="fa fa-road" aria-hidden="true"></i>
+						<label>Race (K km)</label>
+						<select
+							select-directive
+							select-model="selected_have['race_bucket']"
+							>
+							<option
+								ng-repeat="race_bucket in race_buckets"
+								value="{{race_bucket}}"
+								>{{race_bucket}}
+							</option>
+						</select>
+					</div>
+				</div>	
+
+				<div class="btn_container">
+					<a class="waves-effect waves-light btn-large"
+						ng-class={"disabled":disable_btn('have')}
+						ng-click="add_to_bar_have()"
+						>Add to bar</a>
+				</div>
+
+				</div>  <!--close INPUT CONTAINER-->
+				
+				<div class="top_block">
+					<div class="descr"><i class="material-icons">info</i><span>You can choose YOUR car and see statistic for car avarage prices!</span></div>
+				</div>
+
+			</div>  <!--close section-->
+		</div>  <!--close MORDA-->
+
+		<!--TABS-->
+		<div class="tab_bar  elems_{{tabs.length}}" ng-init="sec"
+			>
+			<ul>
+				<li 
+					ng-repeat="tab in tabs track by tab['id']"
+					li-tab="{{tab['id']}}"
+					ng-class="{'active':active_tab['id']==tab['id']}" 
+					class="tab"
+					ng-click="switch_tab_to(tab)"
+					ng-style="{'width':tab_width}"
+					>
+					<i 
+						class="fa fa-times-circle close" 
+						aria-hidden="true"
+						ng-show="tab['type']!='general'"
+						ng-click="remove_tab(tab,$event)"
+						>
+					</i>
+					<span>{{tab['mark']['name']}} {{tab['model']['name']}}</span>
+				</li>
+
+			</ul>
+		</div>
+
+
+	</div>   <!--close BANNER-->
+
+
+	<!--WINDOWS-->
+
+	<div class="windows_container z-depth-3">
+		
+		<div ng-repeat="view in tabs track by view['id']">
+			<div 
+				ng-if="view['type']=='general'&&selected_tab['id']==view['id']" 
+				ui-view="general" 
+				ng-controller="StatGeneralCntr"
+				>
+			</div>
+			<div 
+				ng-if="view['type']=='auto_wish'&&selected_tab['id']==view['id']" 
+				ui-view="general_auto" 
+				ng-controller="StatAutoCntr">
+			</div>
+		
+		</div>
+		
+
+	</div>
+
+</div>

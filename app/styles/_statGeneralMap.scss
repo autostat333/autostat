@@ -1,0 +1,125 @@
+
+
+.map_container
+    {
+
+    .section_name
+        {
+        h2
+            {
+            width:430px;
+            display:inline-block;
+            vertical-align:middle;
+            }
+
+
+        .datepicker_container
+            {
+            display:inline-block;
+            vertical-align:middle;
+            }
+
+        }
+
+
+
+
+    .wrap_map_table
+        {
+        margin-top:50px;
+        margin-bottom:100px;
+        margin-left:auto;
+        margin-right:auto;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+
+
+        .map
+            {
+            width:63%;
+            -max-height:1000px;
+            }
+
+
+
+        .data_table_container
+            {
+            width:33%;
+            }
+
+        }
+
+
+
+    //special styles for data table
+    .data_table_container
+        {
+        tbody tr:not([filters-row]) td div:nth-of-type(1) {width:40%;}
+        tbody tr:not([filters-row]) td div:nth-of-type(2) {width:20%;}
+        tbody tr:not([filters-row]) td div:nth-of-type(3) {width:40%;}
+
+        thead tr th:nth-of-type(1) {width:40%;}
+        thead tr th:nth-of-type(2) {width:20%;}
+        thead tr th:nth-of-type(3) {width:40%;}
+
+
+        tbody tr[filters-row] td:nth-of-type(1) {width:40%;}
+        tbody tr[filters-row] td:nth-of-type(2) {width:20%;}
+        tbody tr[filters-row] td:nth-of-type(3) {width:40%;}
+
+
+        tr .td:nth-of-type(1)
+            {
+            text-align:left;
+            }
+
+        @media(max-width:1500px)
+            {
+            em {font-size:10px !important;}
+
+            div[paging] li a
+                {
+                font-size:10px;
+                }
+            
+
+            div[paging]
+                {
+                .pagination-first a, .pagination-previous a, .pagination-next a, .pagination-last a
+                    {
+                    padding:0px 7px;
+                    }
+
+                .pagination-page a
+                    {
+                    padding:0px 8px;
+                    }
+
+                } 
+
+            }
+
+
+
+        }
+
+
+    }
+
+.fixed_plaha
+    {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 70px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    z-index:100;
+    }
+
+
+
+
+

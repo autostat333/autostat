@@ -1,0 +1,38 @@
+{
+  "name": "autostat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "async": "^2.0.1",
+    "express": "^4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "bower": "^1.7.9",
+    "grunt-cli": "^1.2.0",
+    "mongodb": "^2.2.10",
+    "request": "^2.75.0",
+    "grunt-contrib-clean": "^0.7.0",
+    "jQuery": "^1.7.4",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/andrii333/autostat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrii333/autostat/issues"
+  },
+  "homepage": "https://github.com/andrii333/autostat#readme"
+}

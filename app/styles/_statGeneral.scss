@@ -1,0 +1,63 @@
+.stat_general
+	{
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+
+	.sub_window
+		{
+		position:relative;
+		height:100%;
+		}
+
+	.tab_line
+		{
+		width:500px;
+		@media(min-width:300px){width:300px}
+		@media(min-width:500px){width:400px}
+		@media(min-width:800px){width:500px}
+
+		ul
+			{
+			overflow:hidden;
+			a
+				{
+				cursor:pointer;
+				background:white;
+				color:rgb(255, 219, 153);
+				@media(min-width:300px){font-size:12px}
+				@media(min-width:500px){font-size:14px}
+				@media(min-width:800px){font-size:16px}
+				}
+			a:hover
+				{
+				color:#FFCD71;
+				}
+			a.active
+				{
+				color:orange;	
+				}
+			}
+
+
+		.tabs
+			{
+			background:rgb(255, 252, 245);
+			li
+				{
+				padding-bottom:3px;
+				}
+			.indicator
+				{
+				height:3px;
+				background:orange;
+				}
+
+			}
+
+		}
+	
+
+	}
+
+	

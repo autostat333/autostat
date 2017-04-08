@@ -1,0 +1,35 @@
+<div class="main_controller">
+
+
+
+	<!--MENU CONTAINER-->
+	<div class='menu_container row'>
+		<nav>
+	    	<div class="nav-wrapper">
+				<div class="col s12">
+	    	  		<a ui-sref="main.stat" class="brand-logo">AutoStat</a>
+	    	  		<a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+	      			<ul id="nav-mobile" class="right hide-on-med-and-down">
+	        			<li ui-sref-active="active"><a ui-sref="main.stat">Home</a></li>
+	        			<li ui-sref-active="active"><a ui-sref="main.about">About</a></li>
+	   	     			<li ui-sref-active="active"><a ui-sref="main.contact">Contact</a></li>
+	      			</ul>
+
+      			</div>
+	    	</div>
+	  	</nav>
+  	</div>
+
+	<!--FOR MOBILE MENU-->
+	<ul id="mobile-demo" class="side-nav">
+		<li ui-sref-active="active"><a ui-sref="main.stat">Home</a></li>
+		<li ui-sref-active="active"><a ui-sref="main.about">About</a></li>
+		<li ui-sref-active="active"><a ui-sref="main.contact">Contact</a></li>
+	</ul>
+
+  	<div class="content" ui-view> 
+
+  	</div>
+
+</div>

@@ -1,0 +1,140 @@
+.auto_map_container
+	{
+
+  	.section_name
+    	{
+	    h2
+	        {
+	        width:430px;
+	        display:inline-block;
+	        vertical-align:middle;
+	        }
+
+
+	    .datepicker_container
+	        {
+	        display:inline-block;
+	        vertical-align:middle;
+	        }
+
+	    }
+
+
+
+
+	.wrap_map_table
+	    {
+	    margin-top:50px;
+	    margin-bottom:100px;
+	    margin-left:auto;
+	    margin-right:auto;
+
+
+	    .map
+	        {
+	        width:100%;
+	        -max-height:1000px;
+	        }
+
+
+
+	    .advert_table
+	        {
+	        width:100%;
+	        }
+
+	    }
+
+
+
+	//special styles for data table
+	.data_table_container
+	    {
+
+		.badge
+			{
+			position:static;
+			}
+
+
+		thead th
+			{
+			padding:10px 0p;
+			}
+
+		.sorted
+			{
+			font-weight:500 !important;
+			}
+
+
+
+		.title,
+		tr[filters-row] td:nth-of-type(1)
+			{width:20%}
+
+		.shortTitle,
+		tr[filters-row] td:nth-of-type(2)
+			 {width:20%}
+
+		.fuelName,
+		tr[filters-row] td:nth-of-type(3)
+		 {width:13%}
+
+
+		.createdAgo,
+		tr[filters-row] td:nth-of-type(4)
+			 {width:7%}
+
+
+		.year,
+		tr[filters-row] td:nth-of-type(5)
+			{width:7%}
+
+		.raceOrg,
+		tr[filters-row] td:nth-of-type(6)
+			{width:10%}
+
+
+		.city,
+		tr[filters-row] td:nth-of-type(7)
+			{width:8%}
+
+		.price,
+		tr[filters-row] td:nth-of-type(8)
+			{width:9%}
+
+		.link,
+		tr[filters-row] td:nth-of-type(9)
+			{width:6%}
+
+
+
+		tbody div.title,tbody div.shortTitle, {text-align:left;}
+		tbody div.price {text-align:right};
+		tbody div.createdAgo, tbody div.raceOrg, tbody div.link, tbody div.city, tbody div.fuelName, div.year {text-align:center;}
+
+		tbody div.price{color:orange;}
+
+		.new_advert
+			{
+			color:white;
+			font-size:0px;
+			}
+
+		.new_advert:before
+			{
+		    content: "new";
+		    color: white;
+		    background: #ff6161;
+		    padding: 1px 4px;
+		    border-radius: 3px;
+		    font-size: 14px;
+			}
+
+
+
+	    }
+
+
+	}

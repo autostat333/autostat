@@ -1,0 +1,157 @@
+.auto_dots_container
+	{
+	min-height:500px;
+	margin-bottom:100px;
+
+
+
+  	.section_name
+    	{
+	    h2
+	        {
+	        width:230px;
+	        display:inline-block;
+	        vertical-align:middle;
+	        }
+
+
+	    .datepicker_container
+	        {
+	        display:inline-block;
+	        vertical-align:middle;
+	        }
+
+	    }
+
+
+
+    .dots_container
+    	{
+    	width:100%;
+    	margin-top:50px;
+    	}
+
+
+	.bottom_block
+		{
+		display:flex;
+		align-items:flex-start;
+		justify-content:space-between;
+	    margin-top: 50px;
+
+
+		}
+
+	.last_watched
+		{
+		width:27%;
+		position:relative;
+
+		.adverts_watched
+			{
+			margin-top:5px;
+			color: #6ca6cf;
+    		padding: 3px;
+    		cursor: pointer;
+    		opacity:0.6;
+    		transition:all ease 0.6s;
+			}
+
+		.adverts_watched:hover
+			{
+			opacity:1;
+			background:#fff8f8;
+			}
+
+		div:nth-of-type(2)
+			{
+			background:#fff8f8;
+			}
+
+		.adverts_watched span:nth-of-type(1)
+			{
+			font-weight:bold;
+			}
+
+		.adverts_watched div
+			{
+			color:gray;
+		    text-overflow: ellipsis;
+    		overflow: hidden;
+    		white-space: nowrap;
+			}
+
+		.title
+			{
+			width: 100%;
+		    position: absolute;
+		    top: -18px;
+		    border-bottom: 1px solid #dddddd;
+	    	color:black;
+
+		    span{color: #ff5353;font-weight:bold;cursor:pointer;}
+			}
+
+		}
+
+
+	.card.horizontal
+		{
+	    width: 67%;
+	    margin-left: auto;
+	    margin-right: auto;
+
+		visibility:hidden;
+		opacity:0;
+
+
+	    .title_price
+	    	{
+	    	span:nth-of-type(1)
+	    		{
+	    		font-weight:bold;
+	    		font-size:24px;
+	    		}
+
+	    	span:nth-of-type(2) //name
+	    		{
+    			font-size:23px;
+	    		}
+	    	span:nth-of-type(3) //price
+	    		{
+	    		margin-left: 10px;
+			    font-size: 25px;
+			    color: white;
+			    background: orange;
+			    border-radius: 3px;
+			    padding: 2px 4px;
+	    		}
+
+	    	}
+
+    	.year_race
+    		{
+    		//color:#424242;
+    		color: gray;
+			font-weight: 300;
+	    	font-size: 17px;
+
+    		.label
+    			{
+    			color:#c2c1c1;	
+    			}
+			.val
+				{
+				font-size: 17px;
+    			//font-weight: bold;
+				}
+    		}
+
+
+		p{margin-top:15px;}
+
+		}
+
+
+
+	}

@@ -1,0 +1,51 @@
+<div class="stat_general stat_auto">
+	<div class="section_name">
+		<h1>{{selected_tab['mark']['name']}} {{selected_tab['model']['name']}}</h1>
+		<div class="descr large">
+		<p>Detailed statistic about choosen car: its avarage prices depends on years and race, main locations of advertisements</p>
+		</div>
+	</div>
+
+	<div class="tab_line">
+      <ul class="tabs">
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('avarage_table',0)" 
+        		class="active"
+        		ng-class="{'active':sub_tab=='avarage_table'}"
+    			>Avarage table</a>
+    	</li>
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('map',1)" 
+        		class=""
+				ng-class="{'active':sub_tab=='map'}"
+    			>Map</a>
+    	</li>
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('dots',2)" 
+        		class=""
+				ng-class="{'active':sub_tab=='dots'}"
+    			>Dots</a>
+    	</li>
+
+      </ul>
+	</div>
+
+
+	<div class="sub_window">
+		<div ng-if="sub_tab=='avarage_table'" ui-view="auto_avarage_table"></div>
+		<div ng-if="sub_tab=='map'" ui-view="auto_map"></div>
+		<div ng-if="sub_tab=='dots'" ui-view="auto_dots"></div>
+
+	    <div class="myspinner on"
+	        ng-class="{'on':myspinner['is'],'off':!myspinner['is']}"
+    	    ><div></div></div>
+
+	</div>
+
+</div>	

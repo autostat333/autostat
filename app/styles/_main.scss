@@ -1,0 +1,77 @@
+.main_wrap
+	{
+	width:100%;
+	}
+
+
+
+.main_controller
+	{
+
+	.menu_container
+		{
+		width:100%;
+		position:absolute;
+		top:0px;
+		left:0px;
+		z-index:100;
+
+		}
+
+
+	.menu_container
+		{
+		.nav-wrapper
+			{
+			.col.s12
+				{
+				background:white !important;
+				}
+
+			.brand-logo
+				{
+				color:red;
+				font-weight:bold;
+				}
+
+			ul a
+				{
+				color:rgb(0, 68, 124) !important;
+				}
+			li a:before
+				{
+				font:normal normal normal 14px/1 FontAwesome;
+				content:'\f015';
+				font-size:24px;
+				margin-right:7px;
+				}
+
+			li:nth-of-type(2) a:before {content:'\f015'}
+			li:nth-of-type(2) a:before {content:'\f1ae'}
+			li:nth-of-type(3) a:before {content:'\260E'}
+
+			li a
+				{
+				transition:all ease 0.3s;
+				font-size:22px;
+				font-weight:400;
+				}
+
+			}
+
+
+
+		}
+
+
+	.content
+		{
+		height:auto;
+		}
+
+	.button-collapse
+		{
+		cursor:pointer;
+		}
+
+	}

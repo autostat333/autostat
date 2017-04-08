@@ -1,0 +1,123 @@
+
+
+.dateline_picker
+    {
+    width:calc(100% - 80px) !important;
+    margin-left:auto;
+    margin-right:auto;
+
+
+    .day
+        {
+        text-align:center;
+        cursor:pointer;
+        transition:all ease 0.5s;
+        border:1px dashed white;
+        }
+
+    .day div {transition:all ease 0.5s;}
+
+    .day.active
+        {
+        background:#f3f3f3 !important;
+        border:1px dashed #dadada;
+        }
+
+    .day div:nth-of-type(2)
+        {
+        font-size:25px;
+        font-weight:bold;
+        color:#3e3e3e;
+        text-shadow:0px -1px 1px #e0e0e0;;
+        }
+
+    .day div:nth-of-type(1)
+        {
+        font-size:15px;
+        color:gray;
+        text-shadow:0px 1px 1px white;
+        }
+
+    .day div:nth-of-type(3)
+        {
+        font-size:14px;
+        color:gray;
+        text-shadow:0px 1px 1px white;
+        }
+
+
+
+    .day:hover {border:1px dashed #dadada;}
+    .day:hover div:nth-of-type(1){color:#484848}
+    .day:hover div:nth-of-type(2){color:black}
+    .day:hover div:nth-of-type(3){color:#484848}
+
+    .day.weekend div:nth-of-type(1) {color:rgb(255, 178, 68);}
+    .day.weekend div:nth-of-type(2) {color:#ffa500;}
+    .day.weekend div:nth-of-type(3) {color:rgb(255, 178, 68);}
+
+
+    }
+
+
+
+//DATEPICKER
+.datepicker_container
+  {
+  width:170px;
+  outline-width:0px;
+
+  input
+    {
+    cursor:pointer;
+    text-align:center;
+    padding:5px;
+    height:35px;
+    color:#4e7aa6 !important;
+    border-bottom:1px solid #afc3d7 !important;
+    box-sizing:border-box;
+    width:calc(100% - 27px);
+    margin-bottom:0px;
+    }
+  i
+    {
+    cursor:pointer;
+
+    width:20px;
+    font-size:20px;
+    text-align:center;
+    color:#4674a2 !important;
+    }
+  }
+
+//some additional styles for datepicker
+
+.picker__date-display, .picker__weekday-display, .picker__day--selected
+  {
+  background:orange !important;
+  }
+
+.picker__footer
+  {
+  .picker__today, .picker__close
+    {
+    color:orange;
+    }
+  }
+
+.picker__day--today
+  {
+  color:orange !important;
+  }
+.picker__table td div //for days make them rounded more
+  {
+  width:38px;
+  height:38px;
+  padding:10px;
+  }
+
+
+.picker__day--selected
+    {
+    color:white !important;
+    }
