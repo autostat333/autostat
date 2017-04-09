@@ -7,13 +7,13 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 	
 
 	$scope.options = {
-		'refreshModelsByMark':[],  //filtring marks for getting models from ria. If ['No'] - no requests for models and no any model updates
+		'refreshModelsByMark':['No'],  //filtring marks for getting models from ria. If ['No'] - no requests for models and no any model updates
 
-		'refreshAdvertsByMark':[],  //filtring marks before shooting for adverts for every model. If ['No'] - no records filtred. If [] - all marks remains for send req for advert_id
-		'refreshAdvertsByModel':[],  //filtring marks and models array before shooting to ria
+		'refreshAdvertsByMark':['No'],  //filtring marks before shooting for adverts for every model. If ['No'] - no records filtred. If [] - all marks remains for send req for advert_id
+		'refreshAdvertsByModel':['No'],  //filtring marks and models array before shooting to ria
 
-		'checkSvod':true, //checking whether to make compare between adverts_short and adverts'
-		'checkDateDuplicates':true, //checking whether duplicates in dates array
+		'checkSvod':false, //checking whether to make compare between adverts_short and adverts'
+		'checkDateDuplicates':false, //checking whether duplicates in dates array
 		'remakeShortAdvertsByMarks':['No'],  //query to db for update. If 'No' - no any remaking. If [] - all collections with adverts will be remake.
 		'remakeShortAdvertsByModels':['No'],
 
@@ -79,7 +79,7 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 
 			//!!!ToDO move it to config
 			//now for passing must be only one value in array ['2016-10-24']
-			//dates = ['2017-03-27'];
+			dates = ['2017-04-07'];
 			//dates = [];
 			async.eachSeries(dates,function(it,callback)
 				{
