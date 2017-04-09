@@ -50,7 +50,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		//get ACTUAL DATE
 		backend.getActualDate().then(function(resp)
 			{
-			$scope.ACTUAL_DATE = resp[0]['_id'];
+			$scope.ACTUAL_DATE = resp[0]['date'];
 			//get MARKS
 			backend.getMarks($scope.ACTUAL_DATE).then(function(res)
 				{

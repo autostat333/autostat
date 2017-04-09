@@ -421,12 +421,27 @@ module.exports = function MongoService(async,fs,app,db)
 				if (err!=null){callback(err);return false}
 				callback(null,res);
 				})
-
+  
 		}
 
 
 	function getActualDate(callback)
 		{
+		var start_day = new Date();
+		start_day.setDate(start_day.getDate()-7);
+
+		var y = start_day.getFullYear();
+		var m = (m = start_day.getUTCMonth()+1).toString().length==1?'0'+m:m;
+		var d = (d = start_day.getUTCDate()).toString().length==1?'0'+d:d;
+
+		start_day = y+'-'+m+'-'+d;
+
+		var doc = db.collection('reports').findOne({'date':{'$gt':start_day}},{'sort':[['date','desc']]},function(err,doc)
+				{
+				callback(null,[doc]);							
+				});
+
+			/*
 		db.collection('reports').aggregate([
 			{'$match':{'date':{'$gt':'2017-03-01'}}}, //prune array for grouping
 			{'$group':{'_id':'$date'}},
@@ -436,7 +451,7 @@ module.exports = function MongoService(async,fs,app,db)
 			if (err){callback(err);return false};
 			callback(null,res);
 			})
-
+		*/
 		}
 
 
