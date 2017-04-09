@@ -322,7 +322,7 @@ module.exports = function MongoService(async,fs,app,db)
 				{'$match':{'count':2}}
 			],function(err,res)
 				{
-				if (err!=null){console.log('Error when aggregate over adverts_short (group advertId)');callback(null,[]);return false;}
+				if (err!=null){console.log('Error when aggregate over adverts_short (group advertId)',err);callback(null,[]);return false;}
 				//create ids array
 				var for_remove = res.map(function(el){return el['_id']});
 				async.each(for_remove,function(id,callback)
