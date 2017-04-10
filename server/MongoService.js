@@ -317,27 +317,64 @@ module.exports = function MongoService(async,fs,app,db)
 
 	function checkDuplicates(callback)
 		{
-		db.collection('adverts_short').aggregate([
-				{'$group':{'_id':'$advertId','count':{'$sum':1}}},
-				{'$match':{'count':2}}
-			],function(err,res)
+
+		var cursor = db.collection('adverts_short').find({'markId':98});
+		var fin = false;
+		var docs = {};
+		var for_remove = [];
+		cursor.count(function(err,count)
+			{
+			if (!count){callback(null,0);return false;}
+			var step = parseInt(count/10);
+			if (err){callback(null,err);console.log('Error when get size of cursor during check duplicates');fin=true;return false;}
+			cursor.each(function(err,doc)
 				{
-				if (err!=null){console.log('Error when aggregate over adverts_short (group advertId)',err);callback(null,[]);return false;}
-				//create ids array
-				var for_remove = res.map(function(el){return el['_id']});
-				async.each(for_remove,function(id,callback)
+				if (fin) return false;
+				if (err){callback(null,err);fin=true;console.log('Error when iterating over adverts_short when check duplicates');return false;}
+				docs[doc['advertId']] = docs[doc['advertId']]||0+1;
+				if (count%step==0)console.log(count);
+				if (!(--count))
 					{
-					db.collection('adverts_short').deleteOne({'advertId':id},function(err,res)
-						{
-						if (err!=null){console.log('Error: Cannot delete doc with advert id:'+id,err)};
-						callback(null);
-						})
-					},function(err,res) //final callback
-						{
-						if (err!=null){console.log('Error in final callback when removing duplicates!',err);callback(null,'Errors has been!');return false;}
-						callback(null,for_remove.length);
-						})
+					fin = true;
+					check_for_remove();
+					}
 				})
+			})
+
+		function check_for_remove()
+			{
+			for (var each in docs)
+				{	
+				if (docs[each]>1)
+					for_remove.push(each)
+				}
+			remove_duplicates()
+			}
+
+
+		function remove_duplicates()
+			{
+			if (!for_remove.length)
+				{
+				callback(null,'0');
+				return false;
+				}
+
+			async.each(for_remove,function(id)
+				{
+				db.collection('adverts_short').deleteOne({'advertId':id},function(err,res)
+					{
+					if (err!=null){console.log('Error: Cannot delete doc with advert id:'+id,err)};
+					callback(null);
+					})
+				},function(err,res) //final callback
+					{
+					if (err!=null){console.log('Error in final callback when removing duplicates!',err);callback(null,'Errors has been!');return false;}
+					callback(null,for_remove.length);
+					})
+
+
+			}
 		}
 
 	//check duplicates within dates array and return distinkt array
