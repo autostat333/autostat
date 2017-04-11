@@ -1,6 +1,6 @@
 module.exports = function ReportsCntr(async,app,MongoService, db)
 	{
-
+ 
 
 
 	var $scope = {};

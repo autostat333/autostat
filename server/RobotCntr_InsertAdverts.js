@@ -317,7 +317,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 
 		MongoService.updateDate($scope.adverts_all,cur_date,function(err,res)
 			{
-			if (err!=null){callback(err);return false};
+			if (err!=null){console.log(err);callback(err);return false};
 			callback(null,'INSERT_ADVERTS:Finished Updating date ('+res+')');
 			})
 		}
