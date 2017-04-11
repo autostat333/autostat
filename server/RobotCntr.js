@@ -20,7 +20,7 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 		'createReports':[],
 		'startProject':['2016-10-23'] //it is using in reports to filter dates when "all"
 	};
-
+ 
 	require('./RobotCntr_InsertMarks.js')($scope,async,app,MongoService,RequestsService);
 	require('./RobotCntr_InsertModels.js')($scope,async,app,MongoService,RequestsService);
 	require('./RobotCntr_InsertAdverts.js')($scope,async,app,MongoService,RequestsService);

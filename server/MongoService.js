@@ -209,53 +209,22 @@ module.exports = function MongoService(async,fs,app,db)
 
 	function updateDate(adverts_all,cur_date,callback)
 		{
-		//var cursor = db.collection('adverts_short').find({'advertId':{'$in':adverts_all}});
-		var cursor = db.collection('adverts_short').find();
-		cursor.count(function(err,cursor_size)
+		var count = 0;
+		async.each(adverts_all,function(it,callback)
 			{
-			if (err!=null){callback(err);return false};
-			var kolvo = 0;
-			var updated = 0;
-			var stop = false;
-			cursor.each(function(err,res)
+			db.collection('adverts_short').updateOne({'advertId':it},{'$push':{'dates':cur_date}},function(err,res)
 				{
-				if (stop)return false;
-				if (res!=null)
-					{
-					if (adverts_all.indexOf(res['advertId'])!=-1)
-						{
-						db.collection('adverts_short').update({'_id':res._id},{'$push':{'dates':cur_date}},function(err,res)
-							{
-							if (stop){return false;}
-							if (err!=null){callback(err);console.log('Error when update date:',err);stop = true;return false;}
-							if (kolvo==cursor_size)
-								{
-								stop = true;
-								callback(null,kolvo);
-								}
- 
-							});
-						}
-						
-					}
+				if (err){callback(err);return false}
+				count++;
+				callback(null,res);
 				})
-
-			})	
-
-/*
-		db.collection('adverts_short').updateMany(
-			{
-			'advertId':{'$in':adverts_all},
-			'dates':{'$ne':cur_date}
-			},
-			{
-			'$push':{'dates':cur_date}
 			},function(err,res)
 			{
-			if (err!=null){callback(err);console.log('Error obtain doc from adverts_short!',err);return false}
-			callback(null,res['result']['nModified']);
+			if (err){callback(err);return false;}
+			callback(null,count);
+
 			})
-*/
+
 		}
 
 	function iterateAdverts(create_short_adv,callback)
