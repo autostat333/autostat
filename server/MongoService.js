@@ -209,33 +209,35 @@ module.exports = function MongoService(async,fs,app,db)
 
 	function updateDate(adverts_all,cur_date,callback)
 		{
-console.log('start update');
-		var cursor = db.collection('adverts_short').find({'advertId':{'$in':adverts_all}});
+		//var cursor = db.collection('adverts_short').find({'advertId':{'$in':adverts_all}});
+		var cursor = db.collection('adverts_short').find();
 		cursor.count(function(err,cursor_size)
 			{
-			console.log('cursor_size',cursor_size);
 			if (err!=null){callback(err);return false};
 			var kolvo = 0;
+			var updated = 0;
 			var stop = false;
 			cursor.each(function(err,res)
 				{
+				if (stop)return false;
 				if (res!=null)
 					{
-					db.collection('adverts_short').update({'_id':res._id},{'$push':{'dates':cur_date}},function(err,res)
+					if (adverts_all.indexOf(res['advertId'])!=-1)
+						{
+						db.collection('adverts_short').update({'_id':res._id},{'$push':{'dates':cur_date}},function(err,res)
 							{
 							if (stop){return false;}
 							if (err!=null){callback(err);console.log('Error when update date:',err);stop = true;return false;}
-							kolvo = kolvo+1;
 							if (kolvo==cursor_size)
 								{
 								stop = true;
-								console.log(kolvo);
 								callback(null,kolvo);
 								}
  
-							});						
+							});
+						}
+						
 					}
-
 				})
 
 			})	
