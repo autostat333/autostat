@@ -371,7 +371,6 @@ module.exports = function Api(async,app,MongoService,RobotCntr,db)
 		MongoService.getReportByCities(params_,function(err,res)
 			{
 			if (err){callback(err);return false};
-			console.log('rrr');
 			callback(null,res);
 			})
 		}

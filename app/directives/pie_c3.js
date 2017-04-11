@@ -74,6 +74,7 @@ module.exports = function PieC3($timeout)
         			//	scope.pie.unload();
 	                	scope.pie.load(scope.data_ready);
 	                	scope.pie.legend.hide();
+                 		scope.pie.show();//show all data, which previously was hidden by click on label
 
 	                	$timeout(function()
 	                		{
