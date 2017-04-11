@@ -19,7 +19,7 @@ app.locals.LOG_DIRTY = false;
 var db = '';
 
 var options = {};
-options.server = { socketOptions: { keepAlive: 1, connectTimeoutMS: 500000 } };
+options.server = { socketOptions: { keepAlive: 1, connectTimeoutMS: 5000000 } };
 //options.replset = { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
 
 //var MongoClient = mongo.connect('mongodb://127.0.0.1:27017/autostat',{server: {socketOptions: {connectTimeoutMS: 500000}}},function(err,db_)

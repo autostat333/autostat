@@ -209,9 +209,11 @@ module.exports = function MongoService(async,fs,app,db)
 
 	function updateDate(adverts_all,cur_date,callback)
 		{
+console.log('start update');
 		var cursor = db.collection('adverts_short').find({'advertId':{'$in':adverts_all}});
 		cursor.count(function(err,cursor_size)
 			{
+			console.log('cursor_size',cursor_size);
 			if (err!=null){callback(err);return false};
 			var kolvo = 0;
 			var stop = false;
@@ -225,8 +227,12 @@ module.exports = function MongoService(async,fs,app,db)
 							if (err!=null){callback(err);console.log('Error when update date:',err);stop = true;return false;}
 							kolvo = kolvo+1;
 							if (kolvo==cursor_size)
+								{
+								stop = true;
+								console.log(kolvo);
 								callback(null,kolvo);
-
+								}
+ 
 							});						
 					}
 
