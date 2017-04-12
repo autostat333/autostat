@@ -295,7 +295,7 @@ module.exports = function MongoService(async,fs,app,db)
 	function checkDuplicates(callback)
 		{
 
-		var cursor = db.collection('adverts_short').find({'markId':98});
+		var cursor = db.collection('adverts_short').find();
 		var fin = false;
 		var docs = {};
 		var for_remove = [];
