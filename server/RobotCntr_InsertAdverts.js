@@ -44,6 +44,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 			],
 			function(err,res)
 				{
+				console.log(err,res);
 				if (err!=null){callback(err);return false}
 				callback(null,res);
 				})
@@ -307,6 +308,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 	//this method pushing new date to dates array in every advert
 	function insert_adverts_Update_date(callback)
 		{
+		console.log('Start Update');
 		if ($scope.adverts_all.length==0)
 			{
 			callback(null,'INSERT_ADVERTS:No adverts for update date (adverts_all=0)');
@@ -317,6 +319,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 
 		MongoService.updateDate($scope.adverts_all,cur_date,function(err,res)
 			{
+			console.log('Finish update date',err,res);
 			if (err!=null){console.log(err);callback(err);return false};
 			callback(null,'INSERT_ADVERTS:Finished Updating date ('+res+')');
 			})
@@ -327,9 +330,10 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 	function insert_adverts_Check_date_duplicates(callback)
 		{
 		if (!$scope.options.checkDateDuplicates){callback(null,'INSERT_ADVERTS:No options to check date duplicates');return false;}
-
+		console.log('Start check date duplicate');
 		MongoService.checkDateDuplicate(function(err,res)
 			{
+			console.log('Finish date duplicate',err,res);
 			if (err!==null){console.log(err);callback('Error when checking duplicates within data array');return false;}
 			callback(null,'INSERT_ADVERTS:Finish checking duplicates within data array, '+res+' duplicates!');
 			})
