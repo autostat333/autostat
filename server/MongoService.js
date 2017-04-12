@@ -3,7 +3,7 @@ module.exports = function MongoService(async,fs,app,db)
 
 	var $scope = {};
 
-
+  
 
 	$scope.getMarks = getMarks;  //geyr users from nogoDB, it is only for trains
 	$scope.insertMarks = insertMarks;  //insert marks into db
@@ -210,12 +210,14 @@ module.exports = function MongoService(async,fs,app,db)
 	function updateDate(adverts_all,cur_date,callback)
 		{
 		var count = 0;
-		async.each(adverts_all,function(it,callback)
+		var step = parseInt(adverts_all/10);
+		async.eachSeries(adverts_all,function(it,callback)
 			{
 			db.collection('adverts_short').updateOne({'advertId':it},{'$push':{'dates':cur_date}},function(err,res)
 				{
 				if (err){callback(err);return false}
 				count++;
+				if (count%step==0){console.log('Updating Date:',count)};
 				callback(null,res);
 				})
 			},function(err,res)

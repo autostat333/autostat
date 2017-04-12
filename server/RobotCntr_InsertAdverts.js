@@ -327,7 +327,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 	function insert_adverts_Check_date_duplicates(callback)
 		{
 		if (!$scope.options.checkDateDuplicates){callback(null,'INSERT_ADVERTS:No options to check date duplicates');return false;}
-
+		console.log('Start check date duplicate');
 		MongoService.checkDateDuplicate(function(err,res)
 			{
 			if (err!==null){console.log(err);callback('Error when checking duplicates within data array');return false;}
@@ -443,7 +443,7 @@ module.exports = function RobotCntr_Insert_Adverts($scope,async,app,MongoService
 				//check once more it is no name
 				if ($scope.coordinates[name])
 					{
-						console.log('Existed',name);
+					console.log('Existed',name);
 					return_();
 					return false;
 					}

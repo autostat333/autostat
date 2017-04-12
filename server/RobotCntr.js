@@ -17,8 +17,8 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 		'remakeShortAdvertsByMarks':['No'],  //query to db for update. If 'No' - no any remaking. If [] - all collections with adverts will be remake.
 		'remakeShortAdvertsByModels':['No'],
 
-		'createReports':[],
-		'startProject':['2016-10-23'] //it is using in reports to filter dates when "all"
+		'createReports':[], //!!!All depricated. Pass dates array to calculate reports 
+		'startProject':['2016-10-23'] //it is using in reports to filter dates when "all" !!!! Now depricated together with all param. To calculate reports for several dates - pass them in array
 	};
  
 	require('./RobotCntr_InsertMarks.js')($scope,async,app,MongoService,RequestsService);
@@ -37,7 +37,7 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 				$scope.reports
 				],function(err,res)
 					{
-					if (err!=null){callback(err);return false}
+					if (err!=null){console.log('Error in final callback of Robot:',err);callback(err);return false}
 					console.log(res);
 					callback(null,res);
 					})
@@ -52,48 +52,30 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 	function reports(callback)
 		{
 
-		MongoService.getAllDates(function(err,res)
+		if ($scope.options['createReports'].length==0)
 			{
-			if (err!=null){callback(err);return false}
+			var cur_dt = $scope.get_cur_date();
+			cur_dt = cur_dt.split(' ')[0];
+			var dates = [cur_dt];
+			}
+		else
+			dates = $scope.options['createReports'];
 
-			//look inside options
-			if ($scope.options['createReports'][0]=='All')
+		//!!!ToDO move it to config
+		//now for passing must be only one value in array ['2016-10-24']
+		//dates = ['2017-04-08'];
+		//dates = [];
+		async.eachSeries(dates,function(it,callback)
+			{
+			ReportsCntr.stack([it],function(err,res)
 				{
-				var dates = res.map(function(el){return el['_id']});
-				dates = dates.filter(function(el)
-					{
-					return el>=$scope.options['startProject']
-					})
-				}
-			else if ($scope.options['createReports'].length==0)
-				{
-				var cur_dt = $scope.get_cur_date();
-				cur_dt = cur_dt.split(' ')[0];
-				var dates = [cur_dt];
-				}
-			else
-				{ 
-				callback(null,'REPORTS:No options for making reports!');
-				return false;
-				} 
-
-			//!!!ToDO move it to config
-			//now for passing must be only one value in array ['2016-10-24']
-			//dates = ['2017-04-08'];
-			//dates = [];
-			async.eachSeries(dates,function(it,callback)
-				{
-				ReportsCntr.stack([it],function()
-					{
-					if (err!=null){callback(err);return false}
-					callback(null,res);
-					})
-				},function(err,res)
-				{ 
-				if (err!=null){callback(err);return false};
-				callback(null,'REPORTS:Finished reports for '+dates.length+' dates!')
+				if (err!=null){callback(err);return false}
+				callback(null,res);
 				})
-
+			},function(err,res)
+			{ 
+			if (err!=null){callback(err);return false};
+			callback(null,'REPORTS:Finished reports for '+dates.length+' dates!')
 			})
 
 
