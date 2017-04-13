@@ -331,12 +331,19 @@
 
 	.tab_bar
 		{
-		height:50px;
+		height:40px;
 		position:absolute;
-		bottom:0px;
+		bottom:-5px;
 		left:0px;
 		width:100%;
 		z-index:100;
+
+		ul
+			{
+			margin-top:0px;
+			margin-bottom:0px;
+			height:40px;
+			}
 
 		.tab
 			{

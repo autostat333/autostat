@@ -134,17 +134,18 @@
 
 		.table_container
 			{
-			width:100%;
 			@media(min-width:300px)
 				{
 				overflow-x:scroll;
-				.table{width:90%;}
+				.table{width:100%;}
 				}
 			@media(min-width:550px)
 				{
 				overflow-x:visible;
 				.table{width:100%;}
 				}
+
+
 			}
 
 		}
