@@ -170,6 +170,19 @@
 				height:auto !important;
 				}
 			}
+
+
+		@media(max-width:450px)
+			{
+			width:160px;
+			select {height:30px;}
+			}
+		@media(max-width:350px)
+			{
+			width:140px;
+			select {height:30px;}
+			}
+
 		}
 
 	//style for section name
@@ -234,7 +247,12 @@
 	//FOR PIE
 
 	//add padding for last row
-	.row_container{padding-bottom:100px;}
+	.row_container
+		{
+		@media(max-width:4000px){padding-bottom:70px;}
+		@media(max-width:1000px){padding-bottom:20px;}
+
+		}
 	.row_container.pie
 		{
 
@@ -265,9 +283,11 @@
 			margin-top:15px;
 			.left_col, .right_col
 				{
-				@media(min-width:350px){width:90%;}
-				@media(min-width:1000px){width:47%;}
-				height:650px;
+				margin-top:30px;
+				@media(min-width:300px){height:auto;width:95%;}
+				@media(min-width:350px){width:95%;}
+				@media(min-width:800px){height:570px;}
+				@media(min-width:1000px){width:47%;height:650px;}
 				}
 			}
 
@@ -301,7 +321,7 @@
 			a
 			    {
 			    background:white !important;
-			    box-shadow:0px 0px 0px !important;
+			    //box-shadow:0px 0px 0px !important;
 			    }
 
 
@@ -397,7 +417,10 @@
 				    {
 				    color:black;
 				    width:calc(55% - 5px);
-				    @media(min-width:350px){font-size:3.5vw}				    @media(min-width:800px){font-size:1.8vw}				    @media(min-width:1000px){font-size:1.2vw}
+				    @media(min-width:300px){font-size:14px}
+				    @media(min-width:350px){font-size:3.5vw}
+				    @media(min-width:800px){font-size:1.8vw}
+				    @media(min-width:1000px){font-size:1.2vw}
 				    font-size:1.2vw;
 				    text-align:left;
 
