@@ -1,6 +1,8 @@
 .stat_params_container
 	{
 
+	min-height:1000px;
+
 	.chart_container
 		{
 
@@ -43,6 +45,16 @@
 			text-align:center;
 			}
 
+		@media(max-width:550px)
+			{
+			span
+				{
+				width:90px;
+				vertical-align:middle;
+				}
+			}
+
+
 		span:nth-of-type(2)
 			{
 			margin-left:10px;
@@ -60,6 +72,13 @@
 		display:inline-block;
 		width:135px;
 		margin-left:5%;
+
+		@media(max-width:550px)
+			{
+			width:110px;
+			}
+
+
 
 		span
 			{
@@ -92,5 +111,39 @@
 		width:175px;
 		}
 
+
+	.filters
+		{
+		@media(max-width:570px)
+			{
+			.input-field
+				{
+				width:30%;
+				select{width:100%;}
+				}
+			.dropdown_container
+				{
+				with:30%;
+				font-size:11px;
+				a{width:100%}
+				}
+			.datepicker_container
+				{
+				width:30%;
+				input{font-size:11px;}
+				label
+					{
+					i
+						{
+						width:15px;
+						height:15px;
+						font-size:15px;
+						}
+					}
+				}
+
+			}
+
+		}
 
 	}

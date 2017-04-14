@@ -128,7 +128,10 @@ module.exports = function MapDirective($timeout)
 
             function set_map_height()
                 {
-                scope.map_height = window.innerHeight - 50;
+                if (window.innerWidth<1150)
+                    scope.map_height = 600;
+                else
+                    scope.map_height = window.innerHeight - 50;
                 scope.map_container.css({'height':scope.map_height});
                 }
 

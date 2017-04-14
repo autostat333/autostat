@@ -11,6 +11,7 @@ module.exports = function c3ChartParams($timeout)
 			scope.get_elem_width = get_elem_width;
 			scope.on_resize = on_resize;
 			scope.my_destroy = my_destroy;
+			scope.filter_categories = filter_categories;
 
 
 
@@ -73,12 +74,15 @@ module.exports = function c3ChartParams($timeout)
 
 				scope.values = [scope.data['label']];
 				scope.categories = [];
+				scope.categories_cache = []; //for caching categories, when small screen filter them (to show only small numbers of them)
 				for (var each in scope.data['data'])
 					{
 					var el = scope.data['data'][each];
 					scope.values.push(el[scope.values_type]);
 					scope.categories.push(el['name']);
+					scope.categories_cache.push(el['name']);
 					}
+				scope.filter_categories();
 				}
 
 
@@ -104,10 +108,30 @@ module.exports = function c3ChartParams($timeout)
 				}
 
 
+			function filter_categories()
+				{
+				if (window.innerWidth<800)
+					var freq = 2
+				else
+					var freq = 'all';
+
+
+				for (var each in scope.categories_cache)
+					{	
+					if (freq!='all'&&each%freq)
+						scope.categories[each] = '';
+					else
+						scope.categories[each] = scope.categories_cache[each];
+
+					}
+				}
+
+
 			function on_resize()
 				{
 				if (scope.chart===undefined){return false;}
-				scope.chart_width = scope.get_elem_width();
+				scope.chart_width = scope.get_elem_width();	
+				scope.filter_categories();
 				scope.chart.resize({'width':scope.chart_width});
 				}
 
