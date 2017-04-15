@@ -15,12 +15,15 @@
 		{
 		display:flex;
 		margin-bottom:50px;
+		
+		@media(max-width:900px){flex-direction:column}
+
 		}
 
 	.table_column
 		{
 		width:50%;
-
+		@media(max-width:900px){width:100%}
 
 		.params_container
 			{
@@ -42,15 +45,20 @@
 
 			.datepicker_container
 				{
-				width:25%;
+				width:40%;
 				height:40px;
+				max-width:130px;
 				}
 
 
 			.years_selection
 				{
-				width:30%;
+				max-width:200px;
+				width:41%;
 				margin-left:3%;
+
+				
+
 				}
 
 
@@ -214,6 +222,9 @@
 			justify-content:center;
 			color:rgb(12, 78, 145);
 			transition:all ease 0.5s;
+
+			@media(max-width:1100px){font-size:12px}
+
 			}
 
 
@@ -226,8 +237,11 @@
 		div.name
 			{
 			font-size: 18px;
-		    font-weight:300;
-		    color: rgb(12, 78, 145);
+		        font-weight:300;
+ 		        color: rgb(12, 78, 145);
+
+			@media(max-width:1100px){font-size:14px}
+
 			}
 
 		div.item, div.name
@@ -252,6 +266,7 @@
 				font-size:12px;
 				font-weight:400;
 				margin-top:10px;
+				@media(max-width:1100px){font-size:10px;}
 				}
 
 			.new
@@ -325,6 +340,7 @@
 		width:50%;
 		margin-top:50px;
 		max-height:530px;
+		@media(max-width:900px){width:100%}
 
 		.box_wrap
 			{
@@ -348,12 +364,16 @@
 
 			.selection_title>span:nth-child(1), .selection_title>span:nth-child(3)
 				{
-			    font-size: 12px;
-			    width: 71px;
-			    display: inline-block;
-			    line-height: 12px;
-			    text-align:left;
-			    text-shadow:0px 1px 1px #f7f7f7;
+			        font-size: 12px;
+			        width: 15%;
+			        display: inline-block;
+			        line-height: 12px;
+			        text-align:left;
+			        text-shadow:0px 1px 1px #f7f7f7;
+
+				@media(max-width:1100px){font-size:11px}
+				max-width:75px;
+
 				}
 
 				//style for labels
@@ -361,24 +381,25 @@
 			.selection_title>span:nth-child(4), 
 			.selection_title>span:nth-child(5)
 				{
-				display:inline-block;
-				font-size:30px;
+				display:inline-block;	
 				color:#2c2c2c;
 				text-shadow:0px 1px 1px #f7f7f7;
+				font-size:30px;
+				@media(max-width:1200px){font-size:28px;}
+				@media(max-width:1100px){font-size:26px;}
+
 				}
 			.selection_title>span:nth-child(3)
 				{
 				margin-left:20px;
 				}
 
-				//static width for labels
-			.selection_title>span:nth-child(2) {width:75px;}
-
 
 			.selection_title>span:nth-child(4), 
 			.selection_title>span:nth-child(5)
 				{
-				width:190px;
+				width:calc(50% - 30px);
+				max-width:190px;
 				}
 
 			.selection_title + div
@@ -394,6 +415,9 @@
 			    	width:48%;
 			    	visibility:visible;
 			    	height:100px;
+
+				@media(max-width:1000px){height:80px;}
+
 
 			    	div.title
 			    		{
@@ -427,12 +451,19 @@
 			    		font-size: 35px;
     					font-weight: 300;
     					width:35%;
+					
+					@media(max-width:1100px){font-size:30px;}
+					@media(max-width:1000px){font-size:24px;}
+
 			    		}
 
 			    	div:not(.title):nth-of-type(3)
 			    		{
-					    font-size: 35px;
-					    width:62%;
+					font-size: 35px;
+					width:62%;
+					@media(max-width:1100px){font-size:30px;}
+					@media(max-width:1000px){font-size:24px;}
+
 			    		}
 
 					}
