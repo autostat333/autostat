@@ -45,11 +45,12 @@
 			text-align:center;
 			}
 
-		@media(max-width:550px)
+		@media(max-width:570px)
 			{
+			width:100%;
 			span
 				{
-				width:90px;
+				width:45%;
 				vertical-align:middle;
 				}
 			}
@@ -73,9 +74,13 @@
 		width:135px;
 		margin-left:5%;
 
-		@media(max-width:550px)
+		@media(max-width:570px)
 			{
 			width:110px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    display: block;
+		    margin-top: 10px;
 			}
 
 
@@ -114,8 +119,37 @@
 
 	.filters
 		{
+		.inline
+			{
+			display:inline-block;
+			vertical-align:middle !important;
+			margin-top:0px !important;
+			margin-bottom:0px !important;	
+			max-width:30%;
+			}
+
+		.input-field, .datepicker_container, .dropdown_container
+			{
+			@extend .inline;
+			}
+		.chosen-container
+			{
+			height:37px !important;
+			}
+
+		.chosen-single 
+			{
+			@media(max-width:800px)
+				{
+				line-height:26px !important
+				}
+			}
+
+
 		@media(max-width:570px)
 			{
+
+
 			.input-field
 				{
 				width:30%;
@@ -123,16 +157,17 @@
 				}
 			.dropdown_container
 				{
-				with:30%;
+				width:30%;
 				font-size:11px;
 				a{width:100%}
 				}
 			.datepicker_container
 				{
-				width:30%;
+				width:33%;
 				input{font-size:11px;}
 				label
 					{
+					height:15px;
 					i
 						{
 						width:15px;
@@ -141,6 +176,60 @@
 						}
 					}
 				}
+
+
+
+
+			}
+
+
+		@media(max-width:450px)
+			{
+			.dropdown_container
+				{
+				a
+					{
+					padding:0px 8px !important;
+					height:30px;
+					line-height:30px;
+					}
+				}
+
+			.input-field
+				{
+				select
+					{
+					height:30px;
+					}
+				}
+
+			.datepicker_container input
+				{
+				height:30px;
+				}
+
+			}
+
+
+		@media(max-width:350px)
+			{
+			.dropdown_container
+				{
+				a{padding:0px 3px !important;}
+				}
+
+			.datepicker_container
+				{
+				label{display:none;}
+				input{width:100%;}
+				}
+
+			.input-field select
+				{
+				font-size:10px;
+				}
+
+
 
 			}
 

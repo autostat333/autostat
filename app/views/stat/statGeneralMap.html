@@ -59,16 +59,19 @@
 	            <div num-items></div>
 	        </div>
 
-
+	        <div class="wrap_data_table">
 	        <table>
 	            <thead>
 	            <tr>
-	                <th
+	                <th>
+	                	<div
 	                    ng-repeat="col in columns"
+	                    class="td"
 	                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
 	                    >
-	                    <div sorting="{{col['Name']}}"></div>
-	                    <span>{{col['Label']}}</span>
+		                    <div sorting="{{col['Name']}}"></div>
+		                    <span>{{col['Label']}}</span>
+	                    </div>
 	                </th>
 	            </tr>
 	            </thead>
@@ -94,6 +97,7 @@
 	            </tbody>
 
 	        </table>
+	        </div>
 
 	        <div paging></div>
 

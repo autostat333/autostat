@@ -67,6 +67,17 @@
   width:170px;
   outline-width:0px;
 
+
+  label
+    {
+    display:inline-block;
+    vertical-align:middle;
+    height:20px;
+    }
+
+
+
+
   input
     {
     cursor:pointer;
@@ -79,15 +90,41 @@
     width:calc(100% - 27px);
     margin-bottom:0px;
     }
+
+
   i
     {
     cursor:pointer;
-
     width:20px;
+    height:20px;
     font-size:20px;
     text-align:center;
     color:#4674a2 !important;
     }
+
+
+  @media(max-width:450px)
+    {
+    input
+      {
+      font-size:12px;
+      }
+
+    i
+      {
+      font-size:15px;
+      width:15px;
+      height:15px;
+      }
+
+    label
+      {
+      height:15px;
+      }
+    }
+
+
+
   }
 
 //some additional styles for datepicker

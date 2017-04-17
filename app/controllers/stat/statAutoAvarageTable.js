@@ -74,9 +74,9 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 		$scope.params['date'] = $scope.params['date']||$scope.ACTUAL_DATE; //inherit actual date from stat.js
 		$scope.params['markId'] = $scope.selected_tab['mark']['value']; //inherit from view mark&model params
 		$scope.params['modelId'] = $scope.selected_tab['model']['value'];
-		$scope.params['selectedYear'] = $scope.AVG_TABLE[0][0];
+		$scope.params['selectedYear'] = $scope.AVG_TABLE[0]?$scope.AVG_TABLE[0][0]:'empty'; //get first year available for this car
 		$scope.params['selectedRace'] = 'total';
-		$scope.params['selectedObject'] = $scope.AVG_TABLE[0][1];
+		$scope.params['selectedObject'] = $scope.AVG_TABLE[0]?$scope.AVG_TABLE[0][1]:'empty';
 
 		}
 
@@ -330,6 +330,7 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 
 	function watcher_params(new_val,old_val)
 		{
+		//if (!new_val||!new_val['selectedObject']) return false;
 		if (!new_val||!new_val['selectedObject']) return false;
 
 		//if only date is change - reqest for new data

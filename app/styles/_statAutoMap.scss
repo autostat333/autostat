@@ -5,7 +5,7 @@
     	{
 	    h2
 	        {
-	        width:430px;
+	        width:auto;
 	        display:inline-block;
 	        vertical-align:middle;
 	        }
@@ -13,8 +13,24 @@
 
 	    .datepicker_container
 	        {
+	        margin-left:20px;
 	        display:inline-block;
 	        vertical-align:middle;
+	        @media(max-width:450px)
+	        	{
+	        	width:130px;
+	        	}
+
+        	@media(max-width:380px)
+        		{
+        		width:100px;
+        		margin-left:5px;
+        		input
+        			{
+        			padding:0px;
+
+        			}
+        		}
 	        }
 
 	    }
@@ -68,6 +84,30 @@
 			}
 
 
+		.wrap_data_table
+			{
+			width:100%;
+			overflow-x:hidden;
+			@media(max-width:700px)
+				{
+				overflow-x:scroll;
+				}
+
+			table
+				{
+				min-width:650px;
+				}
+			}
+
+		tbody div
+			{
+			font-size:14px;
+			@media(max-width:750px)
+				{
+				font-size:12px;
+				}
+			}
+
 
 		.title,
 		tr[filters-row] td:nth-of-type(1)
@@ -109,12 +149,13 @@
 			{width:6%}
 
 
-
 		tbody div.title,tbody div.shortTitle, {text-align:left;}
 		tbody div.price {text-align:right};
 		tbody div.createdAgo, tbody div.raceOrg, tbody div.link, tbody div.city, tbody div.fuelName, div.year {text-align:center;}
 
 		tbody div.price{color:orange;}
+
+
 
 		.new_advert
 			{

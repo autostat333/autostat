@@ -21,6 +21,7 @@ module.exports = function datepicker($timeout)
 						elem_focus[0].focus();
 						},0)
 					},
+				'format':'d mmm yyyy'
 				})
 
 			scope.datepicker = scope.datepicker_.pickadate('picker');

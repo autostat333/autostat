@@ -1,6 +1,6 @@
 .auto_dots_container
 	{
-	min-height:500px;
+	min-height:800px;
 	margin-bottom:100px;
 
 
@@ -9,7 +9,7 @@
     	{
 	    h2
 	        {
-	        width:230px;
+	        width:auto;
 	        display:inline-block;
 	        vertical-align:middle;
 	        }
@@ -17,6 +17,7 @@
 
 	    .datepicker_container
 	        {
+	        margin-left:20px;
 	        display:inline-block;
 	        vertical-align:middle;
 	        }
@@ -40,12 +41,47 @@
 	    margin-top: 50px;
 
 
+	    .last_watched {width:27%};
+		.card.horizontal {width:67%};
+
+
+	    @media(max-width:750px)
+	    	{
+	    	flex-direction:column;
+	    	.last_watched
+	    		{
+    			width:100%;
+    			margin-top:30px;
+
+    			.adverts_watched
+    				{
+    				div
+    					{
+						display:inline-block;
+						vertical-align:middle;    					
+    					}
+					span:nth-of-type(3)
+						{
+						margin-right:10px;
+						}
+    				}
+
+	    		}
+    		.card.horizontal
+    			{
+	    		width:80%;
+	    		min-width:300px;
+    			}
+	    	}
+
+
 		}
 
 	.last_watched
 		{
-		width:27%;
 		position:relative;
+
+		
 
 		.adverts_watched
 			{
@@ -97,7 +133,6 @@
 
 	.card.horizontal
 		{
-	    width: 67%;
 	    margin-left: auto;
 	    margin-right: auto;
 
@@ -116,10 +151,10 @@
 	    	span:nth-of-type(2) //name
 	    		{
     			font-size:23px;
+	    		margin-right: 10px;
 	    		}
 	    	span:nth-of-type(3) //price
 	    		{
-	    		margin-left: 10px;
 			    font-size: 25px;
 			    color: white;
 			    background: orange;

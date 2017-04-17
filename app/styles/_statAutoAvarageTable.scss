@@ -7,6 +7,7 @@
 		vertical-align:middle;
 		display:inline-block;
 		width:330px;
+		@media(max-width:400px){width:100%;}
 		}
 
 
@@ -24,6 +25,7 @@
 		{
 		width:50%;
 		@media(max-width:900px){width:100%}
+		overflow:hidden;
 
 		.params_container
 			{
@@ -48,17 +50,24 @@
 				width:40%;
 				height:40px;
 				max-width:130px;
+
 				}
 
 
 			.years_selection
 				{
 				max-width:200px;
-				width:41%;
+				//width:41%;
 				margin-left:3%;
 
-				
-
+				@media(max-width:450px)
+					{
+					a
+						{
+						padding:0px 10px;
+						font-size:12px;
+						}
+					}
 				}
 
 
@@ -163,6 +172,16 @@
 			{
 			width:100%;
 			margin-top:20px;
+
+			@media(max-width:420px)
+				{
+				overflow-x:scroll;
+				div.t_row,div.t_body
+					{
+					min-width:400px;
+					}
+				}
+
 			}
 
 		div.t_row
@@ -214,7 +233,6 @@
 
 		div.hd //header
 			{
-			font-size:16px;
 			font-weight:300;
 			text-align:center;
 			display:flex;
@@ -223,7 +241,11 @@
 			color:rgb(12, 78, 145);
 			transition:all ease 0.5s;
 
-			@media(max-width:1100px){font-size:12px}
+			font-size:16px;
+			@media(max-width:1100px) and (min-width:900px){font-size:12px}
+
+			@media(max-width:550px){font-size:12px;}
+
 
 			}
 
@@ -240,7 +262,11 @@
 		        font-weight:300;
  		        color: rgb(12, 78, 145);
 
-			@media(max-width:1100px){font-size:14px}
+
+
+			@media(max-width:1100px) and (min-width:900px) {font-size:14px}
+
+			@media(max-width:550px){font-size:14px;}
 
 			}
 
@@ -266,7 +292,9 @@
 				font-size:12px;
 				font-weight:400;
 				margin-top:10px;
-				@media(max-width:1100px){font-size:10px;}
+				@media(max-width:1100px) and (min-width:900px) {font-size:10px;}
+
+				@media(max-width:550px){font-size:10px;}
 				}
 
 			.new
@@ -350,6 +378,8 @@
 			margin-right:auto;
 			padding:20px;
 			box-shadow:0px 0px 5px -1px rgba(171, 171, 171, 0.51);
+
+			@media(max-width:900px){width:100%;}
 			}
 
 		.total_figures
@@ -364,14 +394,17 @@
 
 			.selection_title>span:nth-child(1), .selection_title>span:nth-child(3)
 				{
-			        font-size: 12px;
-			        width: 15%;
-			        display: inline-block;
-			        line-height: 12px;
-			        text-align:left;
-			        text-shadow:0px 1px 1px #f7f7f7;
+		        font-size: 12px;
+		        width: 15%;
+		        display: inline-block;
+		        line-height: 12px;
+		        text-align:left;
+		        text-shadow:0px 1px 1px #f7f7f7;
 
-				@media(max-width:1100px){font-size:11px}
+				@media(max-width:1100px) and (min-width:900px) {font-size:11px}
+				@media(max-width:550px){font-size:11px;}
+				@media(max-width:400px){font-size:8px;}
+
 				max-width:75px;
 
 				}
@@ -386,7 +419,10 @@
 				text-shadow:0px 1px 1px #f7f7f7;
 				font-size:30px;
 				@media(max-width:1200px){font-size:28px;}
-				@media(max-width:1100px){font-size:26px;}
+				@media(max-width:1100px) and (min-width:900px) {font-size:26px;}
+
+				@media(max-width:550px){font-size:26px;}
+				@media(max-width:400px){font-size:18px;}
 
 				}
 			.selection_title>span:nth-child(3)
@@ -416,7 +452,9 @@
 			    	visibility:visible;
 			    	height:100px;
 
-				@media(max-width:1000px){height:80px;}
+					@media(max-width:1000px) and (min-width:900px) {height:80px;}
+					@media(max-width:550px){height:80px}
+					@media(max-width:400px){height:67px}
 
 
 			    	div.title
@@ -452,18 +490,22 @@
     					font-weight: 300;
     					width:35%;
 					
-					@media(max-width:1100px){font-size:30px;}
-					@media(max-width:1000px){font-size:24px;}
+						@media(max-width:1100px) and (min-width:900px) {font-size:30px;}
+						@media(max-width:1000px) and (min-width:900px) {font-size:24px;}
 
+						@media(max-width:550px){font-size:24px;}
+						@media(max-width:400px){font-size:20px;}
 			    		}
 
 			    	div:not(.title):nth-of-type(3)
 			    		{
-					font-size: 35px;
-					width:62%;
-					@media(max-width:1100px){font-size:30px;}
-					@media(max-width:1000px){font-size:24px;}
+						font-size: 35px;
+						width:62%;
+						@media(max-width:1100px)  and (min-width:900px){font-size:30px;}
+						@media(max-width:1000px)  and (min-width:900px){font-size:24px;}
 
+						@media(max-width:550px){font-size:24px;}
+						@media(max-width:400px){font-size:20px;}
 			    		}
 
 					}
@@ -548,6 +590,8 @@
 					    font-weight: 300;
 					    color:rgba(199, 35, 0, 0.39);
 					    display:none;
+
+					    @media(max-width:500px){font-size:16px;}
 			 			}
 
 	    			}
@@ -584,8 +628,26 @@
 		}
 
 
+
 	.data_table_container
 		{
+
+		.wrap_data_table
+			{
+			width:100%;
+			overflow-x:hidden;
+			@media(max-width:700px)
+				{
+				overflow-x:scroll;
+				}
+			
+			}
+
+
+		table
+			{
+			min-width:650px;
+			}
 
 
 
@@ -603,6 +665,16 @@
 		.sorted
 			{
 			font-weight:500 !important;
+			}
+
+
+		.td
+			{
+			font-size:14px;
+			@media(max-width:850px)
+				{
+				font-size:12px;
+				}
 			}
 
 

@@ -79,6 +79,8 @@
         -line-height:28px;
         height:28px;
         background:#fbfbfb;
+        padding:0px 10px;
+
         }
 
     li:hover
@@ -98,6 +100,55 @@
         {
         background:white;
         }
+
+
+    @media(max-width:450px)
+        {
+
+        li
+            {
+            height:25px;
+            }
+        a
+            {
+            line-height:23px;
+            height:23px !important;
+            }
+
+        ul li.pagination-page.active
+            {
+            a
+                {
+                height:22px !important;
+                }
+            }
+
+        ul li.pagination-page a
+            {
+            padding:0px 6px !important;
+
+            }
+
+        ul li.pagination-page.active
+            {
+            background:none;
+            }
+
+        ul li.pagination-last,
+        ul li.pagination-next,
+        ul li.pagination-prev,
+        ul li.pagination-first,
+            {
+            a
+                {
+                width:30px;
+                text-overflow:ellipsis;
+                overflow:hidden;
+                padding:0px 3px !important;
+                }
+            }
+        }
+
     }
 
 
@@ -254,6 +305,28 @@
 
  
 
+//TRANSFORM TABLE to DISPLAY BLOCK (because auto width of table )
+.data_table_container .wrap_data_table
+    {
+    overflow-x:scroll;
+    table, thead, tbody, tr
+        {
+        display:block;
+        width:100%;
+        }
+
+
+    tr:not([filters-row]) td, th
+        {
+        //display:block;
+        width:100%;
+        display:flex;
+        align-items:center;
+        }
+ 
+    }
+
+
 
 /*FILTERS-ROW*/
 .data_table_container tr[filters-row]:hover
@@ -398,16 +471,22 @@
 .data_table_container
     {
 
-    tr td{padding:0px}
+    tr td
+        {
+        padding:0px;
+        }
 
-   tr .td
+    tr .td
         {
         display: block;
+        //float:left;
         overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
+
+
         padding:10px 5px;
-        float:left;
+        text-overflow: ellipsis;
+        
         min-height:1px;
         height:42px;
         }
