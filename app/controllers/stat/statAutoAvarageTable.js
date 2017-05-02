@@ -218,6 +218,8 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 			//for RACE
 			el['raceOrg'] = parseInt(el['raceOrg']);
 			el['raceOrg'] = isNaN(el['raceOrg'])?0:el['raceOrg'];
+	
+			el['shortTitle'] = el['shortTitle'].replace('...','');
 
 			}
 		return d;
