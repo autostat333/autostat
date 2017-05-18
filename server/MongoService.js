@@ -444,13 +444,14 @@ module.exports = function MongoService(async,fs,app,db)
 	function getActualDate(callback)
 		{
 		var start_day = new Date();
-		start_day.setDate(start_day.getDate()-17);
+		start_day.setDate(start_day.getDate()-10);
 
 		var y = start_day.getFullYear();
 		var m = (m = start_day.getUTCMonth()+1).toString().length==1?'0'+m:m;
 		var d = (d = start_day.getUTCDate()).toString().length==1?'0'+d:d;
 
 		start_day = y+'-'+m+'-'+d;
+
 
 		var doc = db.collection('reports').findOne({'date':{'$gt':start_day}},{'sort':[['date','desc']]},function(err,doc)
 				{
