@@ -14,7 +14,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "bower": "^1.7.9",
     "grunt-cli": "^1.2.0",
-    "mongodb": "^2.2.10",
+    "mongodb": "=2.2.10",
     "request": "^2.75.0",
     "grunt-contrib-clean": "^0.7.0",
     "jQuery": "^1.7.4",
