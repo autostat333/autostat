@@ -1,0 +1,140 @@
+<div class="main_controller"
+ 	ng-init="init()"
+	>
+
+
+
+	<!--MENU CONTAINER-->
+	<div class='menu_container row'>
+		<nav>
+	    	<div class="nav-wrapper">
+				<div class="col s12">
+	    	  		<a ui-sref="main.stat" class="brand-logo">
+						<img src="/images/logo_horyzontal.png">
+					</a>
+	    	  		<a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+	      			<ul id="nav-mobile" class="right hide-on-med-and-down">
+	        			<li ui-sref-active="active" ng-click="menuItemClick('main.stat')"><a ui-sref="main.stat">Главная</a></li>
+	        			<li ui-sref-active="active" ng-click="menuItemClick('main.about')"><a ui-sref="main.about">О проекте</a></li>
+	   	     			<li ui-sref-active="active" ng-click="menuItemClick('main.contact')"><a ui-sref="main.contact">Контакты</a></li>
+	      			</ul>
+
+					<div class="controls">
+						<div class="language">
+							<a class='dropdown-button btn waves-effect waves-light btn'
+							   	data-activates='dropdown10'
+								dropdown
+							>
+							Язык: <b>{{$root.language}}</b></a>
+							<!-- Dropdown Structure -->
+							<ul id='dropdown10' class='dropdown-content'>
+								<li ng-click="selectLanguage('EN')">
+									<a class="item" href="#!" >
+										<img src="/images/gb.svg">
+										<span>Eng</span>
+									</a>
+								</li>
+								<li ng-click="selectLanguage('RU')">
+									<a class="item" href="#!">
+										<img src="/images/ru.svg">
+										<span>Rus</span>
+									</a></li>
+							</ul>
+						</div>
+						<div class="tour">
+							<a class='dropdown-button btn waves-effect waves-light btn'
+								ng-click="tourClick()"
+							   	id="tour_tour_button"
+								>
+								Подсказки
+							</a>
+						</div>
+					</div>
+      			</div>
+	    	</div>
+	  	</nav>
+  	</div>
+
+	<!--FOR MOBILE MENU-->
+	<div id="mobile-demo" class="side-nav">
+		<div class="logo_mobile">
+			<img src="/images/logo_vertical.png">
+		</div>
+		<div class="devider"></div>
+		<ul class="menu">
+			<li ui-sref-active="active" ng-click="menuItemClick('main.stat')"><a ui-sref="main.stat">Главная</a></li>
+			<li ui-sref-active="active" ng-click="menuItemClick('main.about')"><a ui-sref="main.about">О проекте</a></li>
+			<li ui-sref-active="active" ng-click="menuItemClick('main.contact')"><a ui-sref="main.contact">Контакты</a></li>
+		</ul>
+		<div class="devider"></div>
+
+		<div class="controls">
+			<div class="language">
+				<a class='dropdown-button btn waves-effect waves-light btn'
+				   	data-activates='dropdown11'
+				   	dropdown
+					>
+					Язык: <b>RU</b></a>
+				<!-- Dropdown Structure -->
+				<ul id='dropdown11' class='dropdown-content'>
+					<li>
+						<a class="item" href="#!" >
+							<img src="/images/gb.svg">
+							<span>Eng</span>
+						</a>
+					</li>
+					<li>
+						<a class="item" href="#!">
+							<img src="/images/ru.svg">
+							<span>Rus</span>
+						</a></li>
+				</ul>
+			</div>
+			<div class="tour">
+				<a class='dropdown-button btn waves-effect waves-light btn'
+				   	ng-click="tourClick()"
+					>
+					Подсказки
+				</a>
+			</div>
+		</div>
+	</div>
+
+  	<div class="content" ui-view> 
+
+  	</div>
+
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modalTour" class="modal">
+	<div class="modal-content">
+		<div ng-if="isToursFinished">
+			<p>Туториал закончился или был отключен.</p>
+			<p>Вы хотите снова <b>ЗАПУСТИТЬ</b> туториал и показ зеленых подсказок?</p>
+		</div>
+        <div ng-if="!isToursFinished">
+			<p>Туториал не закончился полностью.</p>
+			<p>Вы хотите <b>ОСТАНОВИТЬ</b> туториал и показ зеленых подсказок?</p>
+        </div>
+	</div>
+
+	<div class="modal-footer">
+        <a href="#!" class="modal-action modal-close dropdown-button btn custom_dropdown waves-effect waves-orange"
+            ng-if="!isToursFinished"
+		   	stop-tour
+            >
+            Остановить подсказки
+        </a>
+        <a href="#!" class="modal-action modal-close dropdown-button btn custom_dropdown waves-effect waves-orange"
+            ng-if="isToursFinished"
+		   	start-tour
+            >
+            Запустить
+        </a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Закрыть</a>
+	</div>
+
+</div>

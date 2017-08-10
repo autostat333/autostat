@@ -52,7 +52,14 @@ module.exports = function MapDirective($timeout)
                 scope.map = new google.maps.Map(elem[0],
                     {
                     zoom: 5,
-                    center: {lat: 49.000, lng: 32.000}
+                    center: {lat: 49.000, lng: 32.000},
+                    scrollwheel:false,
+                    zoomControl: true,
+                    mapTypeControl: true,
+                    scaleControl: true,
+                    streetViewControl: true,
+                    rotateControl: true,
+                    fullscreenControl: true
                     });
 
                 var waiting_for_refresh = false; //debounce, prevent a lot of calculations when zoom

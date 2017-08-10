@@ -4,7 +4,7 @@
 	>
 	
 	<div class="section_name">
-        <h2>Dots</h2>
+        <h2>Пробег/Год</h2>
 
 		<div class="datepicker_container" tabindex=100>
     		<label for="datepicker_abc">
@@ -17,7 +17,11 @@
 		</div>
 
         <div class="descr small">
-            <p>This section contains dots, which are advertisements, placed on surface through the two dimensions: years and races</p>
+            <p>Данный раздел содержит график, на котором размещены все объявления
+				в зависимости от пробега и года выпуска. Таким образом можно увидеть все
+				объявления хорошо сохранившихся авто (большой возраст и маленький пробег).
+				Кликая на каждую точку - будет открываться даное объявление.
+			</p>
         </div>
     </div>
 
@@ -29,6 +33,7 @@
     	property = 'raceDot'
     	last-watched="LAST_WATCHED"
     	advert="ADVERT"
+	 	id="tour_auto_dots_chart"
 		>
 
     </div>
@@ -57,7 +62,7 @@
 	          		<p>{{ADVERT['shortTitle']}}</p>
 	        	</div>
 	        	<div class="card-action">
-	          		<a href="{{ADVERT['link']}}" target="_blank">This is a link</a>
+	          		<a href="{{ADVERT['link']}}" target="_blank">Ссылка на объявление</a>
 	        	</div>
 	      	</div>
 	    </div>
@@ -65,11 +70,13 @@
 
 	    <div class="last_watched">
 	    	<div class="title"
+			 	id="tour_auto_dots_watched"
 	    		ng-show="LAST_WATCHED.length>0"
-	    		>Last Watched <span ng-click="reset()">(reset)</span></div>
+	    		>Просмотренные <span ng-click="reset()">(сбросить)</span></div>
 	    	<div class="adverts_watched animated slideInDown"
 	    		ng-repeat="it in LAST_WATCHED"
 	    		ng-click="select_advert(it)"
+			 	ng-class="{'selected':it['_id']==ADVERT['_id']}"
 	    		>
 	    		<span>{{it['price']|currency:'$':0}}, </span>
 	    		<span>{{it['raceOrg']}}.</span>

@@ -1,4 +1,4 @@
-module.exports = function StatGeneralCntr($scope,$timeout)
+module.exports = function StatGeneralCntr($scope,$timeout,tour)
 	{
 	
 	$scope.init = init;
@@ -6,7 +6,14 @@ module.exports = function StatGeneralCntr($scope,$timeout)
 	$scope.switch_tab = switch_tab;
 
 
+
 	$scope.init();
+
+	$scope.$on('$destroy',function()
+		{
+
+		})
+
 
 	function init()
 		{
@@ -14,6 +21,8 @@ module.exports = function StatGeneralCntr($scope,$timeout)
 		$scope.sub_tab = 'orders';
 		$scope.myspinner = {};
 		$scope.myspinner['is'] = true;
+
+
 		}
 
 
@@ -53,4 +62,4 @@ module.exports = function StatGeneralCntr($scope,$timeout)
 
 	}
 
-module.exports.$inject = ['$scope','$timeout'];
+module.exports.$inject = ['$scope','$timeout','tour'];

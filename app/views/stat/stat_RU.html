@@ -5,18 +5,20 @@
 
 	<div class="about_stat flow-text">
 		<div class="wrap">
-			<span class="name">AUTOSTAT</span><span class="descr_"> - is an analytical tool to overview avarage prices on used cars calculated based on advertisements from <span class="ria">AUTO RIA</span></span></span>
+			<span class="name">AUTOSTAT</span><span class="descr_"> - это аналитический инструмент для анализа средних цен на автомобили и их динамики по данным  <span class="ria">AUTO RIA</span></span></span>
 		</div>	
 	</div>
 
 	<div class="banner">
 
 			<!--MORDA -->
-		<div class="morda z-depth-1"
+		<div
+			id="tour_morda" 
+			class="morda z-depth-1"
 			ng-init="section='i_wish'"
 			>
 			<div class="top_block">
-				<div class="descr_"> <span>You can choose car you WISH for adding to tab bar. <p>After, you can track for statistic for this car.</p></span></div>
+				<div class="descr_"> <span>Вы можете выбрать автомобиль для анализа. <p>Будет добавлена закладка и доступна детальная инфо по авто.</p></span></div>
 			</div>
 
 			<div class="section i_wish"
@@ -27,14 +29,14 @@
 					<div class="input-field auto_select"
 						ng-class={'not_selected':selected_wish['mark']['value']=='0'}
 						>
-						<label>Make</label>
+						<label>Марка</label>
 						<select class="browser-default chosen-select mark i_wish_tab" 
 							choosen-directive
 							choosen-model="selected_wish['mark']['value']"
 							choosen-trigger="marks"
 							scroll-top='.morda'
 							>	
-							<option value="0">Select one mark...</option>
+							<option value="0">Выберите марку...</option>
 							<optgroup label="Top 10 cars">
 								<option
 									ng-repeat="top_mark in marks_top" 
@@ -57,14 +59,14 @@
 					<div class="input-field auto_select"
 						ng-class={'not_selected':selected_wish['model']['value']=='0'}
 						>
-						<label>Model</label>
+						<label>Модель</label>
 						<select class="browser-default chosen-select model i_wish_tab" 
 							choosen-directive
 							choosen-trigger="models_wish"
 							choosen-model="selected_wish['model']['value']"
 							scroll-top='.morda'
 							>
-							<option value="0">Select one model...</option>
+							<option value="0">Выберите модель...</option>
 							<option
 								ng-repeat="model in models_wish"
 								value="{{model['value']}}"
@@ -76,7 +78,7 @@
 						<a class="waves-effect waves-light btn-large"
 							ng-class={"disabled":disable_btn('wish')}
 							ng-click="add_to_bar_wish()"
-							>Add to bar</a>
+							>Выбрать</a>
 					</div>
 				</div>
 
@@ -85,7 +87,9 @@
 		</div>  <!--close MORDA-->
 
 		<!--TABS-->
-		<div class="tab_bar  elems_{{tabs.length}}" ng-init="sec"
+		<div 
+			id="tour_tab_bar"
+			class="tab_bar  elems_{{tabs.length}}" ng-init="sec"
 			>
 			<ul>
 				<li 
@@ -103,7 +107,7 @@
 						ng-click="remove_tab(tab,$event)"
 						>
 					</i>
-					<span>{{tab['mark']['name']}} {{tab['model']['name']}}</span>
+					<span>{{tab['mark']['name']|translate}} {{tab['model']['name']}}</span>
 				</li>
 
 			</ul>

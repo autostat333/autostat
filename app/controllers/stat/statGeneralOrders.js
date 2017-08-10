@@ -1,4 +1,4 @@
-module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout)
+module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout,tour)
 	{
 	
 	$scope.init = init;
@@ -18,6 +18,7 @@ module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout)
 	$scope.row_defocus = row_defocus;  //for pie:focus one mark on pie
 	$scope.show_hide = show_hide; //for pie:hide/show data by marks
 	$scope.calc_percentage = calc_percentage; //calc percentage and total number top10+rest
+	$scope.init_tour = init_tour;
 
 	$scope.AVG_PERIOD = 30; //period for calculations avg price
 
@@ -34,6 +35,15 @@ module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout)
 	$scope.$watch('new_orders_begin',watcher_new_orders_begin);
 
 	$scope.first_load_finished = false;
+
+
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
+
+
+		})
 
 	function init()
 		{
@@ -75,8 +85,30 @@ module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout)
 				$scope.new_orders_begin = 0; //for displaying first 5 rows
 				watcher_total_orders_begin();
 				watcher_new_orders_begin();
-				})
+
+				$scope.init_tour();
+                })
+
+		$scope.tour = '';//drop variable for this scope
+
 		}
+
+	function init_tour()
+		{
+		$timeout(function()
+			{
+			$scope.tour = tour.init('general_tabs',[
+				{'element':'#tour_general_stat_filter','content':$filter('translate')('You can filter GENERAL STATISTIC on this page by particular Make'),'placement':'top'},
+                {'element':'#tour_general_total_orders','content':$filter('translate')('Here is statistic on TOTAL NUMBER of ADVERTISEMENTS in dynamic (table as well as chart)'),'placement':'top'},
+                {'element':'#tour_general_new_orders','content':$filter('translate')('Here is statistic on NEW TOTAL NUMBER of ADVERTISEMENTS in dynamic (table as well as chart)'),'placement':'top'},
+                {'element':'#tour_general_pie_container','content':$filter('translate')('Here you can see TOP CARS by MAKE. If you filter statistic above by particular make - here will be the TOP by models.'),'placement':'top'},
+				{'element':'#tour_pie_month_dropwdown','content':$filter('translate')('You can select MONTH as well as YEAR and DAY. The Day you can select from carousel below!'),'placement':'top'},
+                {'element':'#tour_pie_table_click','content':$filter('translate')('You can click on some Make/Model to exclude/include this row from PIE'),'placement':'top'},
+			]);
+			},1000);
+
+		}
+
 	function getGeneralStatistic()
 		{
 		var defer = $q.defer();
@@ -488,4 +520,4 @@ module.exports = function StatGeneralCntr($scope,backend,$q,$filter,$timeout)
 
 	}
 
-module.exports.$inject = ['$scope','backend','$q','$filter','$timeout'];
+module.exports.$inject = ['$scope','backend','$q','$filter','$timeout','tour'];

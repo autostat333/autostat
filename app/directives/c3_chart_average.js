@@ -10,6 +10,7 @@ module.exports = function c3ChartAverage($timeout,$filter)
 			scope.transform_data = transform_data;
 			scope.calculate_min_value = calculate_min_value;
 
+			var label = $filter('translate')(attrs['label']);
 
 			scope.$watch('data',watcher_data);
 			function init()
@@ -52,7 +53,7 @@ module.exports = function c3ChartAverage($timeout,$filter)
                         		//  'culling':{'max':5},
                         		//  'outer':false, //one tick line on the edge
                     			},
-                    		'label':'Days',
+                    		'label':$filter('translate')('Days'),
                     	//	'extent':[2,4.5]
                 			},
 		                'y':{
@@ -61,7 +62,7 @@ module.exports = function c3ChartAverage($timeout,$filter)
                         		'outer':false,
                         		//'count':5
                     			},	
-                    		'label':'Price,$',
+                    		'label':$filter('translate')('Price,$'),
                     		'min':scope.min_val
                     	//	'min':scope.min_val,
                     		//'max':attrs['propertyBar']==='totalOrdersShow'?200:7
@@ -80,7 +81,7 @@ module.exports = function c3ChartAverage($timeout,$filter)
 				//MAKE from original data DATA FOR CHART
 			function transform_data()
 				{
-				scope.total = [attrs['label']];
+				scope.total = [label];
 				scope.categories = [];
 				for (var i=0;el=scope.data[i];i++)
 					{

@@ -1,7 +1,10 @@
 module.exports = function ContactCntr($scope)
 	{
 
-	$('#global_spinner').removeClass('on').addClass('off');
+	setTimeout(function()
+        {
+		$('#global_spinner').removeClass('on').addClass('off');
+        },300)
 
 	}
 

@@ -1,4 +1,4 @@
-module.exports = function StatAutoMap($scope,backend,$filter)
+module.exports = function StatAutoMap($scope,backend,$filter,tour)
 	{
 	
 
@@ -6,6 +6,7 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 	$scope.init_data_table = init_data_table;
 	$scope.transform_locations = transform_locations;
 	$scope.get_cities = get_cities;
+	$scope.init_tour = init_tour;
 
 
 	$scope.init();
@@ -14,6 +15,14 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 	$scope.$watch('params',watcher_params,true);
 
 
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
+
+		//destroy picker manually, because it is not removing from body
+		$('body').find('.picker').first().remove();
+		})
 
 	function init()
 		{
@@ -32,7 +41,7 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 
 		$scope.init_data_table();
 		$scope.get_cities();
-
+		$scope.tour = '';//drop variable for this scope
 
 		}
 
@@ -45,9 +54,9 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 		$scope.tcolumns = [
 			{'Label':'Title','Name':'title'},
 			{'Label':'Short Description','Name':'shortTitle'},
-			{'Label':'Fuel type','Name':'fuelName'},
+			{'Label':'Fuel Type','Name':'fuelName'},
 			//{'Label':'Created','Name':'createDate'},
-			{'Label':'Days on Board','Name':'createdAgo'},
+			{'Label':'Active Days','Name':'createdAgo'},
 			{'Label':'Year','Name':'year'},
 			{'Label':'Race','Name':'raceOrg'},
 			{'Label':'City','Name':'city'},
@@ -70,9 +79,22 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 			$scope.first_loading = true;//show table
 			$scope.LOCATIONS = $scope.transform_locations(res);
 			$scope.myspinner.is = false;
+			$scope.init_tour();
 			});
     	}
 
+
+
+	function init_tour()
+		{
+
+		$scope.tour = tour.init('auto_map', [
+			{'element':'#tour_auto_map_map','content':$filter('translate')('On the MAP you can see all avertisements for this make and model. MAP is binded to TABLE below.'),'placement':'top'},
+            {'element':'#tour_auto_map_table','content':$filter('translate')('You can FILTER table and advertisements on the MAP also will be FILTERED.'),'placement':'top'},
+
+			])
+
+		}
 
 
     function transform_locations(res)
@@ -140,4 +162,4 @@ module.exports = function StatAutoMap($scope,backend,$filter)
 
 	}
 
-module.exports.$inject = ['$scope','backend','$filter'];
+module.exports.$inject = ['$scope','backend','$filter','tour'];

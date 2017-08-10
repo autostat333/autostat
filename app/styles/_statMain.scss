@@ -51,6 +51,9 @@
 			height:100%;
 			position:relative;
 			z-index:5;
+			max-width:$maxContentWidth;
+			margin-left:auto;
+			margin-right:auto;
 			}
 		.name
 			{
@@ -536,7 +539,7 @@
 
 	.windows_container
 		{
-		padding-bottom:200px;
+		//padding-bottom:200px;
 		background:white;
 		position:relative;
 		z-index:2;

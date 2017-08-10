@@ -4,10 +4,12 @@
 	>
 
   	<div class="section_name">
-        <h2>Average Table</h2>
+        <h2>Средние цены</h2>
 
         <div class="descr small">
-            <p>This section provides table with average prices, chart with dynamic and table with real adverts which are included in calculations of average prices.</p>
+            <p>Ниже представлена информация по средним ценам в зависимости от пробега (тыс. км по вертикали) и года выпуска (по горизонтали).
+				На графике показана динамика и в таблице реальные объявления цены по которым вошли в расчет средней цены.
+			</p>
         </div>
     </div>
 
@@ -18,7 +20,7 @@
 		<!--LEFT_COL TABLE-->
 		<div class="table_column">
 			<div class="params_container">
-				<div class="title">Parametrs:</div>	
+				<div class="title">Параметры:</div>
 				<!--DATEPICKER-->
 		        <div class="datepicker_container" tabindex=100>
 		        	<label for="datepicker_abc">
@@ -36,8 +38,9 @@
 				  	<a class='dropdown-button btn custom_dropdown'
 				  		data-activates='choose_year'
 				  		dropdown
+					   	id="tour_auto_avg_years"
 				  		>
-			  			Choose Years
+			  			Выбрать год
 			  		</a>
 
 			 	 	<ul id='choose_year' class='dropdown-content'>
@@ -59,9 +62,10 @@
 				</div>
 
 				<!--DESCRIPTION-->
+
 				<div class="description">
 					<i class="fa fa-question-circle help_button"
-						uib-popover-template="some_template" 
+						uib-popover-template="popoverTemplate"
 						popover-title="Small Description"
 						popover-trigger="'outsideClick'"
 						></i>
@@ -71,7 +75,10 @@
         
 		    <script type="text/ng-template" id="smallDescriptionTemplate.html">
 				<div class="small_description">
-				Table contains Average prices for particular year and race. Average price performed in thousands, and accompained with number of adverts which were using for calculations. Also, if for this date were new orders - they are specially (red color) marked. You can click on every cell and figure out the rest details. 
+					Каждая ячейка содержит <b>СРЕДНЮЮ ЦЕНУ</b> в тысячах и <b>КОЛ-ВО ОБЪЯВЛ</b> (маленькая серая цифра)
+					которые вошли в расчет средних цен.
+					<p><u>По колонкам</u> - данные в зависимости от <b>ПРОБЕГА</b>,<u>по линиям</u> - в зависимости от <b>ГОДА</b>.
+						<b>График</b> показывает динамику средней цены, кликнутой по конкретному году и пробегу</p>
 				</div>
 		    </script>
 
@@ -82,9 +89,11 @@
 
 
 		
-			<div class="table_container">
+			<div class="table_container"
+				id="tour_auto_avg_table_avg"
+				>
 				<div class="t_row">
-					<div class="hd">YEARS</div>
+					<div class="hd">ГОДА</div>
 					<div class="hd"
 						ng-repeat="col in races"
 						ng-class="{'bold':($parent.selected_column-1)==$index}"
@@ -133,11 +142,11 @@
 						<span class=""
 							ng-click="show_all_years=!show_all_years"
 							ng-show="get_kolvo_years()&&!show_all_years"
-							>Show below Years...</span>
+							>Показать больше...</span>
 						<span class=""
 							ng-click="show_all_years=!show_all_years"
 							ng-show="get_kolvo_years()&&show_all_years"
-							>Hide above Years...</span>
+							>Скрыть...</span>
 
 					</div>
 
@@ -155,14 +164,16 @@
 
 		<!--CHART-->
 		<div class="chart_column">
-			<div class="box_wrap">
+			<div class="box_wrap"
+				id="tour_auto_avg_chart"
+				>
 				<div class="total_figures">
 					<div class="selection_title">
-						<span>SELECTED YEAR:</span>
+						<span>ВЫБРАННЫЙ ГОД:</span>
 						<span>{{params['selectedYear']}}</span>
-						<span>SELECTED RACE:</span>
-						<span ng-show="params['selectedRace']!='total'">{{params['selectedRace']}} K km</span>
-						<span ng-show="params['selectedRace']=='total'">All Races</span>
+						<span>ВЫБРАННЫЙ ПРОБЕГ:</span>
+						<span ng-show="params['selectedRace']!='total'">{{params['selectedRace']}} т км</span>
+						<span ng-show="params['selectedRace']=='total'">Все пробеги</span>
 					</div>
 
 
@@ -170,42 +181,42 @@
 						<div class="total"
 							ng-class="{'not_visible':params['selectedObject']['total']['orders']==0}"
 							>
-							<div class="title">Total Orders</div>
+							<div class="title">Всего объявл.</div>
 							<div>
-								<span>Amount</span>
+								<span>Кол-во</span>
 								<span>
 									{{params['selectedObject']['total']['orders']}}
 								</span>
 							</div>
 							
 							<div>
-								<span>Avarage</span>
+								<span>Средняя</span>
 								<span>
 									${{params['selectedObject']['total']['avg']}}
 								</span>
 							</div>
 							<span class="no_orders">
-								No ANY orders!
+								Нет ни одного объявл.!
 							</span>
 						</div>
 
 						<div class="new"
 							ng-class="{'not_visible':params['selectedObject']['new']['orders']==0}"
 							>
-							<div class="title">New Orders</div>
+							<div class="title">Новые объявл.</div>
 							<div>
-								<span>Amount</span>
+								<span>Кол-во</span>
 								<span>
 									{{params['selectedObject']['new']['orders']}}
 								</span>
 							</div>
 							<div>
-								<span>Avarage</span>
+								<span>Средняя</span>
 								<span>
 									${{params['selectedObject']['new']['avg']}}
 								</span>
 							</div>
-							<span class="no_orders">No NEW orders!</span>
+							<span class="no_orders">Нет новых объявл.!</span>
 
 						</div>
 
@@ -238,9 +249,11 @@
 		<div class="myspinner" ng-class="{'on':table_spinner.is,'off':!table_spinner.is}"><div></div></div>
 
  		<div class="section_name">
-	        <h3>Table with Advertisements</h3>
+	        <h3>Список объявлений</h3>
 	        <div class="descr very_small">
-	            <p>In this table displayed list of advertisements, which are included in Averafe prices for chosen cell in table with avarage prices. By clicking on the Link - you will be redirected to Auto.ria page with advertisement.</p>
+	            <p> Ниже представлены все объявления которые вошли в расчет средней цены, кликнутой выше.
+					Каждое объявление в конце строки содержит зеленую ссылку на ресурс <b>AUTO.RIA</b>.
+					При клике произойдет переход.</p>
 	        </div>
         </div>
 
@@ -248,7 +261,7 @@
 
     	<!--TABLE-->
 	    <div class="data_table_container"
-
+			id="tour_auto_avg_table_adverts"
 	        table-data
 	        tdata="ADVERTS"
 	        tcolumns="tcolumns"
@@ -267,13 +280,17 @@
 	            <div stat
 	                ng-class="{'filtered':is_filtered_table()}"
 	                ></div>
-	            <div toggle-filter ></div>
+	            <div toggle-filter
+					 id="tour_auto_avg_table_filters"
+					></div>
 	            <div num-items></div>
 	        </div>
 
 	        <div class="wrap_data_table">
 	        <table>
-	            <thead>
+	            <thead
+					id="tour_auto_avg_table_head"
+					>
 	            <tr>
 	                <th colspan="8">
 	                	<div
@@ -282,7 +299,7 @@
 		                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
 		                    >
 		                    <div sorting="{{col['Name']}}"></div>
-		                    <span>{{col['Label']}}</span>
+		                    <span>{{col['Label']|translate}}</span>
 	                    </div>
 	                </th>
 	            </tr>
@@ -302,7 +319,7 @@
 		                <div
 		                	class="td {{col['Name']}}"
 		                    ng-repeat="col in columns"
-		                    ng-class="{'sorted':sort_dict[col['Name']]['is']!=false}"
+		                    ng-class="{'sorted':sort_dict[col['Name']]['is']!=false,'fresh':col['Name']=='createdAgo'&&row[col['Name']]<10}"
 		                    uib-tooltip="{{row[col['Name']]}}"
 		                    show-tooltip
        						tooltip-enable="tooltip_enable"
@@ -320,7 +337,7 @@
 		                    	href="{{row[col['Name']]}}"
 	                    		target="_blank"
 		                    	>
-		                    	LINK
+		                    	GO
 	                    	</a>
 
 	                    	<span ng-if="col['Name']=='price'">
@@ -330,8 +347,8 @@
 	                    	<span ng-if="col['Name']=='raceOrg'&&row['raceOrg']!=0">
 	                    		{{row[col['Name']]}} тыс. км.
 	                    	</span>
-	                    	<span ng-if="col['Name']=='raceOrg'&&row['raceOrg']==0">
-	                    		W/O Race
+	                    	<span style="font-weight:bold;	" ng-if="col['Name']=='raceOrg'&&row['raceOrg']==0">
+	                    		Brand New
 	                    	</span>
 
 		                </div>

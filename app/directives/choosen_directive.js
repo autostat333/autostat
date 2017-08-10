@@ -16,8 +16,9 @@ module.exports = function ChoosenDirective($parse,$timeout)
 			scope.init();
 
 			//first - for update options, second - update model in cntr
-			scope.$watch(attrs['choosenTrigger'],watcher_model);
+			scope.$watch(attrs['choosenTrigger'],watcher_marks);
 			scope.$watch(attrs['choosenModel'],select_value);
+			//scope.$watch(attrs['choosenModel'],watcher_model);
 
 			//init tabs !!TODO remove to directive
 			function init()
@@ -83,17 +84,22 @@ module.exports = function ChoosenDirective($parse,$timeout)
 
 
 
-				var new_val = elem.val();
-				scope.model.assign(scope,new_val);
+				var new_val_ = elem.val();
+				scope.model.assign(scope,new_val_);
 				if (!scope.$parent.$$phase)
 					scope.$apply();
 
-
+				if (typeof new_val!='object'&&new_val!=elem.val())
+					{
+					$('.i_wish select.mark.chosen-select.i_wish_tab').val('0');
+					$('.i_wish select.model.chosen-select.i_wish_tab').val('0');
+					elem.trigger('chosen:updated');
+                    }
 
 				}
  
  			//update the options
-			function watcher_model(new_val)
+			function watcher_marks(new_val)
 				{
 				if (new_val!=undefined)
 					{
@@ -102,6 +108,18 @@ module.exports = function ChoosenDirective($parse,$timeout)
 						elem.trigger("chosen:updated");
 						},0);
 					}
+				}
+
+
+			function watcher_model(new_val,old_val)
+				{
+
+				if (!new_val) return false;
+
+				if (elem.val()!=new_val)
+                    elem.trigger("chosen:updated");
+
+
 				}
 
 

@@ -1,4 +1,4 @@
-module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeout)
+module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,tour,$timeout)
 	{
 	
 	$scope.init = init;
@@ -13,6 +13,7 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 	$scope.init_years = init_years;
 	$scope.init_params = init_params;
 	$scope.init_table = init_table;
+	$scope.init_tour = init_tour;
 	$scope.select_item = select_item;
 	$scope.isEqualObj = isEqualObj;
 	$scope.transform_adverts = transform_adverts;
@@ -27,15 +28,26 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 
 	$scope.init();
 
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
 
+		//destroy picker manually, because it is not removing from body
+		$('body').find('.picker').first().remove();
+
+        })
 
 	$scope.ar = [1,2,3,4,5,6,7,8,9,10,11];
 
 	function init()
 		{
+
+
+
 			//template locatedwithin html as script and ng-template
 			//because ui bootstrap does obtain variable from attribute and parse it
-		$scope.some_template = 'smallDescriptionTemplate.html';
+		$scope.popoverTemplate = 'smallDescriptionTemplate.html';
 		$scope.AVG_TABLE = [];
 		$scope.show_all_years = false;
 
@@ -57,10 +69,12 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 
 		$scope.myspinner['is'] = true;
 
+		$scope.tour = '';//drop variable for this scope
 
 		$scope.get_avg_table().then(function()
 			{
 			$scope.myspinner['is'] = false;
+			$scope.init_tour();
 			});
 
 		}
@@ -114,9 +128,9 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 		$scope.tcolumns = [
 			{'Label':'Title','Name':'title'},
 			{'Label':'Short Description','Name':'shortTitle'},
-			{'Label':'Fuel type','Name':'fuelName'},
+			{'Label':'Fuel Type','Name':'fuelName'},
 			//{'Label':'Created','Name':'createDate'},
-			{'Label':'Days on Board','Name':'createdAgo'},
+			{'Label':'Active Days','Name':'createdAgo'},
 			{'Label':'Race','Name':'raceOrg'},
 			{'Label':'City','Name':'city'},
 			{'Label':'Price','Name':'price'},
@@ -129,6 +143,19 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 		}
 
 
+
+	function init_tour()
+		{
+		$scope.tour = tour.init('auto_avg',[
+			{'element':'#tour_auto_avg_table_avg','content':$filter('translate')('Here you can see in each cell NUMBER of advertisements and AVG price. By rows - YEARS, by columns - RACE.You can CLICK on every cell for details.'),'placement':'top'},
+            {'element':'#tour_auto_avg_years','content':$filter('translate')('You can select YEARS to show (rows for tables)'),'placement':'top'},
+            {'element':'#tour_auto_avg_chart','content':$filter('translate')('Here is a chart with AVG PRICES in dynamic, how have they been CHANGING.'),'placement':'top'},
+            {'element':'#tour_auto_avg_table_adverts','content':$filter('translate')('Table shows all advertisements which are INCLUDED in SELECTED CELL from AVG Table above'),'placement':'top'},
+            {'element':'#tour_auto_avg_table_filters','content':$filter('translate')('You can FILTER advertisements. Click on "?" (button left to filters thumbler) to know how to apply them.'),'placement':'top'},
+            {'element':'#tour_auto_avg_table_head','content':$filter('translate')('Click to SORT advertisements by PRICE or by some another TITLE'),'placement':'top'},
+
+		])
+		}
 
 	function get_avg_table()
 		{
@@ -352,4 +379,4 @@ module.exports = function StatAutoAvarageTable($scope,backend,$q,$filter,$timeou
 
 	}
 
-module.exports.$inject = ['$scope','backend','$q','$filter','$timeout'];
+module.exports.$inject = ['$scope','backend','$q','$filter','tour','$timeout'];

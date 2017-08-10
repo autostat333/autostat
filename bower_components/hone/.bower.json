@@ -1,0 +1,32 @@
+{
+  "name": "hone",
+  "version": "1.0.3",
+  "description": "",
+  "main": "hone.js",
+  "authors": [
+    "Ben March <bmarch89@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "homepage": "https://github.com/benmarch/hone-bower",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.3",
+    "commit": "4fc0657188bfceea82118066e7ca0aa843f9937b"
+  },
+  "_source": "https://github.com/benmarch/hone-bower.git",
+  "_target": "1.0.3",
+  "_originalSource": "hone"
+}

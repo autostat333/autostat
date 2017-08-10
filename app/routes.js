@@ -1,4 +1,4 @@
-module.exports = function($stateProvider, $urlRouterProvider)
+module.exports = function($stateProvider, $urlRouterProvider,$httpProvider)
 	{
 
     $urlRouterProvider
@@ -63,7 +63,28 @@ module.exports = function($stateProvider, $urlRouterProvider)
         controller:require('./controllers/robot/robotCntr.js')
         })
 
-  	
+
+    //interceptor to catch requests for templates
+    //modify them acc to language from localStorage
+    $httpProvider.interceptors.push(['$injector','$rootScope',function($injector,$rootScope)
+        {
+        return {
+            'request':function(config)
+                {
+                var url = config.url;
+                if (url.match(/.+\/views\/.+.html$/))
+                    {
+                    if (!$rootScope.language)//also in main.js i set language to rootScope
+                        $rootScope.language = window.localStorage.getItem('language')||window.language||'EN';
+                    config.url = url.replace(/^(.+)\.html$/,'$1')+'_'+$rootScope.language+'.html';
+                    }
+                return config;
+                }
+
+        }
+        }])
+
+
     }
 
-module.exports.$inject = ['$stateProvider', '$urlRouterProvider'];
+module.exports.$inject = ['$stateProvider', '$urlRouterProvider','$httpProvider'];

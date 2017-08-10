@@ -1,4 +1,4 @@
-module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filter,$rootScope)
+module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filter,$rootScope,tour)
 	{
 
 	$scope.init = init;
@@ -10,11 +10,30 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 	$scope.hide_card = hide_card;
 	$scope.show_card = show_card;
 
+	$scope.init_tour = init_tour;
 
 	$scope.init();
 
 	$scope.$watch('params',get_adverts,true);
-	
+
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
+
+		//destroy picker manually, because it is not removing from body
+		$('body').find('.picker').first().remove();
+		})
+
+	$scope.$on('clickDot',function()
+			{
+            setTimeout(function ()
+				{
+                $scope.tour.go_to(1)
+            	}, 0)
+        	}
+			,0);
+
 	function init()
 		{	
 		$scope.params = {};
@@ -30,6 +49,8 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 		$scope.init_adverts();
 
 		$scope.get_adverts();
+
+		$scope.tour = '';//drop variable for this scope
 
 		}
 
@@ -56,6 +77,7 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 			$scope.myspinner.is = false;
 			$scope.visibility = 'visible';
 
+			$scope.init_tour();
 
 			$scope.DATA_adverts.sort(function(a,b)
 				{
@@ -68,6 +90,15 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 
 		}
 
+
+	function init_tour()
+		{
+
+		$scope.tour = tour.init('auto_dots',[
+			{'element':'#tour_auto_dots_chart','content':$filter('translate')('Here you can see DOTS-ADVERTISEMENTS drawn depends on RACE&YEAR. It is useful when you want to find old auto with small race. Click on SOME DOT to see details.'),'placement':'top'},
+            {'element':'#tour_auto_dots_watched','content':$filter('translate')('After clicking DOT REMOVING from chart. All your clicks gathering in this table. You can click RESET to return advertisements to the chart.'),'placement':'top'},
+			])
+		}
 
 
 	function transform_for_chart(d)
@@ -120,4 +151,4 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 
 	}
 
-module.exports.$inject = ['$scope','$q','backend','$timeout','$filter','$rootScope'];
+module.exports.$inject = ['$scope','$q','backend','$timeout','$filter','$rootScope','tour'];

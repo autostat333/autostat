@@ -1,0 +1,115 @@
+{
+"Some parametrs not selected!":"Необходимо выбрать марку и модель!",
+"General":"Рынок вцелом",
+"January":"Январь",
+"February":"Февраль",
+"March":"Март",
+"April":"Апрель",
+"May":"Май",
+"June":"Июнь",
+"July":"Июль",
+"August":"Август",
+"September":"Сентябрь",
+"October":"Октябрь",
+"November":"Ноябрь",
+"December":"Декабрь",
+"Rest":"Остальные",
+"Avg, K":"Средняя, (тыс.)",
+"Total Orders, K":"Всего объявл. (тыс.)",
+"New Orders, K":"Новые объявл. (тыс.)",
+"Amount,K":"Кол-во, тыс.",
+"Days":"Дни",
+"Jan":"Янв",
+"Feb":"Фев",
+"Mar":"Мрт",
+"Apr":"Апр",
+"May":"Май",
+"Jun":"Июн",
+"Jul":"Июл",
+"Aug":"Авг",
+"Sep":"Сен",
+"Oct":"Окт",
+"Nov":"Нбр",
+"Dec":"Дек",
+"Sun":"Вск",
+"Mon":"Пнд",
+"Tue":"Втр",
+"Wed":"Срд",
+"Thy":"Чтв",
+"Fri":"Птн",
+"Sat":"Сбт",
+"Place":"Город",
+"Total Orders":"Всего объяв.",
+"Avarage Price":"Средняя цена",
+"By year":"По годам",
+"By price":"По цене",
+"By duration":"По свежести объяв.",
+"By race":"По пробегу",
+"Title":"Авто",
+"Short Description":"Краткое описание",
+"Fuel Type":"Тип двигателя",
+"Active Days":"Свежесть объявл.",
+"Race":"Пробег",
+"City":"Город",
+"Price":"Цена",
+"Link":"Ссылка",
+"Avg, $":"Срд, $",
+"Price,$":"Цена, $",
+"Year":"Год",
+"Race, K.rm":"Пробег, т.км",
+"All Cars":"Все авто",
+"You can select some MAKE and MODEL, then press \"Add to Bar\". This will add new TAB to TAB BAR below with details about this car (prices, trends etc.)"
+    :"Вы можете выбрать МОДЕЛЬ и МАРКУ авто, затем нажать ВЫБРАТЬ. После этого будет добавлена закладка ниже с детальной аналитикой по автомобилю (цены, тренды и т.д).",
+"You can click on button and Switch OFF tour on every section!"
+    :"Вы можете выключить ТУР и показ ПОДСКАЗОК если они будут Вам мешать",
+"Here is a collection of your TABS with cars which you have chosen.":"Перечень закладок с автомобилями, которые ранее были выбраны.",
+"Here you can see in each cell NUMBER of advertisements and AVG price. By rows - YEARS, by columns - RACE.You can CLICK on every cell for details.":
+    "Каждая ячейка содержит две цифры: СРЕДНЯЯ ЦЕНА и КОЛ-ВО объявлений в данном сегменте. Каждый сегмент - это пересечение года выпуска авто и его пробега. При клике на ячейку - будет дополнительная информация (график и объявления)",
+"You can select YEARS to show (rows for tables)":
+    "Вы можете выбрать перечень годов выпуска авто, которые Вам интересны, что б сократить размер таблицы",
+"Here is a chart with AVG PRICES in dynamic, how have they been CHANGING.":
+    "График показывает тренд по выбраному сегменту (как менялась средняя цена)",
+"Table shows all advertisements which are INCLUDED in SELECTED CELL from AVG Table above":
+    "Таблца содержит все объявления, которые были взяты в расчет средней цены и удовлетворяют выбраному пробегу и возрасту.",
+"You can FILTER advertisements. Click on \"?\" (button left to filters thumbler) to know how to apply them.":
+    "Объявления в таблице можно отфильтровать. Для включения фильтров можно воспользовать тумблером.",
+"Click to SORT advertisements by PRICE or by some another TITLE":
+    "При клике на заголовки колонок - можно сортировать объявления по возрастанию или убыванию",
+"Here you can see DOTS-ADVERTISEMENTS drawn depends on RACE&YEAR. It is useful when you want to find old auto with small race. Click on SOME DOT to see details.":
+    "На графике Вы можете увидеть точки. Каждая точка - объявление. Кликнув на точку - можно увидеть детали. График помогает найти хорошо сохранившиеся авто (большой возраст - маленький пробег)",
+"After clicking DOT REMOVING from chart. All your clicks gathering in this table. You can click RESET to return advertisements to the chart.":
+    "После клика на точку - объявление появляется в даном блоке. Можно нажав СБРОСИТЬ - вернуть назад все ранее просмотренные объявления",
+"On the MAP you can see all avertisements for this make and model. MAP is binded to TABLE below.":
+    "На карте размещены все объявления по данной марке и модели. При выделении в область карты определенного участка - в таблице ниже будут показаны именно эти объявления",
+"You can FILTER table and advertisements on the MAP also will be FILTERED.":
+    "Вы можете фильтровать таблицу с объявлениями. На карте соответственно будут показаны только отфильтрованные объявления",
+    "You can chose statistic for specific DATE":
+    	"Вы можете выбрать статистику за определенную дату",
+"MAP groups advertisements in clusters. By ZOOM IN/OUT you can see details!":
+    "Карта группирует объявления в кластера. Приближая отдаляя - таблица будет показывать только города на выделенном участке карты",
+"Table reflects DATASET from the MAP. You can filter advertisements on the MAP using FILTERS for table.":
+    "Таблица содержит статистику по выделенному участку на карте. Можно отфильтровать нужные города и на карте остануться только отфильтрованные точки",
+"You can filter GENERAL STATISTIC on this page by particular Make":
+    "Статистика покзана по всем маркам автомобилей. Вы можете выбрать показ статистики только по одной марке",
+"Here is statistic on TOTAL NUMBER of ADVERTISEMENTS in dynamic (table as well as chart)":
+    "Показано кол-во объявлений по всем маркам на рынке (или выбраной выше), график содержит ежедневную историю и среднюю линию, его можно масштабировать",
+"Here is statistic on NEW TOTAL NUMBER of ADVERTISEMENTS in dynamic (table as well as chart)":
+    "В этом блоке история на ежедневной основе кол-ва новых обявлений. График содержит усреднение и историю, можно масштабировать.",
+"Here you can see TOP CARS by MAKE. If you filter statistic above by particular make - here will be the TOP by models.":
+    "Информация по ТОП маркам автомобилей по кол-ву объявлений на рынке. Показаны две диаграммы, для возможности сравнить за разные даты какие изменения произошли",
+"You can select MONTH as well as YEAR and DAY. The Day you can select from carousel below!":
+    "Вы можете выбрать конкретный месяц и день за который показать статистику.",
+"You can click on some Make/Model to exclude/include this row from PIE":
+    "Вы можете кликнуть на любую строчку, что б ислючить ее из расчетов, например можно убрать графу ОСТАЛЬНОЕ и посмотреть доли ТОП-10 именно среди десяти",
+"Here is distribution advertisements by YEAR, PRICE, DURATION etc.":
+    "Колонки - кол-во объявлений по определенной группе автомобилей согласно выбранной характеристики",
+"You can filter statistic by particular Make":
+    "Можно выбрать статистику по конкретной марке авто",
+"You can select different kind of GROUPING":
+    "Можно выбрать разные характеристики для группировки объявлений по автомобилям",
+"You can sort columns (bars) from LOWEST to HIGH by its value or by its label":
+    "Вы можете отсортировать колонки по возрастанию значений либо по возрастанию характеристики",
+"You can switch show from PERSANTAGE to ABSOLUTE DIGITS":
+    "Вы можете переключить представление из абсолютных величин (кол-во объявлений) в относительные (доля в %%)"
+
+}

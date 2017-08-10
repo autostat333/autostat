@@ -1,4 +1,4 @@
-module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filter)
+module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filter,tour)
 	{
 
 	$scope.init = init;
@@ -13,10 +13,19 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 	$scope.sort_by = sort_by; //function for resorting bars on the chart
 	$scope.set_percentage = set_percentage; //set percentage property to each object
 	$scope.is_empty_data = is_empty_data; //check whether DATA_AGR is empty to show msg
+	$scope.init_tour = init_tour;
 
 	$scope.init();
 
 	$scope.$watch('params',watcher_params,true);
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
+
+		//destroy picker manually, because it is not removing from body
+		$('body').find('.picker').first().remove();
+		})
 
 	function init()
 		{
@@ -27,6 +36,7 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 		$scope.params['type'] = 'total';
 		$scope.params['date'] = $scope.ACTUAL_DATE; //from parent controller
 
+		$scope.tour = '';//drop variable for this scope
 
 		//for init kind of sorting
 		$scope.sorting_kind = 'order';
@@ -58,6 +68,7 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 			$scope.gather_categories(); //gather some categories (duration and year)
 			$scope.set_percentage(); //set percent rate for mode in percents, must be after gathering
 			$scope.prepare_for_chart();//here is also sorting
+			$scope.init_tour();
 			})
 
 		}
@@ -76,6 +87,18 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 		return d;
 		}
 
+
+	function init_tour()
+		{
+		$scope.tour = tour.init('params',[
+            {'element':'#tour_general_params_chart','content':$filter('translate')('Here is distribution advertisements by YEAR, PRICE, DURATION etc.'),'placement':'top'},
+			{'element':'#tour_general_params_filter','content':$filter('translate')('You can filter statistic by particular Make'),'placement':'top'},
+            {'element':'#tour_general_params_type','content':$filter('translate')('You can select different kind of GROUPING'),'placement':'top'},
+            {'element':'#tour_general_params_sort','content':$filter('translate')('You can sort columns (bars) from LOWEST to HIGH by its value or by its label'),'placement':'top'},
+            {'element':'#tour_general_params_tmblr','content':$filter('translate')('You can switch show from PERSANTAGE to ABSOLUTE DIGITS'),'placement':'top'}
+
+			])
+		}
 
 
 	function gather_categories()
@@ -303,4 +326,4 @@ module.exports = function StatGeneralCntrParams($scope,$q,backend,$timeout,$filt
 
 	}
 
-module.exports.$inject = ['$scope','$q','backend','$timeout','$filter'];
+module.exports.$inject = ['$scope','$q','backend','$timeout','$filter','tour'];

@@ -8,7 +8,8 @@
 
         <div class="filters">
 			<div class="input-field"
-				ng-class={'not_selected':params['value']=='all','selected':params['value']!='all'}
+                 id="tour_general_stat_filter"
+                 ng-class={'not_selected':params['value']=='all','selected':params['value']!='all'}
 				>
 				<select class="browser-default chosen-select mark i_have_tab" 
 					choosen-directive
@@ -57,7 +58,8 @@
 
         <!--FLEX BLOCK-->
         <div class="flex_block"
-            ng-init="up_click=false"
+             id="tour_general_total_orders"
+             ng-init="up_click=false"
             >
             <div class="table_container item">
                 <div class="navig_btns">
@@ -169,6 +171,7 @@
 
         <!--FLEX BLOCK-->
         <div class="flex_block"
+            id="tour_general_new_orders"
             ng-init="up_click_new=false"
             >
             <div class="table_container item">
@@ -269,6 +272,7 @@
 
     <!--TOP CARS-->
     <div class="row_container last pie"
+        id="tour_general_pie_container"
         >
         <div class="section_name">
             <h3>Top Cars</h3>
@@ -312,7 +316,7 @@
                         </ul>
                     </div>
                     <!--MONTH SELECTION-->
-                    <div class="month_dropdown">
+                    <div id="tour_pie_month_dropwdown" class="month_dropdown">
                         <label>Change Month</label>
                         <!-- Dropdown Trigger -->
                         <a class='dropdown-button btn custom_dropdown month' 
@@ -355,7 +359,8 @@
                         ></div>
 
                     <div class="scroll_auto_block item ng-hide"
-                        ng-show="first_load_finished"       
+                        ng-show="first_load_finished"
+                         id="tour_pie_table_click"
                         >
                         <div class="total_amount"
                             ng-show="DATA_top_cars['left']!=0"

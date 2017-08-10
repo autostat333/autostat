@@ -1,10 +1,11 @@
-module.exports = function StatCntr($scope,$timeout,backend,$filter)
+module.exports = function StatCntr($scope,$timeout,backend,$filter,tour)
 	{
 	
 	$scope.init = init;
 	$scope.init_select = init_select;
 	$scope.init_selected = init_selected;
 	$scope.init_year_race = init_year_race;
+	$scope.init_tour = init_tour;
 	$scope.disable_btn = disable_btn;
 	$scope.add_to_bar_wish = add_to_bar_wish;
 	$scope.add_to_bar_have = add_to_bar_have;
@@ -12,6 +13,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 	$scope.switch_tab_to = switch_tab_to;
 	$scope.remove_tab = remove_tab;
 	$scope.on_resize = on_resize; //recalculate size of tabs (with name of cars)
+
 
 	$scope.init();
 
@@ -31,6 +33,8 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 	$scope.$on('$destroy',function()
 		{
 		$(window).off('resize',$scope.on_resize);
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
 		})
 
 	function init()
@@ -40,6 +44,8 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		$scope.init_selected();
 		$scope.init_year_race();
 
+		//a bit add transparency
+		//switching oof spinner ocur from general or auto stat
 		$('#global_spinner').addClass('on_half');
 		$scope.show = true;
 
@@ -57,6 +63,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 				$scope.transform_marks(res);
 				$scope.init_tabs();
 				$scope.init_select();
+                $scope.init_tour();
 				//$('#global_spinner').addClass('on_half');
 				$scope.show = true;
 				})
@@ -119,8 +126,8 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 
 			$scope.selected_wish['model']['name'] = 'Select one mark...'
 			$scope.selected_wish['model']['value'] = '0';
-			$('.i_wish select.mark.chosen-select.i_wish_tab').val('0');
-			$('.i_wish select.model.chosen-select.i_wish_tab').val('0');
+			//$('.i_wish select.mark.chosen-select.i_wish_tab').val('0');
+			//$('.i_wish select.model.chosen-select.i_wish_tab').val('0');
 			//models different for have and wish becaus it can be different marks selected
 			$scope.models_wish = [];
 			}
@@ -150,7 +157,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		var t = window.localStorage.getItem('tabs');
 		$scope.tabs = typeof(t)!='string'?[]:angular.fromJson(t);		
 
-		var def_general = {'id':'general','type':'general','mark':{'name':'General'},'model':{'name':''}};
+		var def_general = {'id':'general','type':'general','mark':{'name':$filter('translate')('General')},'model':{'name':''}};
 
 		if ($scope.tabs.length==0)
 			//push default and constant tab GENERAL
@@ -165,6 +172,18 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
  
 		} 
 
+
+	function init_tour()
+		{
+		$scope.tour = tour.init('morda',[
+			{
+			'element':'#tour_morda','content':$filter('translate')('You can select some MAKE and MODEL, then press "Add to Bar". This will add new TAB to TAB BAR below with details about this car (prices, trends etc.)'),'placement':'top'},
+            {'element':'#tour_tour_button','content':$filter('translate')('You can click on button and Switch OFF tour on every section!'),'placement':'bottom'},
+            {'element':'#tour_tab_bar','content':$filter('translate')('Here is a collection of your TABS with cars which you have chosen.'),'placement':'top'},
+			]);
+		}
+
+
 	function switch_tab_to(obj)
 		{
 		$scope.active_tab = obj;
@@ -177,7 +196,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		{
 		if (new_val==undefined||new_val==''||new_val=='0')
 			return false;
-		//find new mark object to placae it into selected object
+		//find new mark object to place it into selected object
 		var obj = $scope.marks.filter(function(el){return el['value'].toString()==new_val});
 		if (obj.length==0)
 			obj = $scope.marks_top.filter(function(el){return el['value'].toString()==new_val});
@@ -245,7 +264,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 			//check on completted fields
 		if ($scope.disable_btn('wish'))
 			{
-			Materialize.toast('Some parametrs not selected!', 3000)
+			Materialize.toast($filter('translate')('Some parametrs not selected!'), 3000)
 			return false;		
 			}
 
@@ -260,7 +279,7 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		var tmp = $scope.tabs.filter(function(el){return el['model']['value']==$scope.selected_wish['model']['value']});
 		if (tmp.length!=0)
 			{
-			Materialize.toast('This mark and model added yet!', 3000)
+			Materialize.toast($filter('translate')('This mark and model added yet!'), 3000)
 			return false;
 			}
 
@@ -275,6 +294,8 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 		$scope.switch_tab_to($scope.tabs[$scope.tabs.length-1]);
 		//resize tab bar
 		$scope.on_resize();
+
+		$scope.tour.go_to(1);
 		}
 
 
@@ -287,8 +308,6 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 			}
 		//COMPLETE object
 		$scope.selected_have['id'] = Math.round(Math.random()*100)+'_'+(new Date()).getTime().toString();
-
-
 		}
 
 	function remove_tab(tab,e)
@@ -310,7 +329,8 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 					}
 				}
 			if (obj===undefined)
-				$scope.selected_tab = $scope.tabs[$scope.tabs.length-1];
+				$scope.switch_tab_to($scope.tabs[$scope.tabs.length-1]);
+				//$scope.selected_tab = $scope.tabs[$scope.tabs.length-1];
 			//else
 			//	$scope.selected_tab = $scope.selected_tab;			
 
@@ -340,4 +360,4 @@ module.exports = function StatCntr($scope,$timeout,backend,$filter)
 
 	}
 
-module.exports.$inject = ['$scope','$timeout','backend','$filter'];
+module.exports.$inject = ['$scope','$timeout','backend','$filter','tour'];

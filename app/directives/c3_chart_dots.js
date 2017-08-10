@@ -1,4 +1,4 @@
-module.exports = function c3ChartAverage($timeout,$filter)
+module.exports = function c3ChartAverage($timeout,$filter,$rootScope,$filter)
 	{
 	return {
 		scope:{
@@ -40,14 +40,14 @@ module.exports = function c3ChartAverage($timeout,$filter)
             			},
         			axis:{
                 		'x':{
-                    		'label':'Days',
+                    		'label':$filter('translate')('Year'),
                 			},
 		                'y':{
                     		'tick':
                 				{
                         		'outer':false,
                     			},	
-                    		'label':'Race, K.rm',
+                    		'label':$filter('translate')('Race, K.rm'),
                     		//'min':scope.min_val
                     	//	'min':scope.min_val,
                     		//'max':attrs['propertyBar']==='totalOrdersShow'?200:7
@@ -62,7 +62,7 @@ module.exports = function c3ChartAverage($timeout,$filter)
 				//MAKE from original data DATA FOR CHART
 			function transform_data()
 				{
-				scope.total = [attrs['label']];
+				scope.total = [$filter('translate')(attrs['label'])];
 				scope.categories = ['x'];
 				//scope.categories = [];
 				for (var i=0;el=scope.data[i];i++)
@@ -103,6 +103,8 @@ module.exports = function c3ChartAverage($timeout,$filter)
 			function show_card(d,elem)
 				{
 
+
+
 				var el = scope.data[d['index']];
 
 				//check if advert existed in array yet
@@ -131,9 +133,15 @@ module.exports = function c3ChartAverage($timeout,$filter)
 				$timeout(function()
 					{
 					scope.advert = el;
+					},0)
+
+
+				setTimeout(function()
+					{
 					scope.advert_elem.stop().css({'visibility':'visible'}).animate({'opacity':'1'},200);
 					},300);
 
+				$rootScope.$broadcast('clickDot');
 
 				}
 
@@ -163,4 +171,4 @@ module.exports = function c3ChartAverage($timeout,$filter)
 
 }
 
-module.exports.$inject = ['$timeout','$filter'];
+module.exports.$inject = ['$timeout','$filter','$rootScope','$filter'];

@@ -16,6 +16,7 @@
 
     <div class="filters">
 		<div class="input-field not_selected"
+			id="tour_general_params_filter"
 			ng-class="{'not_selected':params['value']=='all','selected':params['value']!='all'}"
 			>
 			<select class="browser-default chosen-select for_params" 
@@ -45,7 +46,8 @@
 
         <!-- Dropdown Trigger -->
         <div class="dropdown_container">
-	        <a class='dropdown-button btn custom_dropdown year' 
+	        <a class='dropdown-button btn custom_dropdown year'
+			   	id="tour_general_params_type"
 	            dropdown
 	            data-activates='right_dropdown_year'
 	            >By {{params['aggregationsBy']}}</a>
@@ -72,7 +74,9 @@
 
 	</div>
 
-	<div class="sorting_labels">
+	<div class="sorting_labels"
+		 id="tour_general_params_sort"
+		>
 		<span
 			ng-click="sort_by('order')"
 			ng-class="{'active':sorting_kind=='order'}"
@@ -84,7 +88,9 @@
 	</div>
 
 
-  <div class="switch">
+  <div class="switch"
+  	id="tour_general_params_tmblr"
+  	>
     <label>
       <span ng-class="{'active':values_type=='totalOrders'}">#</span>
       <input type="checkbox"
@@ -97,7 +103,9 @@
     </label>
   </div>
 
-	<div class="chart_container">
+	<div class="chart_container"
+		id="tour_general_params_chart"
+		>
        <div class="no_data animated flipInX" ng-show="is_empty_data()">No Data! You can change Date, Mark, or Aggregation! 
        </div>
 

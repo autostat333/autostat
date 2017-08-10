@@ -87,15 +87,16 @@
 		.wrap_data_table
 			{
 			width:100%;
+
 			overflow-x:hidden;
-			@media(max-width:700px)
+			@media(max-width:1050px)
 				{
 				overflow-x:scroll;
 				}
 
 			table
 				{
-				min-width:650px;
+				min-width:900px;
 				}
 			}
 
@@ -107,6 +108,9 @@
 				font-size:12px;
 				}
 			}
+
+
+
 
 
 		.title,
@@ -155,6 +159,36 @@
 
 		tbody div.price{color:orange;}
 
+		.td.link a
+			{
+			padding: 5px;
+			background: #abffab;
+			border-radius: 2px;
+			color: white;
+			font-size:12px;
+			}
+
+		.td.link a:after
+			{
+			margin-left:3px;
+			content: "\f08e";
+			font: normal normal normal 14px/1 FontAwesome !important;
+			}
+
+		tbody .td.raceOrg
+			{
+			color:#266295;
+			}
+
+		.td.createdAgo.fresh span
+			{
+			padding: 2px 5px 2px 5px;
+			background: #ffc0c0;
+			color: white;
+			border-radius: 2px;
+			display:inline-block;
+			width:30px;
+			}
 
 
 		.new_advert

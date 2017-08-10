@@ -3,9 +3,11 @@
 	>
 
 	 <div class="section_name">
-        <h2>Map of Advertisements</h2>
+        <h2>По регионам</h2>
 
-		<div class="datepicker_container" tabindex=100>
+		<div class="datepicker_container" tabindex=100
+		 	id="tour_general_map_picker"
+			>
     		<label for="datepicker_abc">
         		<i class="fa fa-calendar" aria-hidden="true"></i>
     		</label>
@@ -16,7 +18,10 @@
 		</div>
 
         <div class="descr small">
-            <p>This section performs all advertisements placed on the map of Ukraine. Using zoom - you can disclose clusters figures. Map has two-way bindings with table (e.g. filtring of the table will be reflected on the map, and vise versa).</p>
+            <p>Раздел показывает распределение объявлений по Украине.
+				Таблица содержит все города в которых есть объявления.
+				На карте размещены города с объявлениями сгруппированые в кластера, разбить которые можно с помощью Zoom IN/OUT.
+				</p>
         </div>
     </div>
 
@@ -24,6 +29,7 @@
     <!--MAP-->
    <div class="wrap_map_table">
 	   <div class="map"
+			id="tour_general_map"
 	        map
 	        markers-original="LOCATIONS"
 	        map-state="LOCATIONS_MAP_STATE"
@@ -34,7 +40,7 @@
 
 	    <!--TABLE-->
 	    <div class="data_table_container ng-hide"
-
+		 	id="tour_general_map_table"
 	        table-data
 	        tdata="LOCATIONS"
 	        tcolumns="tcolumns"
@@ -70,7 +76,7 @@
 	                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
 	                    >
 		                    <div sorting="{{col['Name']}}"></div>
-		                    <span>{{col['Label']}}</span>
+		                    <span>{{col['Label']|translate}}</span>
 	                    </div>
 	                </th>
 	            </tr>

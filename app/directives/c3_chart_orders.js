@@ -1,4 +1,4 @@
-module.exports = function c3ChartOrders($timeout)
+module.exports = function c3ChartOrders($timeout,$filter)
 	{
 	return {
 		scope:{
@@ -21,14 +21,18 @@ module.exports = function c3ChartOrders($timeout)
 			$(window).on('resize',scope.on_resize);
 			scope.$on('$destroy',scope.my_destroy);
 
+			//for translation
+			var label = $filter('translate')(attrs['label']);
+			var avgLabel = $filter('translate')('Avg, K');
+
 			function init()
 				{
 
 				scope.chart_width = scope.get_elem_width();
 
 				var types = {};
-				types[attrs['label']] = 'bar';
-				types['Avg, K'] = 'line';
+				types[label] = 'bar';
+				types[avgLabel] = 'line';
 
 				//init chart  
 				scope.chart = c3.generate({
@@ -56,7 +60,7 @@ module.exports = function c3ChartOrders($timeout)
                         		//  'culling':{'max':5},
                         		//  'outer':false, //one tick line on the edge
                     			},
-                    		'label':'Days',
+                    		'label':$filter('translate')('Days'),
                     	//	'extent':[2,4.5]
                 			},
 		                'y':{
@@ -65,7 +69,7 @@ module.exports = function c3ChartOrders($timeout)
                         		'outer':false,
                         		//'count':5
                     			},	
-                    		'label':'Amount,K',
+                    		'label':$filter('translate')('Amount,K'),
                     		//'min':attrs['propertyBar']==='totalOrdersShow'?150:0,
                     		'min':scope.min_val,
                     		//'max':attrs['propertyBar']==='totalOrdersShow'?200:7
@@ -88,8 +92,8 @@ module.exports = function c3ChartOrders($timeout)
 				//MAKE from original data DATA FOR CHART
 			function transform_data()
 				{
-				scope.total = [attrs['label']];
-				scope.avg = ['Avg, K'];
+				scope.total = [label];
+				scope.avg = [avgLabel];
 				scope.categories = [];
 				var len = scope.data.length-1;
 				for (var i=len;i>=0;i=i-1)
@@ -162,4 +166,4 @@ module.exports = function c3ChartOrders($timeout)
 
 }
 
-module.exports.$inject = ['$timeout'];
+module.exports.$inject = ['$timeout','$filter'];

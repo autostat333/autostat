@@ -1,0 +1,525 @@
+<div class="stat_orders_container"
+    ng-controller="StatGeneralCntrOrders"
+    >
+   
+    <div class="section_name"
+    >
+        <h2>Всего ордеров</h2>
+
+        <div class="filters">
+			<div class="input-field"
+                 id="tour_general_stat_filter"
+                 ng-class={'not_selected':params['value']=='all','selected':params['value']!='all'}
+				>
+				<select class="browser-default chosen-select mark i_have_tab" 
+					choosen-directive
+					choosen-trigger="marks"
+					choosen-model="params['value']"
+					scroll-top=".filters"
+					>
+					<option value="all">Все марки</option>
+					<optgroup label="Top 10 cars">
+						<option 
+							ng-repeat="mark in marks_top"
+							value="{{mark['value']}}"
+							>{{mark['name']}}
+						</option>
+					</optgroup>
+
+					<optgroup label="Rest cars">
+						<option 
+							ng-repeat="mark in marks"
+							value="{{mark['value']}}"
+							>{{mark['name']}} ({{mark['totalOrders']}})
+						</option>
+					</optgroup>						
+				</select>
+
+			</div>
+		</div>
+
+        <div class="descr small">
+            <p>Рездел содержит статистику общего колличества объявлений по рынку в динамике (всего и новых за день).
+                Также содержит информацию ТОП-10 марок (или моделей в зависимости от фильтра) по колличеству объявлений.</p>
+        </div>
+    </div>
+
+
+   <!--TOTAL ORDERS-->
+    <div class="row_container ng-hide"
+        ng-show="first_load_finished"
+        >
+        <!--TITLE-->
+        <div class="section_name">
+	        <h3>Всего объявлений (по дням в тыс.)</h3>
+	        <div class="descr very_small">
+	            <p>Таблица показывает общее колличество объявлений в этот день (тыс.) а также отклонения в %% к предыдущему дню.
+                    На графике представлена динамика показателя по дням.</p>
+	        </div>
+        </div>
+
+        <!--FLEX BLOCK-->
+        <div class="flex_block"
+             id="tour_general_total_orders"
+             ng-init="up_click=false"
+            >
+            <div class="table_container item">
+                <div class="navig_btns">
+                    <a class="btn-floating waves-effect animated fadeIn"
+                        ng-click="total_orders_begin=total_orders_begin-1;up_click=false"
+                        ><i class="fa fa-angle-up"></i></a>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr class="animated fadeInDown">
+                            <th>Неделя</th>
+                            <th class="table_head_date column_gray"><div>На конец недели</div></th>
+                            <th class="table_head_date"><div>Пн</div></th>
+                            <th class="table_head_date"><div>Вт</div></th>
+                            <th class="table_head_date"><div>Ср</div></th>
+                            <th class="table_head_date"><div>Чт</div></th>
+
+                            <th class="table_head_date"><div>Пт</div></th>
+                            <th class="table_head_date"><div>Сб</div></th>
+                            <th class="table_head_date"><div>Вс</div></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+ 
+                        <tr class="animated fadeInDown"
+                            ng-class={'fadeInUp':up_click}
+                            ng-repeat="week in DATA_orders_by_weeks_limited"
+                            >
+                            <td class="column">{{get_week_name(week)}}</td>
+                            <td class="figures column_gray"><span>{{get_end_of_week_total(week,'totalOrdersShow')}}</span>
+                            <span
+                                ng-init="sign=get_end_of_week_percent(week,$index,'totalOrdersShow')"
+                                ng-class="{'positive':sign>0,'negative':sign<0}"
+                                >{{sign}}%</span></td>
+                            
+                            <td class="figures"
+                                ng-repeat="day in week"
+                                ng-class="{'no_data':day['totalOrdersShow']==0}"
+                                >
+                                <span>{{day['totalOrdersShow']}}</span>
+                                <span 
+                                    ng-class="{'positive':day['difTotalOrders']>0,
+                                    'negative':day['difTotalOrders']<0,}"
+                                    >{{(day['difTotalOrders']>90||day['difTotalOrders']<-90)?"&#8734;":day['difTotalOrders']}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="navig_btns bottom">
+                    <a class="btn-floating waves-effect animated fadeIn"
+                        ng-click="total_orders_begin=total_orders_begin+1;up_click=true"
+                        ><i class="fa fa-angle-down"></i></a>
+                </div>
+
+            </div>  <!--close table container-->
+
+            <div class="chart_container item">
+
+        		<!--
+                <div class="navig_btns">
+                    <span class="date_from">DataSet from: 21 Nov 2016</span>
+                    <a class="btn-floating waves-effect animated fadeIn"><i class="fa fa-angle-left"></i></a>
+                    <a class="btn-floating waves-effect animated fadeIn"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="descr very_small">
+                    <p>Chart showing total orders and it 7-day avarage line. You can choose different period for chart.
+                </div>
+                <div class="period_btns">
+                    <a class="waves-effect">Last 7 days</a>
+                    <a class="waves-effect active">Last 30 days</a>
+                    <a class="waves-effect">Last 60 days</a>
+                    <a class="waves-effect">Last Year</a>
+                </div>
+				-->
+
+
+                <div class="chart_total custom_chart animated fadeInDown"
+                    c3-chart-orders pass-value='DATA_total_orders'
+                    property-bar="totalOrdersShow"
+                    property-line="avgTotal"
+                    label='Total Orders, K'
+                    ng-show="show_chart"
+                    ></div>
+
+
+            </div> <!--close CHART CONTAINER-->
+
+
+        </div>  <!--close FLEX BLOCK-->
+    </div> <!--close ROW CONTAINER-->
+
+   <!--NEW ORDERS-->
+    <div class="row_container ng-hide"
+        ng-show="first_load_finished"
+        >
+        <!--TITLE-->
+        <div class="section_name">
+            <h3>Колличество новых объвлений, (тыс.)</h3>
+            <div class="descr very_small">
+                <p>Данная таблица показывает колличество новых объявлений за день.
+                    На графике представлена динамика показетеля по дням.</p>
+            </div>
+        </div>
+
+        <!--FLEX BLOCK-->
+        <div class="flex_block"
+            id="tour_general_new_orders"
+            ng-init="up_click_new=false"
+            >
+            <div class="table_container item">
+                <div class="navig_btns">
+                    <a class="btn-floating waves-effect animated fadeIn"
+                        ng-click="new_orders_begin=new_orders_begin-1;up_click_new=false"
+                        ><i class="fa fa-angle-up"></i></a>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr class="animated fadeInDown">
+                            <th><div>Неделя</div></th> <!--To make possible set min-width in mobile wrap in div-->
+                            <th class="table_head_date column_gray"><div>На конец недели</div></th>
+                            <th class="table_head_date"><div>Пн</div></th>
+                            <th class="table_head_date"><div>Вт</div></th>
+                         <th class="table_head_date"><div>Ср</div></th>
+                         <th class="table_head_date"><div>Чт</div></th>
+
+                         <th class="table_head_date"><div>Пт</div></th>
+                         <th class="table_head_date"><div>Сб</div></th>
+                          <th class="table_head_date"><div>Вс</div></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+ 
+                        <tr class="animated fadeInDown"
+                            ng-class={'fadeInUp':up_click_new}
+                            ng-repeat="week in DATA_orders_new_limited"
+                            >
+                            <td class="column">{{get_week_name(week)}}</td>
+                            <td class="figures column_gray"><span>{{get_end_of_week_total(week,'newOrdersShow')}}</span>
+                            <span
+                                ng-init="sign=get_end_of_week_percent(week,$index,'newOrdersShow')"
+                                ng-class="{'positive':sign>0,'negative':sign<0}"
+                                >{{sign}}%</span></td>
+                            
+                            <td class="figures"
+                                ng-repeat="day in week"
+                                ng-class="{'no_data':day['newOrdersShow']==0}"
+                                >
+                                <span>{{day['newOrdersShow']}}</span>
+                                <span 
+                                    ng-class="{'positive':day['difNewOrders']>0,
+                                    'negative':day['difNewOrders']<0,}"
+                                    >{{(day['difNewOrders']>90||day['difNewOrders']<-90)?"&#8734;":day['difNewOrders']}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="navig_btns bottom">
+                    <a class="btn-floating waves-effect animated fadeIn"
+                        ng-click="new_orders_begin=new_orders_begin+1;up_click_new=true"
+                        ><i class="fa fa-angle-down"></i></a>
+                </div>
+
+            </div>  <!--close table container-->
+
+            <div class="chart_container item">
+
+                <!--
+                <div class="navig_btns">
+                    <span class="date_from">DataSet from: 21 Nov 2016</span>
+                    <a class="btn-floating waves-effect animated fadeIn"><i class="fa fa-angle-left"></i></a>
+                    <a class="btn-floating waves-effect animated fadeIn"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="descr very_small">
+                    <p>Chart showing total orders and it 7-day avarage line. You can choose different period for chart.
+                </div>
+                <div class="period_btns">
+                    <a class="waves-effect">Last 7 days</a>
+                    <a class="waves-effect active">Last 30 days</a>
+                    <a class="waves-effect">Last 60 days</a>
+                    <a class="waves-effect">Last Year</a>
+                </div>
+                -->
+
+
+                <div class="chart_total custom_chart animated fadeInDown" 
+                    c3-chart-orders pass-value='DATA_total_orders' 
+                    property-bar="newOrdersShow" 
+                    property-line="avgNew"
+                    label="New Orders, K"
+                    ng-show="show_chart"
+                    ></div>
+
+
+            </div> <!--close CHART CONTAINER-->
+
+
+        </div>  <!--close FLEX BLOCK-->
+    </div>  <!--close ROW CONTAINER-->
+
+    <!--TOP CARS-->
+    <div class="row_container last pie"
+        id="tour_general_pie_container"
+        >
+        <div class="section_name">
+            <h3>ТОП 10</h3>
+            <div class="descr very_small">
+                <p>Диаграмма показывает ТОП-10 марок (или моделей если выбран фильтр) по колличеству объявлений.
+                    <b>"Остальное"</b> показывает долю остальных объявлений.</p>
+            </div>
+        </div>
+
+        <div class="flex_block">
+            <div class="left_col top_car_block">
+
+                <div class="myspinner on"
+                    ng-class="{'on':left_top_car_spinner,'off':!left_top_car_spinner}"
+                    ><div></div></div>
+
+                <div class="navig_btns ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <a class="btn-floating waves-effect animated fadeIn" ng-click="prev_slide('left_col')"><i class="fa fa-angle-left"></i></a>
+                    <a class="btn-floating waves-effect animated fadeIn" ng-click="next_slide('left_col')"><i class="fa fa-angle-right"></i></a>
+                </div>
+
+
+                <!--YEAR SELECTION-->
+                <div class="dropdown_container ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <div class="year_dropdown">
+                        <label>Выбрать год</label>
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn custom_dropdown year' 
+                            dropdown
+                            data-activates='left_dropdown_year'
+                            >{{left_col_date['year']}}</a>
+
+                        <!-- Dropdown Structure -->
+                        <ul id='left_dropdown_year' class='dropdown-content'>
+                            <li
+                                ng-repeat="year in years"
+                                ><a ng-click="left_col_date['year']=year">{{year}}</a></li>
+                        </ul>
+                    </div>
+                    <!--MONTH SELECTION-->
+                    <div id="tour_pie_month_dropwdown" class="month_dropdown">
+                        <label>Выбрать месяц</label>
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn custom_dropdown month' 
+                            dropdown
+                            data-activates='left_dropdown_month'
+                            >{{months[left_col_date['month']]['name']|translate}}</a>
+                        <!-- Dropdown Structure -->
+                        <ul id="left_dropdown_month" class='dropdown-content'>
+                            <li ng-repeat="month in months"><a 
+                                ng-click="left_col_date['month']=month['value']"
+                                >{{month['name']|translate}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--OWL CAROUSEL-->
+                <div class="dateline_picker ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <div class="owl-carousel" 
+                        owl-carousel
+                        date="left_col_date"
+                        first-load-finished="first_load_finished"
+                        >
+                    </div>
+                </div>
+
+                <!--VHART+DONUT-->
+                <div class="data_container">
+                    <div class="no_data animated flipInX" ng-show="DATA_top_cars['left'].length==0">Нет информации за эту дату!</div>
+
+
+                    <div class="pie_c3 item"
+                        ng-show="first_load_finished"
+                        data="DATA_top_cars['left']"
+                        pie-c3
+                        pie-instance="pie_left"
+                        col-name="left_col"
+                        first-load-finished="first_load_finished"
+                        ></div>
+
+                    <div class="scroll_auto_block item ng-hide"
+                        ng-show="first_load_finished"
+                         id="tour_pie_table_click"
+                        >
+                        <div class="total_amount"
+                            ng-show="DATA_top_cars['left']!=0"
+                            >
+                           ВСЕГО: {{total_amount_left}}K
+                        </div>
+
+                        <div class="auto_row"
+                            ng-repeat="row in DATA_top_cars['left']"
+                            ng-mouseover="row_focus('left_col',$index)"
+                            ng-class="{'notchecked':!row['show']||!row['focus_from_pie']}"
+                            ng-mouseleave="row_defocus('left_col',$index)"
+                            ng-click="show_hide(row,'left_col')"
+                            >
+                            <div class="checkbox">
+                                <input type="checkbox" 
+                                    id="left_col{{row['name']}}"
+                                    ng-model="row['show']"
+                                />
+                                <label for="left_col{{row['name']}}">
+                                    <div class="container">
+                                        <div class="position">{{$index+1}}</div>
+                                        <div class="name"><span>{{row['name']|translate}}</span></div>
+                                        <div class="amount">{{row['totalOrdersShow']}}K</div>
+                                        <div class="percent">{{row['percentage']}}%</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div> <!--close flex_block which comprises container and donut-->
+
+
+            </div><!--close LEFT_TOP_CAR_BLOCK-->
+
+            <div class="right_col top_car_block">
+                <div class="myspinner on"
+                    ng-class="{'on':right_top_car_spinner,'off':!right_top_car_spinner}"
+                    ><div></div></div>
+
+                <div class="navig_btns ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <a class="btn-floating waves-effect animated fadeIn" ng-click="prev_slide('right_col')"><i class="fa fa-angle-left"></i></a>
+                    <a class="btn-floating waves-effect animated fadeIn" ng-click="next_slide('right_col')"><i class="fa fa-angle-right"></i></a>
+                </div>
+
+
+                <!--YEAR SELECTION-->
+                <div class="dropdown_container ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <div class="year_dropdown">
+                        <label>Выбрать год</label>
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn custom_dropdown year' 
+                            dropdown
+                            data-activates='right_dropdown_year'
+                            >{{right_col_date['year']}}</a>
+
+                        <!-- Dropdown Structure -->
+                        <ul id='right_dropdown_year' class='dropdown-content'>
+                            <li
+                                ng-repeat="year in years"
+                                ><a ng-click="right_col_date['year']=year">{{year}}</a></li>
+                        </ul>
+                    </div>
+                    <!--MONTH SELECTION-->
+                    <div class="month_dropdown">
+                        <label>Выбрать месяц</label>
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn custom_dropdown month' 
+                            dropdown
+                            data-activates='right_dropdown_month'
+                            >{{months[right_col_date['month']]['name']|translate}}</a>
+                        <!-- Dropdown Structure -->
+                        <ul id="right_dropdown_month" class='dropdown-content'>
+                            <li ng-repeat="month in months"><a 
+                                ng-click="right_col_date['month']=month['value']"
+                                >{{month['name']|translate}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--OWL CAROUSEL-->
+                <div class="dateline_picker ng-hide"
+                    ng-show="first_load_finished"
+                    >
+                    <div class="owl-carousel" 
+                        owl-carousel
+                        date="right_col_date"
+                        first-load-finished="first_load_finished"
+                        >
+                    </div>
+                </div>
+
+                <!--VHART+DONUT-->
+                <div class="data_container">
+                    <div class="no_data animated flipInX" ng-show="DATA_top_cars['right'].length==0">No Data for this date!</div>
+
+                    <div class="pie_c3 item right_col_check"
+                        ng-show="first_load_finished"
+                        data="DATA_top_cars['right']"
+                        pie-c3
+                        pie-instance="pie_right"
+                        col-name="right_col"
+                        first-load-finished="first_load_finished"
+                        ></div>
+
+                    <div class="scroll_auto_block item ng-hide"
+                        ng-show="first_load_finished"
+                        >
+                        <div class="total_amount"
+                            ng-show="DATA_top_cars['right']!=0"
+                            >
+                           ВСЕГО: {{total_amount_right}}K
+                        </div>
+
+                        <div class="auto_row"
+                            ng-repeat="row in DATA_top_cars['right']"
+                            ng-mouseover="row_focus('right_col',$index)"
+                            ng-class="{'notchecked':!row['show']||!row['focus_from_pie']}"
+                            ng-mouseleave="row_defocus('right_col',$index)"
+                            ng-click="show_hide(row,'right_col')"
+                            >
+                            <div class="checkbox">
+                                <input type="checkbox" 
+                                    id="right_col{{row['name']}}"
+                                    ng-model="row['show']"
+                                />
+                                <label for="right_col{{row['name']}}">
+                                    <div class="container">
+                                        <div class="position">{{$index+1}}</div>
+                                        <div class="name"><span>{{row['name']|translate}}</span></div>
+                                        <div class="amount">{{row['totalOrdersShow']}}K</div>
+                                        <div class="percent">{{row['percentage']}}%</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div> <!--close flex_block which comprises container and donut-->
+
+
+
+
+            </div>
+
+        </div> <!--close flex_block-->
+    </div> <!--close ROW_CONTAINER-->
+
+</div>	

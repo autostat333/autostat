@@ -7,7 +7,7 @@ module.exports = function Dropdown()
 			$(elem[0]).dropdown();
 
 			//if prevent closing - set jquery special fake event
-			//it allows break closing dropdown when select seceral options
+			//it allows break closing dropdown when select several options
 			//like multiselect but using dropdown
 			//it mustnot affect ng-click directive, because it is using another trigger functionality
 			//and it is own handlers dictionary

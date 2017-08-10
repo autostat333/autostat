@@ -1,3 +1,15 @@
+html
+  {
+  height:100%;
+  }
+body
+  {
+  height:100%;
+  }
+
+$maxContentWidth:1500px;
+
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -55,7 +67,29 @@
   transform:translateZ(0);
   }
 
-.myspinner div, .myspinner div:after 
+
+  @keyframes chunk-top {
+    0%, 100%{
+      transform: rotate(-45deg);
+    }
+    50%{
+      transform: rotate(-80deg);
+    }
+  }
+
+  @keyframes chunk-bottom {
+    0%, 100%{
+      transform: rotate(-40deg);
+    }
+    50%{
+      transform: rotate(0deg);
+    }
+  }
+
+
+
+
+.myspinner>div:not(.spinner)
   {
   border-radius: 50%;
   position:absolute;
@@ -68,7 +102,7 @@
   }
 
 
-.myspinner div 
+.myspinner>div:not(.spinner)
   {
   margin: auto auto;
   font-size: 10px;
@@ -85,7 +119,6 @@
   animation-fill-mode:forwards;
   -webkit-animation-fill-mode:forwards;
   }
-
 
 
 .on
@@ -112,17 +145,19 @@
 @-webkit-keyframes on 
   {
   0% {
-      opacity:0;
+     //opacity:0;
+     background:rgba(255,255,255,0);
      }
  100% {
-      opacity:0.8;
+     //opacity:0.8;
+     background:rgba(255,255,255,0.8);
      }
  }
 
 @keyframes off
   {
   0% {
-      opacity:0.8;
+     opacity:0.8;
      }
  
   100%
@@ -173,14 +208,30 @@
 
 @keyframes on_global_half
   {
-  from{opacity:1}
-  to{opacity:0.8}
+  from
+    {
+    //opacity:1;
+    background:rgba(255,255,255,1);
+    }
+  to
+    {
+    //opacity:0.8;
+    background:rgba(255,255,255,0.8);
+    }
   }
 
 @-webkit-keyframes on_global_half
   {
-  from{opacity:1}
-  to{opacity:0.8}
+  from
+    {
+    //opacity:1;
+    background:rgba(255,255,255,1);
+    }
+  to
+    {
+    //opacity:0.8;
+    background:rgba(255,255,255,0.8);
+    }
   }
 
 

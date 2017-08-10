@@ -1,10 +1,11 @@
-module.exports = function StatGeneralCntr($scope,backend,$filter)
+module.exports = function StatGeneralCntr($scope,backend,$filter,tour,$timeout)
 	{
 
 	$scope.init = init;
 	$scope.init_data_table = init_data_table;
 	$scope.transform_locations = transform_locations;
 	$scope.get_cities = get_cities;
+	$scope.init_tour = init_tour;
 
 
 	$scope.init();
@@ -13,6 +14,14 @@ module.exports = function StatGeneralCntr($scope,backend,$filter)
 	$scope.$watch('params',watcher_params,true);
 
 
+	$scope.$on('$destroy',function()
+		{
+		if ($scope.tour&&$scope.tour.destroy)
+			$scope.tour.destroy();
+
+		//destroy picker manually, because it is not removing from body
+        $('body').find('.picker').first().remove();
+		})
 
 	function init()
 		{
@@ -28,12 +37,27 @@ module.exports = function StatGeneralCntr($scope,backend,$filter)
 		$scope.LOCATIONS_MAP_STATE = {};
 		$scope.LOCATIONS_TABLE_STATE = {};
 
+		$scope.tour = '';//drop variable for this scope
+
 		$scope.init_data_table();
 		$scope.get_cities();
+		$scope.init_tour();
 
 
 		}
 
+
+	function init_tour()
+		{
+		$timeout(function()
+			{
+			$scope.tour = tour.init('map',[
+				{'element':'#tour_general_map_picker','content':$filter('translate')('You can chose statistic for specific DATE'),'placement':'top'},
+                {'element':'#tour_general_map','content':$filter('translate')('MAP groups advertisements in clusters. By ZOOM IN/OUT you can see details!'),'placement':'top'},
+                {'element':'#tour_general_map_table','content':$filter('translate')('Table reflects DATASET from the MAP. You can filter advertisements on the MAP using FILTERS for table.'),'placement':'top'},
+				])
+			})
+		}
 
 
 	function init_data_table()
@@ -117,4 +141,4 @@ module.exports = function StatGeneralCntr($scope,backend,$filter)
 
 	}
 
-module.exports.$inject = ['$scope','backend','$filter'];
+module.exports.$inject = ['$scope','backend','$filter','tour','$timeout'];

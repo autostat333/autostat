@@ -1,0 +1,126 @@
+<div class="stat_params_container"
+	ng-controller="StatGeneralCntrParams"
+	>
+
+
+	<div class="section_name">
+		
+		<h2>По параметрам</h2>
+	
+		<div class="descr small">
+			<p>Раздел содержит аналитику по объявлениям и их характеристикам.
+				В частности можно проанализировать доли объявлений по таким параметрам как:
+				возраст авто, цена, пробег, свежесть объявления.
+		</div>
+
+	</div>
+
+
+    <div class="filters">
+		<div class="input-field not_selected"
+			id="tour_general_params_filter"
+			ng-class="{'not_selected':params['value']=='all','selected':params['value']!='all'}"
+			>
+			<select class="browser-default chosen-select for_params" 
+				choosen-directive
+				choosen-trigger="marks"
+				choosen-model="params['value']"
+				scroll-top=".filters"
+				>
+				<option value="all">Все авто</option>
+				<optgroup label="Top 10 cars">
+					<option 
+						ng-repeat="mark in marks_top"
+						value="{{mark['value']}}"
+						>{{mark['name']}}
+					</option>
+				</optgroup>
+
+				<optgroup label="Rest cars">
+					<option 
+						ng-repeat="mark in marks"
+						value="{{mark['value']}}"
+						>{{mark['name']}} ({{mark['totalOrders']}})
+					</option>
+				</optgroup>						
+			</select>
+		</div>
+
+        <!-- Dropdown Trigger -->
+        <div class="dropdown_container">
+	        <a class='dropdown-button btn custom_dropdown year'
+			   	id="tour_general_params_type"
+	            dropdown
+	            data-activates='right_dropdown_year'
+	            >{{('By '+params['aggregationsBy'])|translate}}</a>
+
+	        <!-- Dropdown Structure -->
+	        <ul id='right_dropdown_year' class='dropdown-content'>
+	            <li
+	                ng-repeat="kind in aggregation_options"
+	                ><a ng-click="params['aggregationsBy']=kind['name']">{{('By '+kind['name'])|translate}}</a>
+	            </li>
+	        </ul>
+        </div>
+
+        <div class="datepicker_container" tabindex=100>
+        	<label for="datepicker_abc">
+	        	<i class="fa fa-calendar" aria-hidden="true"></i>
+        	</label>
+			<input id="datepicker_abc" type="date" class="datepicker"
+				datepicker
+				selector-for-unfocus=".datepicker_container"
+				>
+		</div>
+
+
+	</div>
+
+	<div class="sorting_labels"
+		 id="tour_general_params_sort"
+		>
+		<span
+			ng-click="sort_by('order')"
+			ng-class="{'active':sorting_kind=='order'}"
+			>Сорт. по категориям</span>
+		<span
+			ng-click="sort_by('totalOrders')"
+			ng-class="{'active':sorting_kind=='totalOrders'}"
+			>Сорт. по значениям</span>
+	</div>
+
+
+  <div class="switch"
+  	id="tour_general_params_tmblr"
+  	>
+    <label>
+      <span ng-class="{'active':values_type=='totalOrders'}">#</span>
+      <input type="checkbox"
+      	ng-model="values_type"
+      	ng-true-value="'percentage'"
+      	ng-false-value="'totalOrders'"
+      	>
+      <span class="lever"></span>
+      <span ng-class="{'active':values_type=='percentage'}">%</span>
+    </label>
+  </div>
+
+	<div class="chart_container"
+		id="tour_general_params_chart"
+		>
+       <div class="no_data animated flipInX" ng-show="is_empty_data()">Нет данных. Вы можете изменить марку или дату отчета!
+       </div>
+
+		<div 
+			ng-show="!is_empty_data()"
+			class="custom_chart"
+			c3-chart-params
+			pass-value="DATA_AGR"
+			values-type="values_type"
+			>
+		</div>
+
+	</div>
+
+
+</div>

@@ -1,0 +1,168 @@
+<div class="auto_map_container"
+	ng-controller="StatAutoMap"
+	>
+
+	
+	<div class="section_name">
+        <h2>По регионам</h2>
+
+		<div class="datepicker_container" tabindex=100>
+    		<label for="datepicker_abc">
+        		<i class="fa fa-calendar" aria-hidden="true"></i>
+    		</label>
+			<input id="datepicker_abc" type="date" class="datepicker"
+				datepicker
+				selector-for-unfocus=".datepicker_container"
+				>
+		</div>
+
+        <div class="descr small">
+            <p>Этот раздел содержит все объявления по данному автомобилю нанесенные на карту и сгрупированные в кластеры.
+				Приближая можно разбить кластер на более мелкие города.
+				Таблица и карта связаны между собой, фильтруюя объявления на карте или в таблице - они будут отфильтрованы соответственно в двух местах.
+			</p>
+        </div>
+    </div>
+
+
+    <!--MAP-->
+   <div class="wrap_map_table">
+	   <div class="map"
+	        map
+	        markers-original="LOCATIONS"
+	        map-state="LOCATIONS_MAP_STATE"
+	        table-state="LOCATIONS_TABLE_STATE"
+			id="tour_auto_map_map"
+	        >
+	    </div>
+
+
+	    <!--TABLE-->
+		<div class="advert_table">
+			<div class="myspinner" ng-class="{'on':table_spinner.is,'off':!table_spinner.is}">
+				<div></div>
+			</div>
+
+	 		<div class="section_name">
+		        <h3>Таблица с объявлениями</h3>
+		        <div class="descr very_small">
+		            <p>Таблица с объявлениями по даному автомобилю.
+						Каждое объявление в строке содержит ссылку на оригинальную страницу в интернете.
+						При клике - будет переход.
+						Таблицу можно отфильтровать по разным параметрам что одновременно отфильтрует результаты на карте.
+					</p>
+		        </div>
+	        </div>
+
+
+
+    		<!--TABLE-->
+		    <div class="data_table_container"
+
+		        table-data
+		        tdata="LOCATIONS"
+		        tcolumns="tcolumns"
+		        tconfig="tconfig"
+		        tcallbacks="tcallbacks"
+
+		        map-state="LOCATIONS_MAP_STATE"
+		        table-state="LOCATIONS_TABLE_STATE"
+
+		        >
+
+		        <div paging></div>
+
+
+		        <div class="controls_container">
+		            <div stat
+		                ng-class="{'filtered':is_filtered_table()}"
+		                ></div>
+		            <div toggle-filter ></div>
+		            <div num-items></div>
+		        </div>
+
+	        	<div class="wrap_data_table"
+					id="tour_auto_map_table"
+					>
+		        <table>
+		            <thead>
+		            <tr>
+		                <th colspan="9">
+		                	<div
+			                    ng-repeat="col in columns"
+			                    class="td {{col['Name']}}"
+			                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
+			                    >
+			                    <div sorting="{{col['Name']}}"></div>
+			                    <span>{{col['Label']|translate}}</span>
+		                    </div>
+		                </th>
+		            </tr>
+		            </thead>
+
+		            <tbody>
+
+		            <tr filters-row></tr>
+
+		            <tr ng-repeat="row in data"
+		                ng-class="{'filtered':is_filtered_table()}"
+		                >
+		                <td colspan="{{columns.length}}">
+		                <!--
+	       						tooltip-enable="tooltip_open"
+			                    tooltip-is-open="tooltip_open"
+		                -->
+			                <div
+			                	class="td {{col['Name']}}"
+			                    ng-repeat="col in columns"
+			                    ng-class="{'sorted':sort_dict[col['Name']]['is']!=false,'fresh':col['Name']=='createdAgo'&&row[col['Name']]<10}"
+			                    uib-tooltip="{{row[col['Name']]}}"
+			                    show-tooltip
+	       						tooltip-enable="tooltip_enable"
+			                    tooltip-is-open="tooltip_open"
+			                    >
+			                    <span 
+			                    	ng-if="col['Name']!='link'&&col['Name']!='price'&&
+			                    	col['Name']!='raceOrg'"
+			                    	ng-class="{'badge':col['Name']=='createdAgo',
+			                    	'new_advert':col['Name']=='createdAgo'&&row[col['Name']]==0}"
+			                    	>{{row[col['Name']]}}</span>
+			                    <a 
+			                    	ng-if="col['Name']=='link'"
+			                    	href="{{row[col['Name']]}}"
+		                    		target="_blank"
+			                    	>
+			                    	GO
+		                    	</a>
+
+		                    	<span ng-if="col['Name']=='price'">
+		                    		{{row[col['Name']]|currency:'$':0}}
+		                    	</span>
+
+		                    	<span ng-if="col['Name']=='raceOrg'&&row['raceOrg']!=0">
+		                    		{{row[col['Name']]}} тыс. км.
+		                    	</span>
+		                    	<span style="font-weight:bold;" ng-if="col['Name']=='raceOrg'&&row['raceOrg']==0">
+		                    		W/O Race
+		                    	</span>
+
+			                </div>
+		                </td>
+		            </tr>
+		            </tbody>
+
+		        </table>
+		        </div>
+
+		        <div paging></div>
+
+		    </div> <!--close data table-->
+
+		</div>  <!--close ADVERT TABLE-->
+
+    </div>  <!--close wrap map table-->
+
+
+
+</div>
+

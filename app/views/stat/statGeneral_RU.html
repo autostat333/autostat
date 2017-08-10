@@ -1,0 +1,53 @@
+<div class="stat_general">
+	<div class="section_name">
+		<h1>Статистика рынка</h1>
+		<div class="descr large">
+		<p>Этот раздел содержит статистику по рынку б/у автомобилей: колличество объявлений (ордеров),
+			их распределение по регионам, агрегация по параметрам (по цене, по пробегу, возрасту).
+			</p>
+		</div>
+	</div>
+
+	<div class="tab_line">
+      <ul class="tabs">
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('orders',0)" 
+        		class="active"
+        		ng-class="{'active':sub_tab=='orders'}"
+    			>Всего ордеров</a>
+    	</li>
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('map',1)" 
+        		class=""
+				ng-class="{'active':sub_tab=='map'}"
+    			>По регионам</a>
+    	</li>
+        <li 
+        	class="tab col s3"
+        	>
+        	<a ng-click="switch_tab('params',2)" 
+        		class=""
+				ng-class="{'active':sub_tab=='params'}"
+    			>По параметрам</a>
+    	</li>
+
+      </ul>
+	</div>
+
+
+	<div class="sub_window">
+		<div ng-if="sub_tab=='orders'" ui-view="general_orders"></div>
+		<div ng-if="sub_tab=='map'" ui-view="general_map"></div>
+		<div ng-if="sub_tab=='params'" ui-view="general_params"></div>
+
+	    <div class="myspinner on"
+	        ng-class="{'on':myspinner['is'],'off':!myspinner['is']}"
+    	    ><div></div></div>
+
+	</div>
+
+</div>	

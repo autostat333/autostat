@@ -52,7 +52,7 @@ angular.module('app',['ui.router','ui.bootstrap','dataTable'])
 	.controller('StatGeneralCntrOrders',require('./controllers/stat/statGeneralOrders.js'))
 	.controller('StatGeneralCntrMap',require('./controllers/stat/statGeneralMap.js'))
 	.controller('StatGeneralCntrParams',require('./controllers/stat/statGeneralParams.js'))
-
+	.controller('MainController',require('./controllers/main/main.js')) //controller for footer (provide menu click functionality)
 
 	.controller('StatAutoCntr',require('./controllers/stat/statAuto.js'))
 	.controller('StatAutoAvarageTable',require('./controllers/stat/statAutoAvarageTable.js'))
@@ -61,3 +61,12 @@ angular.module('app',['ui.router','ui.bootstrap','dataTable'])
 
 
 	.service('backend',require('./services/backend.js'))
+	.service('tour',require('./services/tour.js'))
+
+	.filter('translate',require('./filters/translate.js')) //for translation messages etc (from JS)
+
+
+
+
+
+

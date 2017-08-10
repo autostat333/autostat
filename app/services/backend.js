@@ -2,6 +2,19 @@ module.exports = function($http)
 	{
 
 
+	this.getDict = function(lang)
+		{
+		return $http.get('/dictionary/dict_'+lang).then(function(resp)
+            {
+			return resp.data;
+            },function()
+            {
+                //	alert(angular.toJson(err);
+                //alert('Smth going wrong!')
+            })
+		}
+
+
 
 	this.getActualDate = function()	
 		{

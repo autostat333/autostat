@@ -66,7 +66,7 @@ module.exports = function transformData($scope,$filter)
 		//el['totalOrdersShow'] = Math.round(el['totalOrders']/1000);
 		el['newOrdersShow'] = _to_show_format(el['newOrders']);
 		el['totalOrdersShow'] = _to_show_format(el['totalOrders']);
-		el['dateShow'] = $filter('date')(el['date'],'d')+' '+$filter('date')(el['date'],'MMM');
+		el['dateShow'] = $filter('date')(el['date'],'d')+' '+$filter('translate')($filter('date')(el['date'],'MMM'));
 
 		return el;
 

@@ -25,7 +25,7 @@
 		{
 		width:50%;
 		@media(max-width:900px){width:100%}
-		overflow:hidden;
+		//overflow:hidden;
 
 		.params_container
 			{
@@ -82,7 +82,18 @@
 				}
 
 
-			.popover {max-width:300px;}
+			.popover
+				{
+				max-width:300px;
+				border-radius:0px;
+				border-width:0px;
+				transition-duration:0px !important;
+				h3
+					{
+					border-radius:0px;
+					font-weight:bold;
+					}
+				}
 			.small_description
 				{
 				padding: 10px;
@@ -190,7 +201,7 @@
 			justify-content:space-between;
 			align-items:center;
 
-			transition:all ease 0.5s;
+			//transition:all ease 0.5s;
 			height:40px;
 			transform:scaleY(1);
 			transform-origin:top;
@@ -218,7 +229,10 @@
 			.t_row:hover
 				{
 				.name
-					{font-weight:bold}
+					{
+					font-weight:bold;
+					background:white;
+					}
 				}
 			}
 
@@ -239,7 +253,10 @@
 			align-items:center;
 			justify-content:center;
 			color:rgb(12, 78, 145);
-			transition:all ease 0.5s;
+			//transition:all ease 0.5s;
+
+			background:#f8f8f8;
+			text-transform:uppercase;
 
 			font-size:16px;
 			@media(max-width:1100px) and (min-width:900px){font-size:12px}
@@ -253,15 +270,17 @@
 		div.hd.bold
 			{
 			font-weight:bold;
+			background:white;
 			}
 
 
 		div.name
 			{
 			font-size: 18px;
-		        font-weight:300;
- 		        color: rgb(12, 78, 145);
+			font-weight:300;
+			color: rgb(12, 78, 145);
 
+			background:#f8f8f8;
 
 
 			@media(max-width:1100px) and (min-width:900px) {font-size:14px}
@@ -276,7 +295,7 @@
 			display:flex;
 			align-items:center;
 			justify-content:center;
-			transition:all ease 0.6s;
+			//transition:all ease 0.6s;
 
 			.total,.new
 				{
@@ -366,7 +385,8 @@
 	.chart_column
 		{
 		width:50%;
-		margin-top:50px;
+		//margin-top:50px;
+		margin-top:82px;
 		max-height:530px;
 		@media(max-width:900px){width:100%}
 
@@ -389,7 +409,7 @@
 				{
 				text-align:center;
 				color:gray;
-				//background:#ededed;
+				background:#ededed;
 				}
 
 			.selection_title>span:nth-child(1), .selection_title>span:nth-child(3)
@@ -513,7 +533,7 @@
 
 				.total
 	    			{
-	    			border:1px dashed #d7d7d7;
+	    			//border:1px dashed #d7d7d7;
 
 	    			//for labels
 	    			span
@@ -636,17 +656,18 @@
 			{
 			width:100%;
 			overflow-x:hidden;
-			@media(max-width:700px)
+
+			@media(max-width:1050px)
 				{
 				overflow-x:scroll;
 				}
-			
+
 			}
 
 
 		table
 			{
-			min-width:650px;
+			min-width:900px;
 			}
 
 
@@ -685,7 +706,7 @@
 
 		.shortTitle,
 		tr[filters-row] td:nth-of-type(2)
-			 {width:24%}
+			 {width:19%}
 
 		.fuelName,
 		tr[filters-row] td:nth-of-type(3)
@@ -694,7 +715,7 @@
 
 		.createdAgo,
 		tr[filters-row] td:nth-of-type(4)
-			 {width:7%}
+			 {width:9%}
 
 		.raceOrg,
 		tr[filters-row] td:nth-of-type(5)
@@ -710,9 +731,38 @@
 
 		.link,
 		tr[filters-row] td:nth-of-type(8)
-			{width:6%}
+			{width:9%}
 
+		.td.link a
+			{
+			padding: 5px;
+			background: #abffab;
+			border-radius: 2px;
+			color: white;
+			font-size:12px;
+			}
 
+		.td.link a:after
+			{
+			margin-left:3px;
+			content: "\f08e";
+			font: normal normal normal 14px/1 FontAwesome !important;
+			}
+
+		tbody .td.raceOrg
+			{
+			color:#266295;
+			}
+
+		.td.createdAgo.fresh span
+			{
+			padding: 2px 5px 2px 5px;
+			background: #ffc0c0;
+			color: white;
+			border-radius: 2px;
+			display:inline-block;
+			width:30px;
+			}
 
 		tbody div.title,tbody div.shortTitle, {text-align:left;}
 		tbody div.price {text-align:right};

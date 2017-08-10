@@ -1,0 +1,369 @@
+<div class="auto_avarage_container ng-hide"
+	ng-show="!myspinner['is']"
+	ng-controller="StatAutoAvarageTable"
+	>
+
+  	<div class="section_name">
+        <h2>Average Table</h2>
+
+        <div class="descr small">
+            <p>This section provides table with average prices, chart with dynamic and table with real adverts which are included in calculations of average prices.</p>
+        </div>
+    </div>
+
+
+
+    <!--CONTENT-->
+    <div class="content">
+		<!--LEFT_COL TABLE-->
+		<div class="table_column">
+			<div class="params_container">
+				<div class="title">Parametrs:</div>	
+				<!--DATEPICKER-->
+		        <div class="datepicker_container" tabindex=100>
+		        	<label for="datepicker_abc">
+			        	<i class="fa fa-calendar" aria-hidden="true"></i>
+		        	</label>
+					<input id="datepicker_abc" type="date" class="datepicker"
+							datepicker
+							selector-for-unfocus=".datepicker_container"
+							>
+				</div>
+
+
+				<!--YEARS SELECTION-->
+				<div class="years_selection">
+				  	<a class='dropdown-button btn custom_dropdown'
+				  		data-activates='choose_year'
+				  		dropdown
+					   	id="tour_auto_avg_years"
+				  		>
+			  			Choose Years
+			  		</a>
+
+			 	 	<ul id='choose_year' class='dropdown-content'>
+					    <li
+					    	ng-repeat="row in AVG_TABLE"
+					    	stop-propagation
+					    	>
+    						<p>
+						      <input 
+						      	type="checkbox" 
+					      		class="filled-in" 
+					      		id="{{row[0]}}" 
+					      		ng-model="years[row[0]]['personal_preferences']"
+					      		/>
+						      <label for="{{row[0]}}">{{row[0]}}</label>
+    						</p>
+				    	</li>
+				  	</ul>					
+				</div>
+
+				<!--DESCRIPTION-->
+				<div class="description">
+					<i class="fa fa-question-circle help_button"
+						uib-popover-template="some_template" 
+						popover-title="Small Description"
+						popover-trigger="'outsideClick'"
+						></i>
+				</div>
+
+
+        
+		    <script type="text/ng-template" id="smallDescriptionTemplate.html">
+				<div class="small_description">
+					Each table cell contains <b>AVG PRICE</b> in thousands and <b>NUMBER of ADVERTS</b> (small gray digit)
+					which have been taken part in calculations.
+					<p><u>By columns</u> - there is a <b>RACE</b> characteristic, <u>by lines</u> - <b>YEAR</b> characteristic.
+						<b>A chart</b> shows dynamic of avg prices for selected year and race.</p>
+				</div>
+		    </script>
+
+
+
+
+			</div>
+
+
+		
+			<div class="table_container"
+				id="tour_auto_avg_table_avg"
+				>
+				<div class="t_row">
+					<div class="hd">YEARS</div>
+					<div class="hd"
+						ng-repeat="col in races"
+						ng-class="{'bold':($parent.selected_column-1)==$index}"
+						>{{col}}</div>
+					
+				</div>
+				<div class="t_body">
+					<div class="t_row" ng-repeat="row in AVG_TABLE"
+						ng-class="{'hide_row':!years[row[0]]['personal_preferences']||!years[row[0]]['show_all']}"
+						>
+						<div class="name">{{row[0]}}</div>
+						
+						<div class="item"
+							ng-repeat="cell in row"
+							ng-class="{'active':isEqualObj(row,cell,$index)}"
+							ng-if="$index!=0"
+							ng-click="select_item(row,cell,$index)"
+							ng-mouseover="$parent.$parent.$parent.selected_column=$index" 
+							ng-mouseleave="$parent.$parent.$parent.selected_column=-1"
+							>
+							<div class="new">
+ 							 	<span class="new_badge"
+							 	ng-show="cell['new']['orders']!=0"
+							 	>
+							 	+{{cell['new']['orders']}}
+							 	</span>
+							 	#{{cell['total']['orders']}}
+							</div>
+							<div class="total">
+								<span
+									ng-show="cell['total']['prices']!=0"
+									>
+									${{cell['total']['avg']|number:2}}K
+								</span>
+								<span
+									ng-show="cell['total']['prices']==0"
+									>
+									-
+								</span>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="show_more">
+						<span class=""
+							ng-click="show_all_years=!show_all_years"
+							ng-show="get_kolvo_years()&&!show_all_years"
+							>Show below Years...</span>
+						<span class=""
+							ng-click="show_all_years=!show_all_years"
+							ng-show="get_kolvo_years()&&show_all_years"
+							>Hide above Years...</span>
+
+					</div>
+
+
+
+				</div>
+
+
+
+			</div>
+		
+
+		</div>
+
+
+		<!--CHART-->
+		<div class="chart_column">
+			<div class="box_wrap"
+				id="tour_auto_avg_chart"
+				>
+				<div class="total_figures">
+					<div class="selection_title">
+						<span>SELECTED YEAR:</span>
+						<span>{{params['selectedYear']}}</span>
+						<span>SELECTED RACE:</span>
+						<span ng-show="params['selectedRace']!='total'">{{params['selectedRace']}} K km</span>
+						<span ng-show="params['selectedRace']=='total'">All Races</span>
+					</div>
+
+
+					<div>
+						<div class="total"
+							ng-class="{'not_visible':params['selectedObject']['total']['orders']==0}"
+							>
+							<div class="title">Total Orders</div>
+							<div>
+								<span>Amount</span>
+								<span>
+									{{params['selectedObject']['total']['orders']}}
+								</span>
+							</div>
+							
+							<div>
+								<span>Avarage</span>
+								<span>
+									${{params['selectedObject']['total']['avg']}}
+								</span>
+							</div>
+							<span class="no_orders">
+								No ANY orders!
+							</span>
+						</div>
+
+						<div class="new"
+							ng-class="{'not_visible':params['selectedObject']['new']['orders']==0}"
+							>
+							<div class="title">New Orders</div>
+							<div>
+								<span>Amount</span>
+								<span>
+									{{params['selectedObject']['new']['orders']}}
+								</span>
+							</div>
+							<div>
+								<span>Avarage</span>
+								<span>
+									${{params['selectedObject']['new']['avg']}}
+								</span>
+							</div>
+							<span class="no_orders">No NEW orders!</span>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="chart_average custom_chart"				
+					>
+					<div class="myspinner on" 
+						ng-class="{'on':chart_spinner.is,'off':!chart_spinner.is}"><div></div>
+					</div>
+					<div
+						c3-chart-average="DATA_chart_avg_prices"
+						label="Avg, $"
+						property="totalAvg"
+						>
+					</div>
+				</div>
+
+			</div> <!--close boxwrap-->
+
+		</div> <!--close chart-->
+
+	</div>  <!--close content-->
+
+
+
+	<div class="advert_table">
+		<div class="myspinner" ng-class="{'on':table_spinner.is,'off':!table_spinner.is}"><div></div></div>
+
+ 		<div class="section_name">
+	        <h3>Table with Advertisements</h3>
+	        <div class="descr very_small">
+	            <p>In this table displayed list of advertisements, which are included in Averafe prices for chosen cell in table with avarage prices. By clicking on the Link - you will be redirected to Auto.ria page with advertisement.</p>
+	        </div>
+        </div>
+
+
+
+    	<!--TABLE-->
+	    <div class="data_table_container"
+			id="tour_auto_avg_table_adverts"
+	        table-data
+	        tdata="ADVERTS"
+	        tcolumns="tcolumns"
+	        tconfig="tconfig"
+	        tcallbacks="tcallbacks"
+
+	        map-state="LOCATIONS_MAP_STATE_EMPTY"
+	        table-state="LOCATIONS_TABLE_STATE_EMPTY"
+
+	        >
+
+	        <div paging></div>
+
+
+	        <div class="controls_container">
+	            <div stat
+	                ng-class="{'filtered':is_filtered_table()}"
+	                ></div>
+	            <div toggle-filter
+					 id="tour_auto_avg_table_filters"
+					></div>
+	            <div num-items></div>
+	        </div>
+
+	        <div class="wrap_data_table">
+	        <table>
+	            <thead
+					id="tour_auto_avg_table_head"
+					>
+	            <tr>
+	                <th colspan="8">
+	                	<div
+		                    ng-repeat="col in columns"
+		                    class="td {{col['Name']}}"
+		                    ng-class="{'sorted':sort_dict[col['Name']]['is'],'filtred':filt_dict[col['Name']]!=''}"
+		                    >
+		                    <div sorting="{{col['Name']}}"></div>
+		                    <span>{{col['Label']}}</span>
+	                    </div>
+	                </th>
+	            </tr>
+	            </thead>
+	            <tbody>
+
+	            <tr filters-row></tr>
+
+	            <tr ng-repeat="row in data"
+	                ng-class="{'filtered':is_filtered_table()}"
+	                >
+	                <td colspan="{{columns.length}}">
+	                <!--
+       						tooltip-enable="tooltip_open"
+		                    tooltip-is-open="tooltip_open"
+	                -->
+		                <div
+		                	class="td {{col['Name']}}"
+		                    ng-repeat="col in columns"
+		                    ng-class="{'sorted':sort_dict[col['Name']]['is']!=false,'fresh':col['Name']=='createdAgo'&&row[col['Name']]<10}"
+		                    uib-tooltip="{{row[col['Name']]}}"
+		                    show-tooltip
+       						tooltip-enable="tooltip_enable"
+		                    tooltip-is-open="tooltip_open"
+		                    >
+
+		                    <span 
+		                    	ng-if="col['Name']!='link'&&col['Name']!='price'&&
+		                    	col['Name']!='raceOrg'"
+		                    	ng-class="{'badge':col['Name']=='createdAgo',
+		                    	'new_advert':col['Name']=='createdAgo'&&row[col['Name']]==0}"
+		                    	>{{row[col['Name']]}}</span>
+		                    <a 
+		                    	ng-if="col['Name']=='link'"
+		                    	href="{{row[col['Name']]}}"
+	                    		target="_blank"
+		                    	>
+		                    	GO
+	                    	</a>
+
+	                    	<span ng-if="col['Name']=='price'">
+	                    		{{row[col['Name']]|currency:'$':0}}
+	                    	</span>
+
+	                    	<span ng-if="col['Name']=='raceOrg'&&row['raceOrg']!=0">
+	                    		{{row[col['Name']]}} тыс. км.
+	                    	</span>
+	                    	<span style="font-weight:bold;	" ng-if="col['Name']=='raceOrg'&&row['raceOrg']==0">
+	                    		Brand New
+	                    	</span>
+
+		                </div>
+	                </td>
+	            </tr>
+	            </tbody>
+
+	        </table>
+	        </div>
+
+	        <div paging></div>
+
+	    </div> <!--close data table-->
+
+
+
+
+
+
+	</div>
+
+</div>
+

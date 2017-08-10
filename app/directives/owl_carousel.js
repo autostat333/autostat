@@ -1,4 +1,4 @@
-module.exports = function owlCarouse()
+module.exports = function owlCarouse($filter)
 	{
 	return {
 		scope:{
@@ -29,7 +29,12 @@ module.exports = function owlCarouse()
 				{
 
 				scope.days = [];
+
 				scope.week_days = ['Sun','Mon','Tue','Wed','Thy','Fri','Sat'];
+				//translate week days
+				scope.week_days = scope.week_days.map((x)=>{return $filter('translate')(x)});
+
+
 				scope.carousel = $(elem[0]);
 				scope.init_owl();
 				//scope.get_all_days(2016,11);
@@ -180,3 +185,5 @@ module.exports = function owlCarouse()
 	}
 
 	}
+
+module.exports.$inject = ['$filter'];

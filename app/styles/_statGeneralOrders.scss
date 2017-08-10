@@ -36,6 +36,16 @@
 	    //border-bottom:1px dashed #cecece;
 	    }
 
+	.table thead tr th:nth-child(2) div
+		{
+		max-width:75px;
+		display:inline-block;
+		}
+
+	.table thead tr th:nth-child(1)
+		{
+		min-width:135px;
+		}
 
 	    //make responsive table
 	  .table

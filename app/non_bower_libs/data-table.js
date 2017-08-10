@@ -189,7 +189,8 @@ angular.module('dataTable',['ui.bootstrap'])
 
                             scope.sort_dict = {}; //create sorting dictionary for track sort options
                             scope.filt_dict = {};  //create dictionary to remember filtring
-                            scope.tconfig['ShowFiltersRow'] = true; //always show filters row, but if toggle - it will set false within directive
+                            scope.tconfig['ShowFiltersRow'] = false; //i decided to hide filters row.
+                            //scope.tconfig['ShowFiltersRow'] = true; //always show filters row, but if toggle - it will set false within directive
                             }
 
 
