@@ -15,7 +15,7 @@ app.locals.CONFIG['timeout'] = 500; //timeoute for requests when get advertsid b
 app.locals.LOG = true;
 app.locals.LOG_DIRTY = false;
 
-
+//t
 var db = '';
 
 var options = {};
