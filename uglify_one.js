@@ -17,11 +17,13 @@ module.exports = function(grunt)
 
           my_target:
             {
-            src:'./app/non_bower_libs/markerclusterer.js',
-            dest:'./app/non_bower_libs/markerclusterer.min.js'
+            //src:'./app/non_bower_libs/markerclusterer.js',
+            //dest:'./app/non_bower_libs/markerclusterer.min.js'
             
             //src:'./bower_components/materialize/dist/js/materialize.js',
-            //dest:'./bower_components/materialize/dist/js/materialize.min.js'
+            //dest:'./app/non_bower_libs/materialize.min.js'
+            src:'./app/non_bower_libs/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
+            dest:'./app/non_bower_libs/bootstrap-tour/build/js/bootstrap-tour-standalone.min.js'
             }
           },
 

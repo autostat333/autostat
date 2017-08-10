@@ -1352,7 +1352,7 @@
       var $next, role;
       role = end ? 'end' : 'next';
       $next = $tip.find("[data-role='" + role + "']");
-      let _this = this;
+      var _this = this;
       return $element.on('shown.bs.popover', function() {
         if (!disableAutoscroll)
           return $next.focus();

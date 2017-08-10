@@ -32,7 +32,11 @@ module.exports = function owlCarouse($filter)
 
 				scope.week_days = ['Sun','Mon','Tue','Wed','Thy','Fri','Sat'];
 				//translate week days
-				scope.week_days = scope.week_days.map((x)=>{return $filter('translate')(x)});
+				scope.week_days = scope.week_days.map(function(day)
+					{
+					return $filter('translate')(day)
+					});
+
 
 
 				scope.carousel = $(elem[0]);

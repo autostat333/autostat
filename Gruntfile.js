@@ -33,15 +33,26 @@ module.exports = function(grunt)
               },
             src: [
               './bower_components/angular/angular.min.js',
-              //'./bower_components/angular/angular.js',
+              //  './bower_components/angular/angular.js',
               './bower_components/jquery/dist/jquery.min.js',
               //'./bower_components/jquery/dist/jquery.js',
-              './bower_components/materialize/dist/js/materialize.min.js',
+
+
+
+              //replaced materialize to save it from possible removing bower_components
+              //because I corrected materialize.css framework
+              //'./bower_components/materialize/dist/js/materialize.min.js',
               //'./bower_components/materialize/dist/js/materialize.js',
-              
+              './app/non_bower_libs/materialize.min.js',
+
               //'./app/non_bower_libs/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-2.5.0.js',
               './bower_components/angular-bootstrap/ui-bootstrap-tpls.min_1.1.2.js',
               
+
+              './app/non_bower_libs/bootstrap-tour/build/js/bootstrap-tour-standalone.min.js',
+              //'./app/non_bower_libs/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
+              './bower_components/angular-hotkeys/build/hotkeys.min.js',
+ 
               './bower_components/angular-ui-router/release/angular-ui-router.min.js',
               './app/non_bower_libs/chosen/chosen.jquery.min.js',
               //'./app/non_bower_libs/chosen/chosen.jquery.js',
@@ -72,6 +83,7 @@ module.exports = function(grunt)
                 './app/non_bower_libs/noUiSlider/nouislider.min.css',
                 './app/non_bower_libs/c3/c3.min.css',
                 './bower_components/owl.carousel/dist/assets/owl.carousel.min.css',
+                './app/non_bower_libs/bootstrap-tour/build/css/bootstrap-tour-standalone.min.css',
               //'./bower_components/bootstrap/dist/css/bootstrap.min.css',
               ],
             dest:'./app/dist/libs_styles.css'
@@ -125,7 +137,7 @@ module.exports = function(grunt)
                   './app/services/*.js',
                   './app/filters/*.js',
                   './app/factories/*.js'],
-              tasks:['browserify','uglify']
+              tasks:['browserify']
               },
             css:
               {
@@ -151,8 +163,11 @@ module.exports = function(grunt)
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   //Default task runs automatically when grunt runs from command line
-  grunt.registerTask('default', ['sass','concat','browserify','uglify','watch']);
-//  grunt.registerTask('default', ['sass','concat','browserify','watch']);
-  grunt.registerTask('full_build',['sass','concat','browserify','uglify']);  //all task execute
+  //grunt.registerTask('default', ['sass','concat','browserify','uglify','watch']);
+   grunt.registerTask('default', ['sass','concat','browserify','watch']);
+   grunt.registerTask('default', ['sass','concat','browserify','watch']);
+   grunt.registerTask('full_build',['sass','concat','browserify','uglify']);  //all task execute
 
+    //!!!in watch also remove or add uglify task
+    //   tasks:['browserify','uglify']
   };

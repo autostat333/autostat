@@ -63,7 +63,7 @@ module.exports = function RobotCntr(async,app,MongoService,RequestsService,Repor
 
 		//!!!ToDO move it to config
 		//now for passing must be only one value in array ['2016-10-24']
-		//dates = ['2017-04-05','2017-05-17'];
+		//dates = ['2017-04-11'];
 		//dates = [];
 		async.eachSeries(dates,function(it,callback)
 			{

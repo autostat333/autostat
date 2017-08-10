@@ -52,7 +52,6 @@ console.log = function()
     l.unshift('INFO ('+st[2].replace(app.locals.SCRIPT_DIR,'')+'):');
     t.apply(this,l);
     }
-
 //this is spcial method for logging deep (dirty) info
 console.logD = function()
     {
@@ -83,6 +82,8 @@ app.use('/fonts',express.static(__dirname+'/app/fonts'));
 app.use('/images',express.static(__dirname+'/app/images'));
 app.use('/non_bower',express.static(__dirname+'/app/non_bower_libs'));
 app.use('/images',express.static(__dirname+'/app/images'));
+app.use('/version',express.static(__dirname+'/VERSION'));
+app.use('/dictionary',express.static(__dirname+'/app/dictionary'));
 
 
 app.use(bodyParser.json());
@@ -120,6 +121,16 @@ app.get('/robot',function(req,resp,next)
         })
 
 
+
+app.get('/language',function(req,resp)
+    {
+    var lang = req.headers['accept-language'].toLowerCase();
+    if (lang&&lang.indexOf('ru')==0)
+        lang = 'window.language="RU"';
+    else
+        lang = 'window.language="EN"';
+    resp.send(lang);
+    })
 
 
 //APIP SECTION
