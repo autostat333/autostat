@@ -444,7 +444,7 @@ module.exports = function MongoService(async,fs,app,db)
 	function getActualDate(callback)
 		{
 		var start_day = new Date();
-		start_day.setDate(start_day.getDate()-200);
+		start_day.setDate(start_day.getDate()-10);
 
 		var y = start_day.getFullYear();
 		var m = (m = start_day.getUTCMonth()+1).toString().length==1?'0'+m:m;
