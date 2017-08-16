@@ -163,10 +163,10 @@ module.exports = function(grunt)
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   //Default task runs automatically when grunt runs from command line
-  //grunt.registerTask('default', ['sass','concat','browserify','uglify','watch']);
-   grunt.registerTask('default', ['sass','concat','browserify','watch']);
-   grunt.registerTask('default', ['sass','concat','browserify','watch']);
-   grunt.registerTask('full_build',['sass','concat','browserify','uglify']);  //all task execute
+  grunt.registerTask('default', ['sass','concat','browserify','uglify','watch']);
+  // grunt.registerTask('default', ['sass','concat','browserify','watch']);
+  // grunt.registerTask('default', ['sass','concat','browserify','watch']);
+  // grunt.registerTask('full_build',['sass','concat','browserify','uglify']);  //all task execute
 
     //!!!in watch also remove or add uglify task
     //   tasks:['browserify','uglify']
