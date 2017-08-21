@@ -1,5 +1,8 @@
-module.exports = function($stateProvider, $urlRouterProvider,$httpProvider)
+module.exports = function($stateProvider, $urlRouterProvider,$httpProvider,$locationProvider)
 	{
+
+    $locationProvider.hashPrefix('!');
+
 
     $urlRouterProvider
     	.otherwise('/main/stat/tabs')
@@ -87,4 +90,4 @@ module.exports = function($stateProvider, $urlRouterProvider,$httpProvider)
 
     }
 
-module.exports.$inject = ['$stateProvider', '$urlRouterProvider','$httpProvider'];
+module.exports.$inject = ['$stateProvider', '$urlRouterProvider','$httpProvider','$locationProvider'];

@@ -137,7 +137,7 @@ module.exports = function(grunt)
                   './app/services/*.js',
                   './app/filters/*.js',
                   './app/factories/*.js'],
-              tasks:['browserify']
+              tasks:['browserify','uglify']
               },
             css:
               {

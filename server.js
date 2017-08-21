@@ -84,6 +84,7 @@ app.use('/non_bower',express.static(__dirname+'/app/non_bower_libs'));
 app.use('/images',express.static(__dirname+'/app/images'));
 app.use('/version',express.static(__dirname+'/VERSION'));
 app.use('/dictionary',express.static(__dirname+'/app/dictionary'));
+//app.use('/',express.static(__dirname+'/'));
 
 
 app.use(bodyParser.json());
