@@ -89,8 +89,31 @@ app.use('/dictionary',express.static(__dirname+'/app/dictionary'));
 
 app.use(bodyParser.json());
 
-app.get('/',function(req,resp)
+app.get('/',function(req,resp,next)
         {
+        //for static content for google crawler
+        if (req.query['_escaped_fragment_'])
+            {
+            try
+                {
+                fs.readFile('./prefetched/'+req.query['_escaped_fragment_'].replace(/\//g,'_'),
+                    'utf-8',
+                    function(err,res)
+                        {
+                        try
+                            {
+                            if (err) throw err;
+                            resp.send(res);
+                            }
+                        catch(err){next(err);}
+                        return false;
+                        })
+                }
+                catch(err){next(err)}
+            return false;
+            }
+
+        //for loading website
         fs.readFile('./index.html','utf-8',function(err,res)
             {
             if (err){resp.send('Cannot find index.html');return false;};

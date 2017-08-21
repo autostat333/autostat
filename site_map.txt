@@ -1,0 +1,3 @@
+http://autostat.net.ua/#!/main/stat/tabs
+http://autostat.net.ua/#!/main/about
+http://autostat.net.ua/#!/main/contact
