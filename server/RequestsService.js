@@ -164,7 +164,7 @@ module.exports = function RequestsService(async,app,request)
 	function getCoordinates(name,callback)
 		{
 		if (!name){callback('Error');return false;};
-		var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+name+'&region=UA';
+		var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+name.toLowerCase()+'&region=UA';
 		//timeout is nec because google cannot serve a lot of reqs
 		console.log('SEND',url);
 		request(url,function(err,res)
@@ -181,7 +181,7 @@ module.exports = function RequestsService(async,app,request)
 				var obj = JSON.parse(res.body)['results'][0]['geometry']['location'];
 				callback(null,obj);
 				}
-			catch(err){console.log('ERROR:',url,err);callback(err);}
+			catch(err){console.log('ERROR:',url,err,res.body);callback(err);}
 			});
 
 
