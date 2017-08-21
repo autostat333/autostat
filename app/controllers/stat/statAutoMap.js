@@ -106,6 +106,7 @@ module.exports = function StatAutoMap($scope,backend,$filter,tour)
 		for (var each in res)
 			{
 			var el = res[each];
+			if (!el['cityCoordinates']) continue;
 			el['id'] = t++;
 			el['place'] = el['city'];
 			el['sumTarget'] = 1;//res[each]['totalOrders'];
@@ -120,7 +121,6 @@ module.exports = function StatAutoMap($scope,backend,$filter,tour)
 			el['raceOrg'] = isNaN(el['raceOrg'])?0:el['raceOrg'];
 
 			//new_obj['avgPrice'] = res[each]['totalPrice']/res[each]['totalOrders'];
-			if (!el['lat']) continue;
 			new_arr.push(el);
 			}
 
